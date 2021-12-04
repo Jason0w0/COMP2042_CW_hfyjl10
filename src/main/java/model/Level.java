@@ -24,8 +24,6 @@ public class Level {
     private double brickDimensionRatio = 6/2;
     private Rectangle drawArea = new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT);
 
-//    Wall wall = new Wall(new Rectangle(0,0,DEF_WIDTH, DEF_HEIGHT),30,3,6/2,new Point(300,430));
-
     public Level() {
         levels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
     }

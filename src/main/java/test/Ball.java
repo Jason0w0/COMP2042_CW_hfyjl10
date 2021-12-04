@@ -50,16 +50,17 @@ abstract public class Ball {
         left = new Point2D.Double();
         right = new Point2D.Double();
 
-        up.setLocation(center.getX(),center.getY()-(radiusB / 2));
-        down.setLocation(center.getX(),center.getY()+(radiusB / 2));
+        up.setLocation(center.getX(),center.getY()-((double) radiusB / 2));
+        down.setLocation(center.getX(),center.getY()+((double) radiusB / 2));
 
-        left.setLocation(center.getX()-(radiusA /2),center.getY());
-        right.setLocation(center.getX()+(radiusA /2),center.getY());
+        left.setLocation(center.getX()-((double) radiusA /2),center.getY());
+        right.setLocation(center.getX()+((double) radiusA /2),center.getY());
 
 
         ballFace = makeBall(center,radiusA,radiusB);
         this.border = border;
         this.inner  = inner;
+
         speedX = 0;
         speedY = 0;
     }
@@ -80,8 +81,8 @@ abstract public class Ball {
     }
 
     public void setSpeed(int x,int y){
-        speedX = x;
-        speedY = y;
+        setXSpeed(x);
+        setYSpeed(y);
     }
 
     public void setXSpeed(int s){

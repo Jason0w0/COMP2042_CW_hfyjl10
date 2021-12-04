@@ -39,10 +39,11 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private static final Color BG_COLOR = Color.GREEN.darker();
     private static final Color BORDER_COLOR = new Color(200,8,21); //Venetian Red
     private static final Color DASH_BORDER_COLOR = new  Color(255, 216, 0);//school bus yellow
-    private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
-    private static final Color CLICKED_BUTTON_COLOR = BG_COLOR.brighter();
-    private static final Color CLICKED_TEXT = Color.WHITE;
-    private static final int BORDER_SIZE = 5;
+//    private static final Color TEXT_COLOR = new Color(16, 52, 166);//egyptian blue
+    private static final Color TEXT_COLOR = Color.BLACK;//egyptian blue
+    private static final Color CLICKED_BUTTON_COLOR = Color.LIGHT_GRAY;
+    private static final Color CLICKED_TEXT = Color.lightGray;
+    private static final int BORDER_SIZE = 10;
     private static final float[] DASHES = {12,6};
 
     private Rectangle menuFace;
@@ -98,20 +99,24 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     }
     //define Font
     private void setFont() {
-        greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
+        greetingsFont = new Font("Noto Mono",Font.BOLD,30);
         gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
-        creditsFont = new Font("Monospaced",Font.PLAIN,10);
-        buttonFont = new Font("Monospaced",Font.PLAIN,startButton.height-2);
+        creditsFont = new Font("Monospaced",Font.BOLD,20);
+        buttonFont = new Font("Monospaced",Font.BOLD,startButton.height-2);
     }
 
     public void paint(Graphics g){
+        Image img = Toolkit.getDefaultToolkit().getImage("src/main/resources/brick-destroyer-img-resized.png");
+        g.drawImage(img,0,0,this);
+//        setVisible(true);
         drawMenu((Graphics2D)g);
+
     }
 
     //change from public to private
     private void drawMenu(Graphics2D g2d){
 
-        drawContainer(g2d);
+//        drawContainer(g2d);
 
         /*
         all the following method calls need a relative
@@ -120,6 +125,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
          */
         Color prevColor = g2d.getColor();
         Font prevFont = g2d.getFont();
+
+//        Color prevColor = Color.BLACK;
 
         double x = menuFace.getX();
         double y = menuFace.getY();
@@ -139,8 +146,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private void drawContainer(Graphics2D g2d){
         Color prev = g2d.getColor();
 
-        g2d.setColor(BG_COLOR);
-        g2d.fill(menuFace);
+//        g2d.setColor(BG_COLOR);
+//        g2d.fill(menuFace);
 
         Stroke tmp = g2d.getStroke();
 
