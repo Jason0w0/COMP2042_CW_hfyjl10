@@ -17,6 +17,8 @@
  */
 package test;
 
+import view.HomeMenu;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
@@ -41,7 +43,8 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
         gameBoard = new GameBoard(this);
 
-        homeMenu = new HomeMenu(this,new Dimension(450,300));
+//        homeMenu = new HomeMenu(this,new Dimension(450,300));
+        homeMenu = new HomeMenu(this);
 
         this.add(homeMenu,BorderLayout.CENTER);
 

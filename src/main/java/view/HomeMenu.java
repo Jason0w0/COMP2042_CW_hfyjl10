@@ -15,7 +15,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package view;
+
+import test.GameFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -56,50 +58,58 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
     private Font creditsFont;
     private Font buttonFont;
 
-    private GameFrame owner;
+    private final GameFrame owner;
 
     private boolean startClicked;
     private boolean menuClicked;
 
-
-    public HomeMenu(GameFrame owner,Dimension area){
-
-        this.setFocusable(true);
-        this.requestFocusInWindow();
-
-        this.addMouseListener(this);
-        this.addMouseMotionListener(this);
+    public HomeMenu(GameFrame owner){
 
         this.owner = owner;
-
-
-
-        menuFace = new Rectangle(new Point(0,0),area);
-        this.setPreferredSize(area);
-
+        Dimension area = new Dimension(450, 300);
         Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
+
+        initialize(area);
+        setInterface(btnDim,area);
+        setFont();
+        setBorderStoke();
+    }
+
+    //set up function of HomeMenu
+    private void initialize(Dimension area) {
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+        this.addMouseListener(this);
+        this.addMouseMotionListener(this);
+        this.setPreferredSize(area);
+    }
+
+    //create interface component
+    private void setInterface(Dimension btnDim, Dimension area) {
+        menuFace = new Rectangle(new Point(0,0),area);
         startButton = new Rectangle(btnDim);
         menuButton = new Rectangle(btnDim);
 
+    }
+    //define border stoke
+    private void setBorderStoke() {
         borderStoke = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND,0,DASHES,0);
         borderStoke_noDashes = new BasicStroke(BORDER_SIZE,BasicStroke.CAP_ROUND,BasicStroke.JOIN_ROUND);
-
+    }
+    //define Font
+    private void setFont() {
         greetingsFont = new Font("Noto Mono",Font.PLAIN,25);
         gameTitleFont = new Font("Noto Mono",Font.BOLD,40);
         creditsFont = new Font("Monospaced",Font.PLAIN,10);
         buttonFont = new Font("Monospaced",Font.PLAIN,startButton.height-2);
-
-
-
     }
-
 
     public void paint(Graphics g){
         drawMenu((Graphics2D)g);
     }
 
-
-    public void drawMenu(Graphics2D g2d){
+    //change from public to private
+    private void drawMenu(Graphics2D g2d){
 
         drawContainer(g2d);
 
@@ -157,7 +167,8 @@ public class HomeMenu extends JComponent implements MouseListener, MouseMotionLi
         Rectangle2D gameTitleRect = gameTitleFont.getStringBounds(GAME_TITLE,frc);
         Rectangle2D creditsRect = creditsFont.getStringBounds(CREDITS,frc);
 
-        int sX,sY;
+        int sX;
+        int sY;
 
         sX = (int)(menuFace.getWidth() - greetingsRect.getWidth()) / 2;
         sY = (int)(menuFace.getHeight() / 4);
