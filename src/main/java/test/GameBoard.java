@@ -17,6 +17,10 @@
  */
 package test;
 
+import controller.DebugConsoleController;
+import model.DebugConsoleModel;
+import view.DebugConsoleView;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -54,8 +58,9 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private Rectangle restartButtonRect;
     private int strLen;
 
-    private DebugConsole debugConsole;
-
+    private DebugConsoleView debugConsoleView;
+    private DebugConsoleController debugConsoleController;
+    private DebugConsoleModel debugConsoleModel;
 
     public GameBoard(JFrame owner){
         super();
@@ -72,7 +77,11 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         message = "";
         stage = new Stage(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430));
 
-        debugConsole = new DebugConsole(owner, stage,this);
+
+        debugConsoleModel = new DebugConsoleModel(owner, stage,this);
+        debugConsoleView = new DebugConsoleView();
+        debugConsoleController = new DebugConsoleController(debugConsoleModel, debugConsoleView);
+
         //initialize the first level
         stage.nextLevel();
 
@@ -292,7 +301,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 break;
             case KeyEvent.VK_F1:
                 if(keyEvent.isAltDown() && keyEvent.isShiftDown())
-                    debugConsole.setVisible(true);
+                    debugConsoleView.setVisible(true);
             default:
                 stage.player.stop();
         }

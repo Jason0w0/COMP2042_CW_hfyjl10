@@ -36,6 +36,11 @@ public class Stage {
     private Rectangle area;
 
     Brick[] bricks;
+
+    public Ball getBall() {
+        return ball;
+    }
+
     Ball ball;
     Player player;
 
@@ -59,7 +64,7 @@ public class Stage {
         ballCount = 3;
         ballLost = false;
 
-        rnd = new Random();
+//        rnd = new Random();
 
         makeBall(ballPos);
 //        int speedX,speedY;
