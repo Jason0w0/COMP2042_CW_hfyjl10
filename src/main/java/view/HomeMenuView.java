@@ -46,14 +46,13 @@ public class HomeMenuView extends JComponent {
     private Font creditsFont;
     private Font buttonFont;
 
-    private final GameFrame owner;
+    private GameFrame owner;
 
     private boolean startClicked;
     private boolean menuClicked;
 
-    public HomeMenuView(GameFrame owner) {
+    public HomeMenuView() {
 
-        this.owner = owner;
         Dimension area = new Dimension(450, 300);
         Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
 
@@ -75,6 +74,10 @@ public class HomeMenuView extends JComponent {
         startButton = new Rectangle(btnDim);
         menuButton = new Rectangle(btnDim);
 
+    }
+
+    public void setOwner(GameFrame owner) {
+        this.owner = owner;
     }
 
     public Rectangle getStartButton() {
@@ -129,7 +132,7 @@ public class HomeMenuView extends JComponent {
 
         g2d.translate(x, y);
 
-        //methods calls
+        //start methods calls
         drawText(g2d);
         drawButton(g2d);
         //end of methods calls

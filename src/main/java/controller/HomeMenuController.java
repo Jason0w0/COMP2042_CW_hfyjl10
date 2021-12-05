@@ -1,6 +1,7 @@
 package controller;
 
 import model.HomeMenuModel;
+import test.GameFrame;
 import view.HomeMenuView;
 
 import java.awt.*;
@@ -10,18 +11,19 @@ import java.awt.event.MouseMotionListener;
 
 public class HomeMenuController implements MouseListener, MouseMotionListener {
 
-    private HomeMenuModel homeMenuModel;
-    private HomeMenuView homeMenuView;
-    private Rectangle startButton;
-    private Rectangle menuButton;
+    private final HomeMenuModel homeMenuModel;
+    private final HomeMenuView homeMenuView;
+    private final Rectangle startButton;
+    private final Rectangle menuButton;
 
-    public HomeMenuController(HomeMenuModel homeMenuModel, HomeMenuView homeMenuView){
+    public HomeMenuController(HomeMenuModel homeMenuModel, HomeMenuView homeMenuView, GameFrame owner){
         this.homeMenuModel = homeMenuModel;
         this.homeMenuView = homeMenuView;
         this.homeMenuView.addMouseListener(this);
         this.homeMenuView.addMouseMotionListener(this);
         startButton = this.homeMenuView.getStartButton();
         menuButton = this.homeMenuView.getMenuButton();
+        homeMenuView.setOwner(owner);
     }
 
     @Override
