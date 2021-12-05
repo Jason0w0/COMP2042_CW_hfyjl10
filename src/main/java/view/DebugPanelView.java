@@ -15,7 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package view;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
@@ -24,30 +24,25 @@ import java.awt.event.ActionListener;
 
 
 
-public class DebugPanel extends JPanel {
+public class DebugPanelView extends JPanel {
 
     private static final Color DEF_BKG = Color.WHITE;
 
+    private final JButton skipLevel;
+    private final JButton resetBalls;
 
-    private JButton skipLevel;
-    private JButton resetBalls;
+    private final JSlider ballXSpeed;
+    private final JSlider ballYSpeed;
 
-    private JSlider ballXSpeed;
-    private JSlider ballYSpeed;
-
-    private Wall wall;
-
-    public DebugPanel(Wall wall){
-
-        this.wall = wall;
+    public DebugPanelView(){
 
         initialize();
 
-        skipLevel = makeButton("Skip Level",e -> wall.nextLevel());
-        resetBalls = makeButton("Reset Balls",e -> wall.resetBallCount());
+        skipLevel = new JButton("Skip Level");
+        resetBalls = new JButton("Reset Balls");
 
-        ballXSpeed = makeSlider(-4,4,e -> wall.setBallXSpeed(ballXSpeed.getValue()));
-        ballYSpeed = makeSlider(-4,4,e -> wall.setBallYSpeed(ballYSpeed.getValue()));
+        ballXSpeed = makeSlider();
+        ballYSpeed = makeSlider();
 
         this.add(skipLevel);
         this.add(resetBalls);
@@ -62,24 +57,35 @@ public class DebugPanel extends JPanel {
         this.setLayout(new GridLayout(2,2));
     }
 
-    private JButton makeButton(String title, ActionListener e){
-        JButton out = new JButton(title);
-        out.addActionListener(e);
-        return  out;
-    }
-
-    private JSlider makeSlider(int min, int max, ChangeListener e){
-        JSlider out = new JSlider(min,max);
+    private JSlider makeSlider(){
+        JSlider out = new JSlider(-10, 10);
         out.setMajorTickSpacing(1);
         out.setSnapToTicks(true);
         out.setPaintTicks(true);
-        out.addChangeListener(e);
         return out;
     }
 
-    public void setValues(int x,int y){
-        ballXSpeed.setValue(x);
-        ballYSpeed.setValue(y);
+    public JSlider getBallXSpeed() {
+        return ballXSpeed;
     }
 
+    public JSlider getBallYSpeed() {
+        return ballYSpeed;
+    }
+
+    public void addSkipLevelActionListener(ActionListener e){
+        skipLevel.addActionListener(e);
+    }
+
+    public void addResetBallActionListener(ActionListener e){
+        resetBalls.addActionListener(e);
+    }
+
+    public void addBallXSpeedChangeListener(ChangeListener e){
+        ballXSpeed.addChangeListener(e);
+    }
+
+    public void addBallYSpeedChangeListener(ChangeListener e){
+        ballYSpeed.addChangeListener(e);
+    }
 }
