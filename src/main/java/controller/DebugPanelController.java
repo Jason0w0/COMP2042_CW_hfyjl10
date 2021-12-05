@@ -2,7 +2,7 @@ package controller;
 
 import model.DebugPanelModel;
 import view.DebugPanelView;
-import test.Wall;
+import test.Stage;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -14,10 +14,10 @@ public class DebugPanelController {
     private final DebugPanelModel debugPanelModel;
     private final DebugPanelView debugPanelView;
 
-    public DebugPanelController(DebugPanelModel debugPanelModel, DebugPanelView debugPanelView, Wall wall){
+    public DebugPanelController(DebugPanelModel debugPanelModel, DebugPanelView debugPanelView, Stage stage){
         this.debugPanelModel = debugPanelModel;
         this.debugPanelView = debugPanelView;
-        this.debugPanelModel.setWall(wall);
+        this.debugPanelModel.setWall(stage);
         this.debugPanelView.addSkipLevelActionListener(new SkipLevelListener());
         this.debugPanelView.addResetBallActionListener(new ResetLevelListener());
         this.debugPanelView.addBallXSpeedChangeListener(new BallXSpeedChangeListener());

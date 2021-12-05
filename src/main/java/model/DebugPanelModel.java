@@ -1,20 +1,20 @@
 package model;
 
-import test.Wall;
+import test.Stage;
 
 public class DebugPanelModel {
 
-    private Wall wall;
+    private Stage stage;
 
     public DebugPanelModel() {
     }
 
-    public Wall getWall() {
-        return wall;
+    public Stage getWall() {
+        return stage;
     }
 
-    public void setWall(Wall wall) {
-        this.wall = wall;
+    public void setWall(Stage stage) {
+        this.stage = stage;
     }
 
 }

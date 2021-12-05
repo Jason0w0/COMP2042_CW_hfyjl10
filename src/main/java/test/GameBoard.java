@@ -41,7 +41,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private Timer gameTimer;
 
-    private Wall wall;
+    private Stage stage;
 
     private String message;
 
@@ -70,33 +70,33 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         this.initialize();
         message = "";
-        wall = new Wall(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430));
+        stage = new Stage(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430));
 
-        debugConsole = new DebugConsole(owner,wall,this);
+        debugConsole = new DebugConsole(owner, stage,this);
         //initialize the first level
-        wall.nextLevel();
+        stage.nextLevel();
 
         gameTimer = new Timer(10,e ->{
-            wall.move();
-            wall.findImpacts();
-            message = String.format("Bricks: %d Balls %d",wall.getBrickCount(),wall.getBallCount());
-            if(wall.isBallLost()){
-                if(wall.ballEnd()){
-                    wall.wallReset();
+            stage.move();
+            stage.findImpacts();
+            message = String.format("Bricks: %d Balls %d", stage.getBrickCount(), stage.getBallCount());
+            if(stage.isBallLost()){
+                if(stage.ballEnd()){
+                    stage.wallReset();
                     message = "Game over";
                 }
-                wall.ballReset();
-                wall.playerReset();
+                stage.ballReset();
+                stage.playerReset();
                 gameTimer.stop();
             }
-            else if(wall.isDone()){
-                if(wall.hasLevel()){
+            else if(stage.isDone()){
+                if(stage.hasLevel()){
                     message = "Go to Next Level";
                     gameTimer.stop();
-                    wall.ballReset();
-                    wall.playerReset();
-                    wall.wallReset();
-                    wall.nextLevel();
+                    stage.ballReset();
+                    stage.playerReset();
+                    stage.wallReset();
+                    stage.nextLevel();
                 }
                 else{
                     message = "ALL WALLS DESTROYED";
@@ -130,13 +130,13 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(Color.BLUE);
         g2d.drawString(message,250,225);
 
-        drawBall(wall.ball,g2d);
+        drawBall(stage.ball,g2d);
 
-        for(Brick b : wall.bricks)
+        for(Brick b : stage.bricks)
             if(!b.isBroken())
                 drawBrick(b,g2d);
 
-        drawPlayer(wall.player,g2d);
+        drawPlayer(stage.player,g2d);
 
         if(showPauseMenu)
             drawMenu(g2d);
@@ -273,10 +273,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     public void keyPressed(KeyEvent keyEvent) {
         switch(keyEvent.getKeyCode()){
             case KeyEvent.VK_A:
-                wall.player.moveLeft();
+                stage.player.moveLeft();
                 break;
             case KeyEvent.VK_D:
-                wall.player.movRight();
+                stage.player.movRight();
                 break;
             case KeyEvent.VK_ESCAPE:
                 showPauseMenu = !showPauseMenu;
@@ -294,13 +294,13 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
                 if(keyEvent.isAltDown() && keyEvent.isShiftDown())
                     debugConsole.setVisible(true);
             default:
-                wall.player.stop();
+                stage.player.stop();
         }
     }
 
     @Override
     public void keyReleased(KeyEvent keyEvent) {
-        wall.player.stop();
+        stage.player.stop();
     }
 
     @Override
@@ -314,8 +314,8 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         }
         else if(restartButtonRect.contains(p)){
             message = "Restarting Game...";
-            wall.ballReset();
-            wall.wallReset();
+            stage.ballReset();
+            stage.wallReset();
             showPauseMenu = false;
             repaint();
         }

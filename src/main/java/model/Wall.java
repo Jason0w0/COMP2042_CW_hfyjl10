@@ -4,7 +4,7 @@ import test.*;
 
 import java.awt.*;
 
-public class Level {
+public class Wall {
 
     private static final int LEVELS_COUNT = 4;
 
@@ -24,7 +24,7 @@ public class Level {
     private double brickDimensionRatio = 6/2;
     private Rectangle drawArea = new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT);
 
-    public Level() {
+    public Wall() {
         levels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
     }
 

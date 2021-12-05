@@ -17,14 +17,14 @@
  */
 package test;
 
-import model.Level;
+import model.Wall;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
 import java.util.Random;
 
 
-public class Wall {
+public class Stage {
 
     private static final int LEVELS_COUNT = 4;
 
@@ -49,11 +49,11 @@ public class Wall {
     private int speedX;
     private int speedY;
 
-    public Wall(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
+    public Stage(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
 
         this.startPoint = new Point(ballPos);
-        Level obstacles = new Level();
-        levels = obstacles.getLevels();
+        Wall wall = new Wall();
+        levels = wall.getLevels();
         level = 0;
 
         ballCount = 3;
