@@ -17,7 +17,9 @@
  */
 package test;
 
-import view.HomeMenu;
+import controller.HomeMenuController;
+import model.HomeMenuModel;
+import view.HomeMenuView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +32,9 @@ public class GameFrame extends JFrame implements WindowFocusListener {
     private static final String DEF_TITLE = "Brick Destroy";
 
     private GameBoard gameBoard;
-    private HomeMenu homeMenu;
+    private HomeMenuView homeMenuView;
+    private HomeMenuModel homeMenuModel;
+    private HomeMenuController homeMenuController;
 
     private boolean gaming;
 
@@ -44,9 +48,11 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         gameBoard = new GameBoard(this);
 
 //        homeMenu = new HomeMenu(this,new Dimension(450,300));
-        homeMenu = new HomeMenu(this);
+        homeMenuView = new HomeMenuView(this);
+        homeMenuModel = new HomeMenuModel();
+        homeMenuController = new HomeMenuController(homeMenuModel, homeMenuView);
 
-        this.add(homeMenu,BorderLayout.CENTER);
+        this.add(homeMenuView,BorderLayout.CENTER);
 
         this.setUndecorated(true);
 
@@ -59,11 +65,12 @@ public class GameFrame extends JFrame implements WindowFocusListener {
         this.pack();
         this.autoLocate();
         this.setVisible(true);
+        this.setResizable(false);
     }
 
     public void enableGameBoard(){
         this.dispose();
-        this.remove(homeMenu);
+        this.remove(homeMenuView);
         this.add(gameBoard,BorderLayout.CENTER);
         this.setUndecorated(false);
         initialize();
