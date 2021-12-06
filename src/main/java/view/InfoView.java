@@ -32,6 +32,8 @@ public class InfoView {
                 Press and hold A key to move left.
                 Press and hold D key to move right.
                 Press SPACE to start, pause and unpause.
+                Clearing the stage will no ball lost will gain a reward.
+                Clearing the stage will only 1 ball left will result in penalty.
                 All right you are good to go.
                 Have Fun!
 
