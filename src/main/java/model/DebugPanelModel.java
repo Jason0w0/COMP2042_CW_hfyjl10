@@ -1,7 +1,5 @@
 package model;
 
-import test.Stage;
-
 public class DebugPanelModel {
 
     private Stage stage;

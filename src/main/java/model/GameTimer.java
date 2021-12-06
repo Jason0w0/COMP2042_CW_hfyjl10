@@ -1,7 +1,6 @@
 package model;
 
 import view.GameBoardView;
-import test.Stage;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

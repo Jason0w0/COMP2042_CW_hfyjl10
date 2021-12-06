@@ -2,7 +2,7 @@ package controller;
 
 import model.DebugPanelModel;
 import view.DebugPanelView;
-import test.Stage;
+import model.Stage;
 
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;

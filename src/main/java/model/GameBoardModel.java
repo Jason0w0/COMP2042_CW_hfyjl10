@@ -2,7 +2,6 @@ package model;
 
 import controller.DebugConsoleController;
 import view.GameBoardView;
-import test.Stage;
 import view.DebugConsoleView;
 
 import javax.swing.*;

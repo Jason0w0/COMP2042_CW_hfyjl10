@@ -15,12 +15,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package model;
 
-import model.Ball;
-import model.Player;
-import model.RubberBall;
-import model.Wall;
+import model.*;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -79,7 +76,7 @@ public class Stage {
 //            speedY = -rnd.nextInt(3);
 //        }while(speedY == 0);
 
-        speedX = 10;
+        speedX = 1;
         speedY = -5;
 
         ball.setSpeed(speedX,speedY);

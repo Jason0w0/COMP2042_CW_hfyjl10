@@ -1,7 +1,5 @@
 package model;
 
-import test.*;
-
 import java.awt.*;
 
 public class Wall {

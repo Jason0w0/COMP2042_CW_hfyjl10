@@ -19,8 +19,8 @@ package view;
 
 import model.Ball;
 import model.Player;
-import test.Brick;
-import test.Stage;
+import model.Brick;
+import model.Stage;
 
 import javax.swing.*;
 import java.awt.*;
