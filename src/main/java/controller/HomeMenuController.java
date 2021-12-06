@@ -57,7 +57,7 @@ public class HomeMenuController implements MouseListener, MouseMotionListener {
             System.exit(0);
         }
         else if(homeMenuView.getInfoButton().contains(p)){
-
+            homeMenuView.getOwner().showInfo();
         }
     }
 

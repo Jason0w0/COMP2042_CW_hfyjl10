@@ -21,6 +21,7 @@ import model.GameFrameModel;
 import model.HomeMenuModel;
 import view.GameFrameView;
 import view.HomeMenuView;
+import view.InfoView;
 
 import java.awt.*;
 import java.awt.event.WindowEvent;
@@ -42,7 +43,6 @@ public class GameFrameController {
         this.gameFrameView = gameFrameView;
         this.gameFrameView.addGameFrameWindowFocusListener(new addWindowFocusListener());
         this.gameFrameView.addHomeMenu(homeMenuView);
-
     }
 
     class addWindowFocusListener implements WindowFocusListener {
@@ -81,5 +81,9 @@ public class GameFrameController {
         gameFrameView.add(gameFrameModel.getGameBoardView(), BorderLayout.CENTER);
         gameFrameView.setUndecorated(false);
         initialize();
+    }
+
+    public void showInfo(){
+        new InfoView(gameFrameView);
     }
 }
