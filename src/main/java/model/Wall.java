@@ -21,11 +21,12 @@ import java.awt.*;
 
 public class Wall {
 
-    private static final int LEVELS_COUNT = 6;
+    private static final int LEVELS_COUNT = 8;
 
     private static final int CLAY = 1;
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
+    private static final int SUPREME = 4;
 
     private final Brick[][] levels;
 
@@ -78,6 +79,7 @@ public class Wall {
                 case CLAY -> tmp[i] = new ClayBrick(p,brickSize);
                 case CEMENT -> tmp[i] = new CementBrick(p,brickSize);
                 case STEEL -> tmp[i] = new SteelBrick(p,brickSize);
+                case SUPREME -> tmp[i] = new SupremeBrick(p,brickSize);
             }
         }
         return tmp;
@@ -137,6 +139,8 @@ public class Wall {
         tmp[3] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CEMENT);
         tmp[4] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
         tmp[5] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL);
+        tmp[6] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,SUPREME);
+        tmp[7] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,SUPREME);
         return tmp;
     }
 
@@ -145,6 +149,7 @@ public class Wall {
             case CLAY -> new ClayBrick(point, size);
             case STEEL -> new SteelBrick(point, size);
             case CEMENT -> new CementBrick(point, size);
+            case SUPREME -> new SupremeBrick(point,size);
             default -> throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
         };
     }
