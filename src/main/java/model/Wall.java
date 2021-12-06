@@ -21,7 +21,7 @@ import java.awt.*;
 
 public class Wall {
 
-    private static final int LEVELS_COUNT = 4;
+    private static final int LEVELS_COUNT = 6;
 
     private static final int CLAY = 1;
     private static final int STEEL = 2;
@@ -74,7 +74,11 @@ public class Wall {
         for(double y = brickHgt;i < tmp.length;i++, y += 2*brickHgt){
             double x = (brickOnLine * brickLen) - (brickLen / 2);
             p.setLocation(x,y);
-            tmp[i] = new ClayBrick(p,brickSize);
+            switch (type){
+                case CLAY -> tmp[i] = new ClayBrick(p,brickSize);
+                case CEMENT -> tmp[i] = new CementBrick(p,brickSize);
+                case STEEL -> tmp[i] = new SteelBrick(p,brickSize);
+            }
         }
         return tmp;
 
@@ -130,7 +134,9 @@ public class Wall {
         tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
         tmp[1] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,CEMENT);
         tmp[2] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY,STEEL);
-        tmp[3] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
+        tmp[3] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CEMENT);
+        tmp[4] = makeChessboardLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL,CEMENT);
+        tmp[5] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,STEEL);
         return tmp;
     }
 
