@@ -15,7 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package model;
 
 import java.awt.*;
 
@@ -28,6 +28,9 @@ public class Player {
 
     private static final int DEF_MOVE_AMOUNT = 5;
 
+    private int width = 150;
+    private int height = 10;
+
     private Rectangle playerFace;
     private Point ballPoint;
     private int moveAmount;
@@ -35,7 +38,7 @@ public class Player {
     private int max;
 
 
-    public Player(Point ballPoint,int width,int height,Rectangle container) {
+    public Player(Point ballPoint,Rectangle container) {
         this.ballPoint = ballPoint;
         moveAmount = 0;
         playerFace = makeRectangle(width, height);

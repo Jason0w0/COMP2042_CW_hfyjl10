@@ -17,6 +17,9 @@
  */
 package test;
 
+import model.Ball;
+import model.Player;
+import model.RubberBall;
 import model.Wall;
 
 import java.awt.*;
@@ -25,12 +28,6 @@ import java.util.Random;
 
 
 public class Stage {
-
-    private static final int LEVELS_COUNT = 4;
-
-    private static final int CLAY = 1;
-    private static final int STEEL = 2;
-    private static final int CEMENT = 3;
 
     private Random rnd;
     private Rectangle area;
@@ -42,7 +39,12 @@ public class Stage {
     }
 
     Ball ball;
-    Player player;
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    private Player player;
 
     private Brick[][] levels;
     private int level;
@@ -57,7 +59,7 @@ public class Stage {
     public Stage(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
 
         this.startPoint = new Point(ballPos);
-        Wall wall = new Wall();
+        Wall wall = new Wall(drawArea);
         levels = wall.getLevels();
         level = 0;
 
@@ -67,6 +69,7 @@ public class Stage {
 //        rnd = new Random();
 
         makeBall(ballPos);
+        makePlayer((Point) ballPos.clone(), drawArea);
 //        int speedX,speedY;
 
 //        do{
@@ -81,8 +84,6 @@ public class Stage {
 
         ball.setSpeed(speedX,speedY);
 
-        player = new Player((Point) ballPos.clone(),150,10, drawArea);
-
         area = drawArea;
 
     }
@@ -90,6 +91,8 @@ public class Stage {
     private void makeBall(Point2D ballPos){
         ball = new RubberBall(ballPos);
     }
+
+    private void makePlayer(Point playerPos, Rectangle drawArea){ player = new Player(playerPos, drawArea);}
 
     public void move(){
         player.move();
@@ -225,5 +228,6 @@ public class Stage {
     public void resetBallCount(){
         ballCount = 3;
     }
+
 
 }

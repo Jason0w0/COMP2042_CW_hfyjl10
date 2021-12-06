@@ -10,16 +10,16 @@ import javax.swing.*;
 public class DebugConsoleModel {
 
     private final JFrame owner;
-    private final GameBoard gameBoard;
+    private final GameBoard gameBoardView;
     private final Stage stage;
 
     private final DebugPanelView debugPanelView;
     private final DebugPanelController debugPanelController;
 
-    public DebugConsoleModel(JFrame owner, Stage stage, GameBoard gameBoard){
+    public DebugConsoleModel(JFrame owner, Stage stage, GameBoard gameBoardView){
         this.stage = stage;
         this.owner = owner;
-        this.gameBoard = gameBoard;
+        this.gameBoardView = gameBoardView;
 
         debugPanelView = new DebugPanelView();
         DebugPanelModel debugPanelModel = new DebugPanelModel();
@@ -40,7 +40,7 @@ public class DebugConsoleModel {
     }
 
     public GameBoard getGameBoard() {
-        return gameBoard;
+        return gameBoardView;
     }
 
     public DebugPanelController getDebugPanelController() {

@@ -22,9 +22,8 @@ public class Wall {
     private int brickCount = 30;
     private int lineCount = 3;
     private double brickDimensionRatio = 6/2;
-    private Rectangle drawArea = new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT);
 
-    public Wall() {
+    public Wall(Rectangle drawArea) {
         levels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
     }
 

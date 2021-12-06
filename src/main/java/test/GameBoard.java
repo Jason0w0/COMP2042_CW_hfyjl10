@@ -18,7 +18,10 @@
 package test;
 
 import controller.DebugConsoleController;
+import model.Ball;
 import model.DebugConsoleModel;
+import model.GameBoardModel;
+import model.Player;
 import view.DebugConsoleView;
 
 import javax.swing.*;
@@ -28,7 +31,7 @@ import java.awt.font.FontRenderContext;
 
 
 
-public class GameBoard extends JComponent implements KeyListener,MouseListener,MouseMotionListener {
+public class GameBoard extends JComponent {
 
     private static final String CONTINUE = "Continue";
     private static final String RESTART = "Restart";
@@ -38,12 +41,10 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
     private static final Color MENU_COLOR = new Color(0,255,0);
 
 
-    private static final int DEF_WIDTH = 600;
-    private static final int DEF_HEIGHT = 450;
+    private static  int DEF_WIDTH = 600;
+    private static  int DEF_HEIGHT = 450;
 
     private static final Color BG_COLOR = Color.WHITE;
-
-    private Timer gameTimer;
 
     private Stage stage;
 
@@ -53,82 +54,52 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
     private Font menuFont;
 
+    public Rectangle getContinueButtonRect() {
+        return continueButtonRect;
+    }
+
+    public Rectangle getExitButtonRect() {
+        return exitButtonRect;
+    }
+
+    public Rectangle getRestartButtonRect() {
+        return restartButtonRect;
+    }
+
     private Rectangle continueButtonRect;
     private Rectangle exitButtonRect;
     private Rectangle restartButtonRect;
     private int strLen;
 
-    private DebugConsoleView debugConsoleView;
-    private DebugConsoleController debugConsoleController;
-    private DebugConsoleModel debugConsoleModel;
-
-    public GameBoard(JFrame owner){
+    public GameBoard(){
         super();
-
         strLen = 0;
-        showPauseMenu = false;
-
-
-
-        menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
-
-
-        this.initialize();
         message = "";
-        stage = new Stage(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430));
-
-
-        debugConsoleModel = new DebugConsoleModel(owner, stage,this);
-        debugConsoleView = new DebugConsoleView();
-        debugConsoleController = new DebugConsoleController(debugConsoleModel, debugConsoleView);
-
-        //initialize the first level
-        stage.nextLevel();
-
-        gameTimer = new Timer(10,e ->{
-            stage.move();
-            stage.findImpacts();
-            message = String.format("Bricks: %d Balls %d", stage.getBrickCount(), stage.getBallCount());
-            if(stage.isBallLost()){
-                if(stage.ballEnd()){
-                    stage.wallReset();
-                    message = "Game over";
-                }
-                stage.ballReset();
-                stage.playerReset();
-                gameTimer.stop();
-            }
-            else if(stage.isDone()){
-                if(stage.hasLevel()){
-                    message = "Go to Next Level";
-                    gameTimer.stop();
-                    stage.ballReset();
-                    stage.playerReset();
-                    stage.wallReset();
-                    stage.nextLevel();
-                }
-                else{
-                    message = "ALL WALLS DESTROYED";
-                    gameTimer.stop();
-                }
-            }
-
-            repaint();
-        });
-
+        menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
+        this.initialize();
     }
 
-
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setFocusable(true);
         this.requestFocusInWindow();
-        this.addKeyListener(this);
-        this.addMouseListener(this);
-        this.addMouseMotionListener(this);
     }
 
+    public void addGameBoardKeyListener( KeyListener e){
+        this.addKeyListener(e);
+    }
+
+    public void addGameBoardMouseListener(MouseListener e){
+        this.addMouseListener(e);
+    }
+
+    public void addGameBoardMouseMotionListener(MouseMotionListener e){
+        this.addMouseMotionListener(e);
+    }
 
     public void paint(Graphics g){
 
@@ -137,7 +108,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         clear(g2d);
 
         g2d.setColor(Color.BLUE);
-        g2d.drawString(message,250,225);
+        g2d.drawString(message, 250,225);
 
         drawBall(stage.ball,g2d);
 
@@ -145,12 +116,20 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
             if(!b.isBroken())
                 drawBrick(b,g2d);
 
-        drawPlayer(stage.player,g2d);
+        drawPlayer(stage.getPlayer(),g2d);
 
         if(showPauseMenu)
             drawMenu(g2d);
 
         Toolkit.getDefaultToolkit().sync();
+    }
+
+    public void getShowPauseMenu(Boolean showPauseMenu){
+        this.showPauseMenu = showPauseMenu;
+    }
+
+    public void setMessage(String message){
+        this.message = message;
     }
 
     private void clear(Graphics2D g2d){
@@ -173,7 +152,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
-    private void drawBall(Ball ball,Graphics2D g2d){
+    private void drawBall(Ball ball, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
         Shape s = ball.getBallFace();
@@ -187,7 +166,7 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
         g2d.setColor(tmp);
     }
 
-    private void drawPlayer(Player p,Graphics2D g2d){
+    private void drawPlayer(Player p, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
         Shape s = p.getPlayerFace();
@@ -272,111 +251,6 @@ public class GameBoard extends JComponent implements KeyListener,MouseListener,M
 
         g2d.setFont(tmpFont);
         g2d.setColor(tmpColor);
-    }
-
-    @Override
-    public void keyTyped(KeyEvent keyEvent) {
-    }
-
-    @Override
-    public void keyPressed(KeyEvent keyEvent) {
-        switch(keyEvent.getKeyCode()){
-            case KeyEvent.VK_A:
-                stage.player.moveLeft();
-                break;
-            case KeyEvent.VK_D:
-                stage.player.movRight();
-                break;
-            case KeyEvent.VK_ESCAPE:
-                showPauseMenu = !showPauseMenu;
-                repaint();
-                gameTimer.stop();
-                break;
-            case KeyEvent.VK_SPACE:
-                if(!showPauseMenu)
-                    if(gameTimer.isRunning())
-                        gameTimer.stop();
-                    else
-                        gameTimer.start();
-                break;
-            case KeyEvent.VK_F1:
-                if(keyEvent.isAltDown() && keyEvent.isShiftDown())
-                    debugConsoleView.setVisible(true);
-            default:
-                stage.player.stop();
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent keyEvent) {
-        stage.player.stop();
-    }
-
-    @Override
-    public void mouseClicked(MouseEvent mouseEvent) {
-        Point p = mouseEvent.getPoint();
-        if(!showPauseMenu)
-            return;
-        if(continueButtonRect.contains(p)){
-            showPauseMenu = false;
-            repaint();
-        }
-        else if(restartButtonRect.contains(p)){
-            message = "Restarting Game...";
-            stage.ballReset();
-            stage.wallReset();
-            showPauseMenu = false;
-            repaint();
-        }
-        else if(exitButtonRect.contains(p)){
-            System.exit(0);
-        }
-
-    }
-
-    @Override
-    public void mousePressed(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent mouseEvent) {
-
-    }
-
-    @Override
-    public void mouseMoved(MouseEvent mouseEvent) {
-        Point p = mouseEvent.getPoint();
-        if(exitButtonRect != null && showPauseMenu) {
-            if (exitButtonRect.contains(p) || continueButtonRect.contains(p) || restartButtonRect.contains(p))
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            else
-                this.setCursor(Cursor.getDefaultCursor());
-        }
-        else{
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }
-
-    public void onLostFocus(){
-        gameTimer.stop();
-        message = "Focus Lost";
-        repaint();
     }
 
 }

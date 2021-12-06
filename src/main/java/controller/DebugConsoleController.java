@@ -1,7 +1,7 @@
 package controller;
 
 import model.DebugConsoleModel;
-import test.Ball;
+import model.Ball;
 import view.DebugConsoleView;
 
 import java.awt.event.WindowEvent;

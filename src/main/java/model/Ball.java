@@ -15,7 +15,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package model;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
@@ -31,10 +31,10 @@ abstract public class Ball {
 
     private Point2D center;
 
-    Point2D up;
-    Point2D down;
-    Point2D left;
-    Point2D right;
+    public Point2D up;
+    public Point2D down;
+    public Point2D left;
+    public Point2D right;
 
     private Color border;
     private Color inner;
