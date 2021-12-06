@@ -1,7 +1,7 @@
 package model;
 
 import controller.DebugPanelController;
-import test.GameBoard;
+import view.GameBoardView;
 import test.Stage;
 import view.DebugPanelView;
 
@@ -10,13 +10,13 @@ import javax.swing.*;
 public class DebugConsoleModel {
 
     private final JFrame owner;
-    private final GameBoard gameBoardView;
+    private final GameBoardView gameBoardView;
     private final Stage stage;
 
     private final DebugPanelView debugPanelView;
     private final DebugPanelController debugPanelController;
 
-    public DebugConsoleModel(JFrame owner, Stage stage, GameBoard gameBoardView){
+    public DebugConsoleModel(JFrame owner, Stage stage, GameBoardView gameBoardView){
         this.stage = stage;
         this.owner = owner;
         this.gameBoardView = gameBoardView;
@@ -39,7 +39,7 @@ public class DebugConsoleModel {
         return debugPanelView;
     }
 
-    public GameBoard getGameBoard() {
+    public GameBoardView getGameBoard() {
         return gameBoardView;
     }
 

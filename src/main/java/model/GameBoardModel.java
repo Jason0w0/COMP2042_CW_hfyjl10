@@ -1,7 +1,7 @@
 package model;
 
 import controller.DebugConsoleController;
-import test.GameBoard;
+import view.GameBoardView;
 import test.Stage;
 import view.DebugConsoleView;
 
@@ -10,38 +10,22 @@ import java.awt.*;
 
 public class GameBoardModel {
 
-    private static  int DEF_WIDTH = 600;
-    private static  int DEF_HEIGHT = 450;
-
     private Stage stage;
-    private boolean showPauseMenu;
-//    private String message;
-
     private DebugConsoleView debugConsoleView;
-    private DebugConsoleController debugConsoleController;
-    private DebugConsoleModel debugConsoleModel;
-
     private GameTimer gameTimer;
-    private JFrame owner;
+    private final JFrame owner;
+
+    private boolean showPauseMenu;
 
 
     public GameBoardModel(JFrame owner) {
         this.owner = owner;
         showPauseMenu = false;
-//        message = "";
     }
 
     public Stage getStage() {
         return stage;
     }
-
-//    public String getMessage() {
-//        return message;
-//    }
-//
-//    public void setMessage(String message) {
-//        this.message = message;
-//    }
 
     public Timer getGameTimer() {
         return gameTimer.getGameTimer();
@@ -60,48 +44,18 @@ public class GameBoardModel {
     }
 
     public void createStage(){
-        stage = new Stage(new Rectangle(0,0,DEF_WIDTH,DEF_HEIGHT),30,3,6/2,new Point(300,430));
+        stage = new Stage(new Rectangle(0,0, 600, 450),30,3,3,new Point(300,430));
         //initialize the first level
         stage.nextLevel();
     }
 
-    public void createDebugConsole(GameBoard gameBoardView){
-        debugConsoleModel = new DebugConsoleModel(owner, stage,gameBoardView);
+    public void createDebugConsole(GameBoardView gameBoardView){
+        DebugConsoleModel debugConsoleModel = new DebugConsoleModel(owner, stage, gameBoardView);
         debugConsoleView = new DebugConsoleView();
-        debugConsoleController = new DebugConsoleController(debugConsoleModel, debugConsoleView);
+        new DebugConsoleController(debugConsoleModel, debugConsoleView);
     }
 
-    public void gameLoop(GameBoard gameBoardView){
+    public void gameLoop(GameBoardView gameBoardView){
         gameTimer = new GameTimer(gameBoardView, stage);
-//        gameTimer = new Timer(10,e ->{
-//            stage.move();
-//            stage.findImpacts();
-//            message = String.format("Bricks: %d Balls %d", stage.getBrickCount(), stage.getBallCount());
-//            if(stage.isBallLost()){
-//                if(stage.ballEnd()){
-//                    stage.wallReset();
-//                    message = "Game over";
-//                }
-//                stage.ballReset();
-//                stage.playerReset();
-//                gameTimer.stop();
-//            }
-//            else if(stage.isDone()){
-//                if(stage.hasLevel()){
-//                    message = "Go to Next Level";
-//                    gameTimer.stop();
-//                    stage.ballReset();
-//                    stage.playerReset();
-//                    stage.wallReset();
-//                    stage.nextLevel();
-//                }
-//                else{
-//                    message = "ALL WALLS DESTROYED";
-//                    gameTimer.stop();
-//                }
-//            }
-//
-//            gameBoardView.repaint();
-//        });
     }
 }

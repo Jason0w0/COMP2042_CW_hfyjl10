@@ -21,6 +21,7 @@ import controller.GameBoardController;
 import controller.HomeMenuController;
 import model.GameBoardModel;
 import model.HomeMenuModel;
+import view.GameBoardView;
 import view.HomeMenuView;
 
 import javax.swing.*;
@@ -33,7 +34,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
     private static final String DEF_TITLE = "Brick Destroy";
 
-    private GameBoard gameBoardView;
+    private GameBoardView gameBoardView;
     private GameBoardModel gameBoardModel;
     private GameBoardController gameBoardController;
 
@@ -52,7 +53,7 @@ public class GameFrame extends JFrame implements WindowFocusListener {
 
 //        gameBoard = new GameBoard(this);
         gameBoardModel = new GameBoardModel(this);
-        gameBoardView = new GameBoard();
+        gameBoardView = new GameBoardView();
         gameBoardController = new GameBoardController(gameBoardModel,gameBoardView);
 //        homeMenu = new HomeMenu(this,new Dimension(450,300));
         homeMenuView = new HomeMenuView();

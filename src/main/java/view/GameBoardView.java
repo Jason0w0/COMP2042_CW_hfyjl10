@@ -15,14 +15,12 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package test;
+package view;
 
-import controller.DebugConsoleController;
 import model.Ball;
-import model.DebugConsoleModel;
-import model.GameBoardModel;
 import model.Player;
-import view.DebugConsoleView;
+import test.Brick;
+import test.Stage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,8 +28,7 @@ import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 
 
-
-public class GameBoard extends JComponent {
+public class GameBoardView extends JComponent {
 
     private static final String CONTINUE = "Continue";
     private static final String RESTART = "Restart";
@@ -41,8 +38,8 @@ public class GameBoard extends JComponent {
     private static final Color MENU_COLOR = new Color(0,255,0);
 
 
-    private static  int DEF_WIDTH = 600;
-    private static  int DEF_HEIGHT = 450;
+    private static final int DEF_WIDTH = 600;
+    private static final int DEF_HEIGHT = 450;
 
     private static final Color BG_COLOR = Color.WHITE;
 
@@ -52,7 +49,7 @@ public class GameBoard extends JComponent {
 
     private boolean showPauseMenu;
 
-    private Font menuFont;
+    private final Font menuFont;
 
     public Rectangle getContinueButtonRect() {
         return continueButtonRect;
@@ -71,7 +68,7 @@ public class GameBoard extends JComponent {
     private Rectangle restartButtonRect;
     private int strLen;
 
-    public GameBoard(){
+    public GameBoardView(){
         super();
         strLen = 0;
         message = "";

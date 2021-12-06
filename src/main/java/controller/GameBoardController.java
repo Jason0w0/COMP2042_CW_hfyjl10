@@ -1,16 +1,16 @@
 package controller;
 
 import model.GameBoardModel;
-import test.GameBoard;
+import view.GameBoardView;
 
 import java.awt.*;
 import java.awt.event.*;
 
 public class GameBoardController {
     private GameBoardModel gameBoardModel;
-    private GameBoard gameBoardView;
+    private GameBoardView gameBoardView;
 
-    public GameBoardController(GameBoardModel gameBoardModel, GameBoard gameBoardView){
+    public GameBoardController(GameBoardModel gameBoardModel, GameBoardView gameBoardView){
         this.gameBoardModel = gameBoardModel;
         this.gameBoardView = gameBoardView;
         this.gameBoardView.addGameBoardKeyListener(new addKeyListener());

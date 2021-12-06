@@ -32,13 +32,13 @@ public class Stage {
     private Random rnd;
     private Rectangle area;
 
-    Brick[] bricks;
+    public Brick[] bricks;
 
     public Ball getBall() {
         return ball;
     }
 
-    Ball ball;
+    public Ball ball;
 
     public Player getPlayer() {
         return player;
