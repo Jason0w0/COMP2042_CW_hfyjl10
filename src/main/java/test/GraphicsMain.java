@@ -17,13 +17,20 @@
  */
 package test;
 
+import controller.GameFrameController;
+import model.GameFrameModel;
+import view.GameFrameView;
+
 import java.awt.*;
 
 
 public class GraphicsMain {
 
     public static void main(String[] args){
-        EventQueue.invokeLater(() -> new GameFrame().initialize());
+        GameFrameView gameFrameView = new GameFrameView();
+        GameFrameModel gameFrameModel = new GameFrameModel(gameFrameView);
+        GameFrameController gameFrameController = new GameFrameController(gameFrameModel, gameFrameView);
+        EventQueue.invokeLater(gameFrameController::initialize);
     }
 
 }

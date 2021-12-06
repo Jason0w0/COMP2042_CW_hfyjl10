@@ -17,7 +17,7 @@
  */
 package view;
 
-import test.GameFrame;
+import controller.GameFrameController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -46,7 +46,7 @@ public class HomeMenuView extends JComponent {
     private Font creditsFont;
     private Font buttonFont;
 
-    private GameFrame owner;
+    private GameFrameController owner;
 
     private boolean startClicked;
     private boolean menuClicked;
@@ -76,7 +76,7 @@ public class HomeMenuView extends JComponent {
 
     }
 
-    public void setOwner(GameFrame owner) {
+    public void setOwner(GameFrameController owner) {
         this.owner = owner;
     }
 
@@ -88,7 +88,7 @@ public class HomeMenuView extends JComponent {
         return menuButton;
     }
 
-    public GameFrame getOwner() {
+    public GameFrameController getOwner() {
         return owner;
     }
 
