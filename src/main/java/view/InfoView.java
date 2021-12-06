@@ -36,7 +36,7 @@ public class InfoView {
                 Clearing the stage will only 1 ball left will result in penalty.
                 All right you are good to go.
                 Have Fun!
-
-                This game is modified by Lee Jason, 20184290, for coursework purpose :)""";
+                This game is modified by Lee Jason, 20184290, for coursework purpose :)
+                """;
     }
 }
