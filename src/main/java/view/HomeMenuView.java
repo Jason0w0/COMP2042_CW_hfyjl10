@@ -32,6 +32,7 @@ public class HomeMenuView extends JComponent {
     private static final String CREDITS = "Version 0.1";
     private static final String START_TEXT = "Start";
     private static final String MENU_TEXT = "Exit";
+    private static final String INFO_TEXT = "Info";
 
     private static final Color TEXT_COLOR = Color.BLACK;//egyptian blue
     private static final Color CLICKED_BUTTON_COLOR = Color.LIGHT_GRAY;
@@ -40,6 +41,7 @@ public class HomeMenuView extends JComponent {
     private Rectangle menuFace;
     private Rectangle startButton;
     private Rectangle menuButton;
+    private Rectangle infoButton;
 
     private Font greetingsFont;
     private Font gameTitleFont;
@@ -50,6 +52,7 @@ public class HomeMenuView extends JComponent {
 
     private boolean startClicked;
     private boolean menuClicked;
+    private boolean infoClicked;
 
     public HomeMenuView() {
         Dimension area = new Dimension(450, 300);
@@ -71,6 +74,7 @@ public class HomeMenuView extends JComponent {
         menuFace = new Rectangle(new Point(0, 0), area);
         startButton = new Rectangle(btnDim);
         menuButton = new Rectangle(btnDim);
+        infoButton = new Rectangle(btnDim);
     }
 
     public void setOwner(GameFrameController owner) {
@@ -85,6 +89,10 @@ public class HomeMenuView extends JComponent {
         return menuButton;
     }
 
+    public Rectangle getInfoButton() {
+        return infoButton;
+    }
+
     public GameFrameController getOwner() {
         return owner;
     }
@@ -95,6 +103,10 @@ public class HomeMenuView extends JComponent {
 
     public void setMenuClicked(boolean menuClicked) {
         this.menuClicked = menuClicked;
+    }
+
+    public void setInfoClicked(boolean infoClicked) {
+        this.infoClicked = infoClicked;
     }
 
     //define Font
@@ -173,11 +185,13 @@ public class HomeMenuView extends JComponent {
 
         Rectangle2D txtRect = buttonFont.getStringBounds(START_TEXT, frc);
         Rectangle2D mTxtRect = buttonFont.getStringBounds(MENU_TEXT, frc);
+        Rectangle2D iTxtRect = buttonFont.getStringBounds(INFO_TEXT, frc);
 
         g2d.setFont(buttonFont);
 
         int x = (menuFace.width - startButton.width) / 2;
         int y = (int) ((menuFace.height - startButton.height) * 0.8);
+
 
         startButton.setLocation(x, y);
 
@@ -207,7 +221,6 @@ public class HomeMenuView extends JComponent {
 
         menuButton.setLocation(x, y);
 
-
         x = (int) (menuButton.getWidth() - mTxtRect.getWidth()) / 2;
         y = (int) (menuButton.getHeight() - mTxtRect.getHeight()) / 2;
 
@@ -225,6 +238,32 @@ public class HomeMenuView extends JComponent {
         } else {
             g2d.draw(menuButton);
             g2d.drawString(MENU_TEXT, x, y);
+        }
+
+        x = startButton.x;
+        y = startButton.y;
+
+        y -= 44;
+
+        infoButton.setLocation(x,y);
+
+        x = (int) (infoButton.getWidth() - iTxtRect.getWidth()) / 2;
+        y = (int) (infoButton.getHeight() - iTxtRect.getHeight()) / 2;
+
+        x += infoButton.x;
+        y += infoButton.y + (startButton.height * 0.9);
+
+        if (infoClicked) {
+            Color tmp = g2d.getColor();
+
+            g2d.setColor(CLICKED_BUTTON_COLOR);
+            g2d.draw(infoButton);
+            g2d.setColor(CLICKED_TEXT);
+            g2d.drawString(INFO_TEXT, x, y);
+            g2d.setColor(tmp);
+        } else {
+            g2d.draw(infoButton);
+            g2d.drawString(INFO_TEXT, x, y);
         }
     }
 }

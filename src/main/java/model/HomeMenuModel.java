@@ -21,6 +21,7 @@ public class HomeMenuModel {
 
     private boolean startClicked;
     private boolean menuClicked;
+    private boolean infoClicked;
 
     public HomeMenuModel() {}
 
@@ -38,5 +39,13 @@ public class HomeMenuModel {
 
     public void setMenuClicked(boolean menuClicked) {
         this.menuClicked = menuClicked;
+    }
+
+    public boolean isInfoClicked() {
+        return infoClicked;
+    }
+
+    public void setInfoClicked(boolean infoClicked) {
+        this.infoClicked = infoClicked;
     }
 }

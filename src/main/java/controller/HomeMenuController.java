@@ -31,6 +31,7 @@ public class HomeMenuController implements MouseListener, MouseMotionListener {
     private final HomeMenuView homeMenuView;
     private final Rectangle startButton;
     private final Rectangle menuButton;
+    private final Rectangle infoButton;
 
     public HomeMenuController(HomeMenuModel homeMenuModel, HomeMenuView homeMenuView, GameFrameController owner){
         this.homeMenuModel = homeMenuModel;
@@ -39,6 +40,7 @@ public class HomeMenuController implements MouseListener, MouseMotionListener {
         this.homeMenuView.addMouseMotionListener(this);
         startButton = this.homeMenuView.getStartButton();
         menuButton = this.homeMenuView.getMenuButton();
+        infoButton = this.homeMenuView.getInfoButton();
         homeMenuView.setOwner(owner);
     }
 
@@ -53,6 +55,9 @@ public class HomeMenuController implements MouseListener, MouseMotionListener {
         else if(homeMenuView.getMenuButton().contains(p)){
             System.out.println("Goodbye " + System.getProperty("user.name"));
             System.exit(0);
+        }
+        else if(homeMenuView.getInfoButton().contains(p)){
+
         }
     }
 
@@ -70,6 +75,11 @@ public class HomeMenuController implements MouseListener, MouseMotionListener {
             homeMenuView.setMenuClicked(homeMenuModel.isMenuClicked());
             homeMenuView.repaint(menuButton.x,menuButton.y,menuButton.width+1,menuButton.height+1);
         }
+        else if(homeMenuView.getInfoButton().contains(p)){
+            homeMenuModel.setInfoClicked(true);
+            homeMenuView.setInfoClicked(homeMenuModel.isInfoClicked());
+            homeMenuView.repaint(infoButton.x,infoButton.y,infoButton.width+1,infoButton.height+1);
+        }
     }
 
     @Override
@@ -83,6 +93,11 @@ public class HomeMenuController implements MouseListener, MouseMotionListener {
             homeMenuModel.setMenuClicked(false);
             homeMenuView.setMenuClicked(homeMenuModel.isMenuClicked());
             homeMenuView.repaint(menuButton.x,menuButton.y,menuButton.width+1,menuButton.height+1);
+        }
+        else if(homeMenuModel.isInfoClicked()){
+            homeMenuModel.setInfoClicked(false);
+            homeMenuView.setInfoClicked(homeMenuModel.isInfoClicked());
+            homeMenuView.repaint(infoButton.x,infoButton.y,infoButton.width+1,infoButton.height+1);
         }
     }
 
@@ -104,7 +119,7 @@ public class HomeMenuController implements MouseListener, MouseMotionListener {
     @Override
     public void mouseMoved(MouseEvent e) {
         Point p = e.getPoint();
-        if(homeMenuView.getStartButton().contains(p) || homeMenuView.getMenuButton().contains(p))
+        if(homeMenuView.getStartButton().contains(p) || homeMenuView.getMenuButton().contains(p) || homeMenuView.getInfoButton().contains(p))
             homeMenuView.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         else
             homeMenuView.setCursor(Cursor.getDefaultCursor());
