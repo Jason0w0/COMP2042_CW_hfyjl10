@@ -25,9 +25,9 @@ public class Player {
     private final Color BORDER_COLOR = Color.GREEN.darker().darker();
     private final Color INNER_COLOR = Color.GREEN;
 
-    private static final int DEF_MOVE_AMOUNT = 5;
+    private static int DEF_MOVE_AMOUNT = 5;
 
-    private final Rectangle playerFace;
+    private Rectangle playerFace;
     private final Point ballPoint;
 
     private int moveAmount;
@@ -90,5 +90,15 @@ public class Player {
     public void moveTo(Point p){
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
+    }
+
+    public void playerReward(){
+        playerFace = makeRectangle(playerFace.width+25, playerFace.height);
+        DEF_MOVE_AMOUNT += 1;
+    }
+
+    public void playerPenalty(){
+        playerFace = makeRectangle(playerFace.width-25, playerFace.height);
+        DEF_MOVE_AMOUNT -= 1;
     }
 }

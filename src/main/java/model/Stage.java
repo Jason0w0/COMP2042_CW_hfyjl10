@@ -64,7 +64,7 @@ public class Stage {
 //            speedY = -rnd.nextInt(3);
 //        }while(speedY == 0);
 
-        speedX = 1;
+        speedX = 10;
         speedY = -5;
 
         ball.setSpeed(speedX,speedY);
@@ -196,6 +196,13 @@ public class Stage {
         ballCount = 3;
     }
 
+    public void playerReward(){
+        switch (ballCount) {
+            case 3 -> player.playerReward();
+            case 1 -> player.playerPenalty();
+        }
+    }
+
     public boolean ballEnd(){
         return ballCount == 0;
     }
@@ -208,6 +215,7 @@ public class Stage {
         bricks = levels[level++];
         this.brickCount = bricks.length;
     }
+
 
     public boolean hasLevel(){
         return level < levels.length;

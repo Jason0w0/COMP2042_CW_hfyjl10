@@ -61,6 +61,7 @@ public class GameTimer {
                     stage.playerReset();
                     stage.wallReset();
                     stage.nextLevel();
+                    stage.playerReward();
                 } else {
                     message = "ALL WALLS DESTROYED";
                     setMessage(message);
