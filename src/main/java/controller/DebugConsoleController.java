@@ -7,6 +7,7 @@ import view.DebugConsoleView;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+
 public class DebugConsoleController {
     private final DebugConsoleModel debugConsoleModel;
     private final DebugConsoleView debugConsoleView;

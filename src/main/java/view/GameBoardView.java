@@ -36,20 +36,15 @@ public class GameBoardView extends JComponent {
     private static final String PAUSE = "Pause Menu";
     private static final int TEXT_SIZE = 30;
     private static final Color MENU_COLOR = new Color(0,255,0);
-
-
     private static final int DEF_WIDTH = 600;
     private static final int DEF_HEIGHT = 450;
-
     private static final Color BG_COLOR = Color.WHITE;
+    private final Font menuFont;
 
     private Stage stage;
-
     private String message;
-
     private boolean showPauseMenu;
 
-    private final Font menuFont;
 
     public Rectangle getContinueButtonRect() {
         return continueButtonRect;
@@ -107,9 +102,9 @@ public class GameBoardView extends JComponent {
         g2d.setColor(Color.BLUE);
         g2d.drawString(message, 250,225);
 
-        drawBall(stage.ball,g2d);
+        drawBall(stage.getBall(),g2d);
 
-        for(Brick b : stage.bricks)
+        for(Brick b : stage.getBricks())
             if(!b.isBroken())
                 drawBrick(b,g2d);
 
@@ -167,10 +162,10 @@ public class GameBoardView extends JComponent {
         Color tmp = g2d.getColor();
 
         Shape s = p.getPlayerFace();
-        g2d.setColor(Player.INNER_COLOR);
+        g2d.setColor(p.getINNER_COLOR());
         g2d.fill(s);
 
-        g2d.setColor(Player.BORDER_COLOR);
+        g2d.setColor(p.getBORDER_COLOR());
         g2d.draw(s);
 
         g2d.setColor(tmp);

@@ -9,8 +9,8 @@ import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class DebugPanelController {
 
+public class DebugPanelController {
     private final DebugPanelModel debugPanelModel;
     private final DebugPanelView debugPanelView;
 

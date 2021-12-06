@@ -19,7 +19,6 @@ package view;
 
 import controller.GameFrameController;
 import model.GameFrameModel;
-import view.GameFrameView;
 
 import java.awt.*;
 

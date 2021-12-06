@@ -17,49 +17,37 @@
  */
 package model;
 
-import model.*;
-
 import java.awt.*;
 import java.awt.geom.Point2D;
-import java.util.Random;
+//import java.util.Random;
 
 
 public class Stage {
 
-    private Random rnd;
-    private Rectangle area;
+//    private Random rnd;
 
-    public Brick[] bricks;
+    private final Rectangle area;
 
-    public Ball getBall() {
-        return ball;
-    }
-
-    public Ball ball;
-
-    public Player getPlayer() {
-        return player;
-    }
-
+    private Brick[] bricks;
+    private Ball ball;
     private Player player;
+    private final Brick[][] levels;
 
-    private Brick[][] levels;
+    private final Point startPoint;
+
     private int level;
-
-    private Point startPoint;
     private int brickCount;
     private int ballCount;
     private boolean ballLost;
-    private int speedX;
-    private int speedY;
+    private final int speedX;
+    private final int speedY;
 
-    public Stage(Rectangle drawArea, int brickCount, int lineCount, double brickDimensionRatio, Point ballPos){
+    public Stage(Rectangle drawArea, Point ballPos){
 
         this.startPoint = new Point(ballPos);
         Wall wall = new Wall(drawArea);
         levels = wall.getLevels();
         level = 0;
-
         ballCount = 3;
         ballLost = false;
 
@@ -85,6 +73,14 @@ public class Stage {
 
     }
 
+    public Brick[] getBricks() {
+        return bricks;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
     private void makeBall(Point2D ballPos){
         ball = new RubberBall(ballPos);
     }
@@ -94,6 +90,10 @@ public class Stage {
     public void move(){
         player.move();
         ball.move();
+    }
+
+    public Ball getBall() {
+        return ball;
     }
 
     public void findImpacts(){
@@ -124,21 +124,21 @@ public class Stage {
                 //Vertical Impact
                 case Brick.UP_IMPACT -> {
                     ball.reverseY();
-                    return b.setImpact(ball.down, Brick.Crack.UP);
+                    return b.setImpact(ball.getDown(), Brick.Crack.UP);
                 }
                 case Brick.DOWN_IMPACT -> {
                     ball.reverseY();
-                    return b.setImpact(ball.up, Brick.Crack.DOWN);
+                    return b.setImpact(ball.getUp(), Brick.Crack.DOWN);
                 }
 
                 //Horizontal Impact
                 case Brick.LEFT_IMPACT -> {
                     ball.reverseX();
-                    return b.setImpact(ball.right, Brick.Crack.RIGHT);
+                    return b.setImpact(ball.getRight(), Brick.Crack.RIGHT);
                 }
                 case Brick.RIGHT_IMPACT -> {
                     ball.reverseX();
-                    return b.setImpact(ball.left, Brick.Crack.LEFT);
+                    return b.setImpact(ball.getLeft(), Brick.Crack.LEFT);
                 }
             }
         }
@@ -181,7 +181,6 @@ public class Stage {
 //        do{
 //            speedY = -rnd.nextInt(3);
 //        }while(speedY == 0);
-
         ball.setSpeed(speedX,speedY);
         ballLost = false;
     }
@@ -225,6 +224,5 @@ public class Stage {
     public void resetBallCount(){
         ballCount = 3;
     }
-
 
 }

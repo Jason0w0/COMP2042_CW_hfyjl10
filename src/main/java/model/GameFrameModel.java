@@ -1,16 +1,11 @@
 package model;
 
-
 import controller.GameBoardController;
 import view.GameFrameView;
 import view.GameBoardView;
 
 
 public class GameFrameModel {
-    public GameBoardView getGameBoardView() {
-        return gameBoardView;
-    }
-
     private GameBoardView gameBoardView;
     private GameBoardController gameBoardController;
     private final GameFrameView owner;
@@ -20,6 +15,10 @@ public class GameFrameModel {
         this.owner = owner;
         gaming = false;
         createGameBoard();
+    }
+
+    public GameBoardView getGameBoardView() {
+        return gameBoardView;
     }
 
     public boolean isGaming() {

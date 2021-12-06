@@ -7,8 +7,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GameBoardController {
-    private GameBoardModel gameBoardModel;
-    private GameBoardView gameBoardView;
+    private final GameBoardModel gameBoardModel;
+    private final GameBoardView gameBoardView;
 
     public GameBoardController(GameBoardModel gameBoardModel, GameBoardView gameBoardView){
         this.gameBoardModel = gameBoardModel;

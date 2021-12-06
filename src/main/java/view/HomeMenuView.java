@@ -52,10 +52,8 @@ public class HomeMenuView extends JComponent {
     private boolean menuClicked;
 
     public HomeMenuView() {
-
         Dimension area = new Dimension(450, 300);
         Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
-
         initialize(area);
         setInterface(btnDim, area);
         setFont();
@@ -73,7 +71,6 @@ public class HomeMenuView extends JComponent {
         menuFace = new Rectangle(new Point(0, 0), area);
         startButton = new Rectangle(btnDim);
         menuButton = new Rectangle(btnDim);
-
     }
 
     public void setOwner(GameFrameController owner) {
@@ -114,11 +111,9 @@ public class HomeMenuView extends JComponent {
 
     //change from public to private
     private void drawMenu(Graphics2D g2d) {
-
         //add background image
         Image img = Toolkit.getDefaultToolkit().getImage("src/main/resources/brick-destroyer-img-resized.png");
         g2d.drawImage(img, 0, 0, this);
-
         /*
         all the following method calls need a relative
         painting directly into the HomeMenu rectangle,
@@ -143,7 +138,6 @@ public class HomeMenuView extends JComponent {
     }
 
     private void drawText(Graphics2D g2d) {
-
         g2d.setColor(TEXT_COLOR);
 
         FontRenderContext frc = g2d.getFontRenderContext();
@@ -172,12 +166,9 @@ public class HomeMenuView extends JComponent {
 
         g2d.setFont(creditsFont);
         g2d.drawString(CREDITS, sX, sY);
-
-
     }
 
     private void drawButton(Graphics2D g2d) {
-
         FontRenderContext frc = g2d.getFontRenderContext();
 
         Rectangle2D txtRect = buttonFont.getStringBounds(START_TEXT, frc);

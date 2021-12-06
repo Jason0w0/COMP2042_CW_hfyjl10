@@ -50,7 +50,6 @@ public class GameTimer {
                     gameTimer.stop();
                 }
             }
-
             gameBoardView.repaint();
         }
     }

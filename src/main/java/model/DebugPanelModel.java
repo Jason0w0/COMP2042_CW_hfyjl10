@@ -1,7 +1,6 @@
 package model;
 
 public class DebugPanelModel {
-
     private Stage stage;
 
     public DebugPanelModel() {
@@ -14,5 +13,4 @@ public class DebugPanelModel {
     public void setWall(Stage stage) {
         this.stage = stage;
     }
-
 }

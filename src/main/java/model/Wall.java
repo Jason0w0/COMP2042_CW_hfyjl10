@@ -10,19 +10,13 @@ public class Wall {
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
 
-    private static final int DEF_WIDTH = 600;
-    private static final int DEF_HEIGHT = 450;
-
-
-
-    private Brick[][] levels;
-
-    private int brickCount = 30;
-    private int lineCount = 3;
-    private double brickDimensionRatio = 6/2;
+    private final Brick[][] levels;
 
     public Wall(Rectangle drawArea) {
-        levels = makeLevels(drawArea,brickCount,lineCount,brickDimensionRatio);
+        int brickCount = 30;
+        int lineCount = 3;
+        double brickDimensionRatio = 3;
+        levels = makeLevels(drawArea, brickCount, lineCount, brickDimensionRatio);
     }
 
     public Brick[][] getLevels() {
@@ -124,21 +118,12 @@ public class Wall {
     }
 
     private Brick makeBrick(Point point, Dimension size, int type){
-        Brick out;
-        switch(type){
-            case CLAY:
-                out = new ClayBrick(point,size);
-                break;
-            case STEEL:
-                out = new SteelBrick(point,size);
-                break;
-            case CEMENT:
-                out = new CementBrick(point, size);
-                break;
-            default:
-                throw  new IllegalArgumentException(String.format("Unknown Type:%d\n",type));
-        }
-        return  out;
+        return switch (type) {
+            case CLAY -> new ClayBrick(point, size);
+            case STEEL -> new SteelBrick(point, size);
+            case CEMENT -> new CementBrick(point, size);
+            default -> throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
+        };
     }
 
 }
