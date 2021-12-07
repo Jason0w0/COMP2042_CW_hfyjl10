@@ -183,6 +183,12 @@ public class HomeMenuView extends JComponent {
     private void drawButton(Graphics2D g2d) {
         FontRenderContext frc = g2d.getFontRenderContext();
 
+        g2d.setColor(new Color(48, 99, 175));
+        g2d.fill(menuButton);
+        g2d.fill(startButton);
+        g2d.fill(infoButton);
+        g2d.setColor(Color.BLACK);
+
         Rectangle2D txtRect = buttonFont.getStringBounds(START_TEXT, frc);
         Rectangle2D mTxtRect = buttonFont.getStringBounds(MENU_TEXT, frc);
         Rectangle2D iTxtRect = buttonFont.getStringBounds(INFO_TEXT, frc);

@@ -26,7 +26,6 @@ import java.awt.*;
  */
 public class ClayBrick extends Brick {
 
-//    private static final String NAME = "Clay Brick";
     private static final Color DEF_INNER = new Color(178, 34, 34).darker();
     private static final Color DEF_BORDER = Color.GRAY;
     private static final int CLAY_STRENGTH = 1;
