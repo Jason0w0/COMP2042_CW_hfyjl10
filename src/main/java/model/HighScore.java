@@ -1,11 +1,8 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Collections;
 
 public class HighScore {
 
@@ -36,7 +33,7 @@ public class HighScore {
                 System.out.println("Cant close file");
             }
         }
-        highScores.sort(new ascendingComparator());
+        highScores.sort(Collections.reverseOrder());
         System.out.println(highScores);
         highScore = highScores.get(0);
     }
@@ -45,10 +42,19 @@ public class HighScore {
         return highScore;
     }
 
-    static class ascendingComparator implements Comparator<Integer> {
-        @Override
-        public int compare(Integer o1, Integer o2) {
-            return o2.compareTo(o1);
+    public void newHighScore(int highScore){
+        highScores.add(highScore);
+        File f = new File(pathToHighScoreFile);
+        try {
+            FileWriter fw = new FileWriter(f.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (Integer score : highScores) {
+                bw.write(score + "\n");
+            }
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Could not write to file " + pathToHighScoreFile);
         }
     }
 }

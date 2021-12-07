@@ -51,6 +51,9 @@ public class GameTimer {
                     stage.wallReset();
                     message = "Game over";
                     setMessage(message);
+                    if (stage.getScore() >= highScore.getHighScore()){
+                        highScore.newHighScore(stage.getScore());
+                    }
                 }
                 stage.ballReset();
                 stage.playerReset();
