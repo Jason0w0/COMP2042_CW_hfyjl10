@@ -40,6 +40,8 @@ public class GameFrameController {
         HomeMenuModel homeMenuModel = new HomeMenuModel();
         new HomeMenuController(homeMenuModel, homeMenuView, this);
         this.gameFrameModel = gameFrameModel;
+        this.gameFrameModel.setHomeMenuView(homeMenuView);
+        this.gameFrameModel.createGameBoard();
         this.gameFrameView = gameFrameView;
         this.gameFrameView.addGameFrameWindowFocusListener(new addWindowFocusListener());
         this.gameFrameView.addHomeMenu(homeMenuView);

@@ -20,22 +20,31 @@ package model;
 import controller.GameBoardController;
 import view.GameFrameView;
 import view.GameBoardView;
+import view.HomeMenuView;
 
 
 public class GameFrameModel {
     private GameBoardView gameBoardView;
     private GameBoardController gameBoardController;
     private final GameFrameView owner;
+    private HomeMenuView homeMenuView;
     private boolean gaming;
 
     public GameFrameModel(GameFrameView owner){
         this.owner = owner;
         gaming = false;
-        createGameBoard();
     }
 
     public GameBoardView getGameBoardView() {
         return gameBoardView;
+    }
+
+//    public HomeMenuView getHomeMenuView() {
+//        return homeMenuView;
+//    }
+
+    public void setHomeMenuView(HomeMenuView homeMenuView) {
+        this.homeMenuView = homeMenuView;
     }
 
     public boolean isGaming() {
@@ -46,8 +55,8 @@ public class GameFrameModel {
         this.gaming = gaming;
     }
 
-    private void createGameBoard(){
-        GameBoardModel gameBoardModel = new GameBoardModel(owner);
+    public void createGameBoard(){
+        GameBoardModel gameBoardModel = new GameBoardModel(owner, homeMenuView);
         gameBoardView = new GameBoardView();
         gameBoardController = new GameBoardController(gameBoardModel,gameBoardView);
     }

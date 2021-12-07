@@ -18,22 +18,31 @@
 package model;
 
 import view.GameBoardView;
+import view.GameFrameView;
+import view.HomeMenuView;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class GameTimer {
 
     private final Timer gameTimer;
     private final GameBoardView gameBoardView;
     private final Stage stage;
+    private GameFrameView owner;
+    private HomeMenuView homeMenuView;
     private HighScoreModel highScoreModel = new HighScoreModel();
 
 
-    public GameTimer(GameBoardView gameBoardView, Stage stage) {
+    public GameTimer(GameFrameView owner, HomeMenuView homeMenuView, GameBoardView gameBoardView, Stage stage) {
+        this.owner = owner;
         this.gameBoardView = gameBoardView;
         this.stage = stage;
+        this.homeMenuView = homeMenuView;
         gameTimer = new Timer(10, new addActionListener());
     }
 
@@ -55,6 +64,7 @@ public class GameTimer {
                         highScoreModel.newHighScore(stage.getScore());
                     }
                     stage.resetScore();
+                    backToHomeMenu();
                 }
                 stage.ballReset();
                 stage.playerReset();
@@ -88,4 +98,25 @@ public class GameTimer {
     }
 
     private void setScore(String score) { gameBoardView.setScoreBoard(score);}
+
+    public void backToHomeMenu() {
+        Object [] options = {"Back", "Exit"};
+        int input = JOptionPane.showOptionDialog(null, "Back to home menu?", "GAME OVER", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
+        if (input == JOptionPane.YES_OPTION) {
+            owner.dispose();
+            owner.remove(gameBoardView);
+            owner.add(homeMenuView, BorderLayout.CENTER);
+            owner.setUndecorated(true);
+            owner.setTitle(owner.getDefTitle());
+            owner.setDefaultCloseOperation(EXIT_ON_CLOSE);
+            owner.pack();
+            owner.autoLocate();
+            owner.setVisible(true);
+            owner.setResizable(false);
+        }
+        else {
+            System.out.println("Goodbye " + System.getProperty("user.name"));
+            System.exit(0);
+        }
+    }
 }
