@@ -37,7 +37,7 @@ public class GameBoardController {
         this.gameBoardModel.createDebugConsole(gameBoardView);
         this.gameBoardModel.gameLoop(gameBoardView);
         this.gameBoardView.setStage(gameBoardModel.getStage());
-        this.gameBoardView.getShowPauseMenu(gameBoardModel.isShowPauseMenu());
+        this.gameBoardView.setShowPauseMenu(gameBoardModel.isShowPauseMenu());
     }
 
     public void onLostFocus(){
@@ -64,6 +64,7 @@ public class GameBoardController {
                     break;
                 case KeyEvent.VK_ESCAPE:
                     gameBoardModel.setShowPauseMenu(!gameBoardModel.isShowPauseMenu());
+                    gameBoardView.setShowPauseMenu(gameBoardModel.isShowPauseMenu());
                     gameBoardView.repaint();
                     gameBoardModel.getGameTimer().stop();
                     break;

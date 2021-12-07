@@ -119,7 +119,7 @@ public class GameBoardView extends JComponent {
         Toolkit.getDefaultToolkit().sync();
     }
 
-    public void getShowPauseMenu(Boolean showPauseMenu){
+    public void setShowPauseMenu(Boolean showPauseMenu){
         this.showPauseMenu = showPauseMenu;
     }
 
