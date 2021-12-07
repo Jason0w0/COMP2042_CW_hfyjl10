@@ -239,4 +239,8 @@ public class Stage {
         return score;
     }
 
+    public void resetScore() {
+        score = 0;
+    }
+
 }

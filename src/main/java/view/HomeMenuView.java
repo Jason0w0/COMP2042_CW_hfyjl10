@@ -150,6 +150,11 @@ public class HomeMenuView extends JComponent {
     }
 
     private void drawText(Graphics2D g2d) {
+
+        g2d.setColor(new Color(251, 251, 252, 81));
+        Rectangle introBox = new Rectangle(new Point(90,45), new Dimension(270,125));
+        g2d.fill(introBox);
+
         g2d.setColor(TEXT_COLOR);
 
         FontRenderContext frc = g2d.getFontRenderContext();

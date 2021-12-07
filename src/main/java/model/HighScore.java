@@ -43,6 +43,7 @@ public class HighScore {
     }
 
     public void newHighScore(int highScore){
+        this.highScore = highScore;
         highScores.add(highScore);
         File f = new File(pathToHighScoreFile);
         try {
