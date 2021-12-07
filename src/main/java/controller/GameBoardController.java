@@ -19,7 +19,6 @@ package controller;
 
 import model.GameBoardModel;
 import view.GameBoardView;
-
 import java.awt.*;
 import java.awt.event.*;
 
