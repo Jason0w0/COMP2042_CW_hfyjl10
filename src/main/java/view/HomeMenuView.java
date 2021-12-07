@@ -31,8 +31,9 @@ public class HomeMenuView extends JComponent {
     private static final String GAME_TITLE = "Brick Destroy";
     private static final String CREDITS = "Version 0.1";
     private static final String START_TEXT = "Start";
-    private static final String MENU_TEXT = "Exit";
+    private static final String EXIT_TEXT = "Exit";
     private static final String INFO_TEXT = "Info";
+    private static final String HIGHSCORE_TEXT = "HighScore";
 
     private static final Color TEXT_COLOR = Color.BLACK;//egyptian blue
     private static final Color CLICKED_BUTTON_COLOR = Color.LIGHT_GRAY;
@@ -40,8 +41,9 @@ public class HomeMenuView extends JComponent {
 
     private Rectangle menuFace;
     private Rectangle startButton;
-    private Rectangle menuButton;
+    private Rectangle exitButton;
     private Rectangle infoButton;
+    private Rectangle highScoreButton;
 
     private Font greetingsFont;
     private Font gameTitleFont;
@@ -51,8 +53,9 @@ public class HomeMenuView extends JComponent {
     private GameFrameController owner;
 
     private boolean startClicked;
-    private boolean menuClicked;
+    private boolean exitClicked;
     private boolean infoClicked;
+    private boolean highScoreClicked;
 
     public HomeMenuView() {
         Dimension area = new Dimension(450, 300);
@@ -73,8 +76,9 @@ public class HomeMenuView extends JComponent {
     private void setInterface(Dimension btnDim, Dimension area) {
         menuFace = new Rectangle(new Point(0, 0), area);
         startButton = new Rectangle(btnDim);
-        menuButton = new Rectangle(btnDim);
+        exitButton = new Rectangle(btnDim);
         infoButton = new Rectangle(btnDim);
+        highScoreButton = new Rectangle(btnDim);
     }
 
     public void setOwner(GameFrameController owner) {
@@ -86,11 +90,15 @@ public class HomeMenuView extends JComponent {
     }
 
     public Rectangle getMenuButton() {
-        return menuButton;
+        return exitButton;
     }
 
     public Rectangle getInfoButton() {
         return infoButton;
+    }
+
+    public Rectangle getHighScoreButton() {
+        return highScoreButton;
     }
 
     public GameFrameController getOwner() {
@@ -101,12 +109,16 @@ public class HomeMenuView extends JComponent {
         this.startClicked = startClicked;
     }
 
-    public void setMenuClicked(boolean menuClicked) {
-        this.menuClicked = menuClicked;
+    public void setExitClicked(boolean exitClicked) {
+        this.exitClicked = exitClicked;
     }
 
     public void setInfoClicked(boolean infoClicked) {
         this.infoClicked = infoClicked;
+    }
+
+    public void setHighScoreClicked(boolean highScoreClicked) {
+        this.highScoreClicked = highScoreClicked;
     }
 
     //define Font
@@ -139,10 +151,8 @@ public class HomeMenuView extends JComponent {
 
         g2d.translate(x, y);
 
-        //start methods calls
         drawText(g2d);
         drawButton(g2d);
-        //end of methods calls
 
         g2d.translate(-x, -y);
         g2d.setFont(prevFont);
@@ -152,7 +162,7 @@ public class HomeMenuView extends JComponent {
     private void drawText(Graphics2D g2d) {
 
         g2d.setColor(new Color(251, 251, 252, 81));
-        Rectangle introBox = new Rectangle(new Point(90,45), new Dimension(270,125));
+        Rectangle introBox = new Rectangle(new Point(90,5), new Dimension(270,125));
         g2d.fill(introBox);
 
         g2d.setColor(TEXT_COLOR);
@@ -167,7 +177,7 @@ public class HomeMenuView extends JComponent {
         int sY;
 
         sX = (int) (menuFace.getWidth() - greetingsRect.getWidth()) / 2;
-        sY = (int) (menuFace.getHeight() / 4);
+        sY = (int) (menuFace.getHeight() / 9);
 
         g2d.setFont(greetingsFont);
         g2d.drawString(GREETINGS, sX, sY);
@@ -186,22 +196,23 @@ public class HomeMenuView extends JComponent {
     }
 
     private void drawButton(Graphics2D g2d) {
+        drawStartButton(g2d);
+        drawHighScoreButton(g2d);
+        drawInfoButton(g2d);
+        drawExitButton(g2d);
+    }
+
+    private void drawStartButton(Graphics2D g2d) {
         FontRenderContext frc = g2d.getFontRenderContext();
 
         g2d.setColor(new Color(48, 99, 175));
-        g2d.fill(menuButton);
         g2d.fill(startButton);
-        g2d.fill(infoButton);
         g2d.setColor(Color.BLACK);
-
         Rectangle2D txtRect = buttonFont.getStringBounds(START_TEXT, frc);
-        Rectangle2D mTxtRect = buttonFont.getStringBounds(MENU_TEXT, frc);
-        Rectangle2D iTxtRect = buttonFont.getStringBounds(INFO_TEXT, frc);
-
         g2d.setFont(buttonFont);
 
         int x = (menuFace.width - startButton.width) / 2;
-        int y = (int) ((menuFace.height - startButton.height) * 0.8);
+        int y = (int) ((menuFace.height - startButton.height) * 0.5);
 
 
         startButton.setLocation(x, y);
@@ -224,39 +235,59 @@ public class HomeMenuView extends JComponent {
             g2d.draw(startButton);
             g2d.drawString(START_TEXT, x, y);
         }
+    }
 
-        x = startButton.x;
-        y = startButton.y;
+    private void drawHighScoreButton(Graphics2D g2d) {
+        FontRenderContext frc = g2d.getFontRenderContext();
 
-        y *= 1.2;
+        g2d.setColor(new Color(48, 99, 175));
+        g2d.fill(highScoreButton);
+        g2d.setColor(Color.BLACK);
+        Rectangle2D hTxtRect = buttonFont.getStringBounds(HIGHSCORE_TEXT, frc);
+        g2d.setFont(buttonFont);
 
-        menuButton.setLocation(x, y);
+        int x = startButton.x;
+        int y = startButton.y;
 
-        x = (int) (menuButton.getWidth() - mTxtRect.getWidth()) / 2;
-        y = (int) (menuButton.getHeight() - mTxtRect.getHeight()) / 2;
+        y *= 1.3;
 
-        x += menuButton.x;
-        y += menuButton.y + (startButton.height * 0.9);
+        highScoreButton.setLocation(x, y);
 
-        if (menuClicked) {
+        x = (int) (highScoreButton.getWidth() - hTxtRect.getWidth()) / 2;
+        y = (int) (highScoreButton.getHeight() - hTxtRect.getHeight()) / 2;
+
+        x += highScoreButton.x;
+        y += highScoreButton.y + (startButton.height * 0.9);
+
+        if (highScoreClicked) {
             Color tmp = g2d.getColor();
 
             g2d.setColor(CLICKED_BUTTON_COLOR);
-            g2d.draw(menuButton);
+            g2d.draw(highScoreButton);
             g2d.setColor(CLICKED_TEXT);
-            g2d.drawString(MENU_TEXT, x, y);
+            g2d.drawString(HIGHSCORE_TEXT, x, y);
             g2d.setColor(tmp);
         } else {
-            g2d.draw(menuButton);
-            g2d.drawString(MENU_TEXT, x, y);
+            g2d.draw(highScoreButton);
+            g2d.drawString(HIGHSCORE_TEXT, x, y);
         }
+    }
 
-        x = startButton.x;
-        y = startButton.y;
+    private void drawInfoButton(Graphics2D g2d) {
+        FontRenderContext frc = g2d.getFontRenderContext();
 
-        y -= 44;
+        g2d.setColor(new Color(48, 99, 175));
+        g2d.fill(infoButton);
+        g2d.setColor(Color.BLACK);
+        Rectangle2D iTxtRect = buttonFont.getStringBounds(INFO_TEXT, frc);
+        g2d.setFont(buttonFont);
 
-        infoButton.setLocation(x,y);
+        int x = highScoreButton.x;
+        int y = highScoreButton.y;
+
+        y += (highScoreButton.y - startButton.y);
+
+        infoButton.setLocation(x, y);
 
         x = (int) (infoButton.getWidth() - iTxtRect.getWidth()) / 2;
         y = (int) (infoButton.getHeight() - iTxtRect.getHeight()) / 2;
@@ -277,4 +308,41 @@ public class HomeMenuView extends JComponent {
             g2d.drawString(INFO_TEXT, x, y);
         }
     }
+
+    private void drawExitButton(Graphics2D g2d) {
+        FontRenderContext frc = g2d.getFontRenderContext();
+
+        g2d.setColor(new Color(48, 99, 175));
+        g2d.fill(exitButton);
+        g2d.setColor(Color.BLACK);
+        Rectangle2D iTxtRect = buttonFont.getStringBounds(EXIT_TEXT, frc);
+        g2d.setFont(buttonFont);
+
+        int x = infoButton.x;
+        int y = infoButton.y;
+
+        y += (highScoreButton.y - startButton.y);
+
+        exitButton.setLocation(x, y);
+
+        x = (int) (exitButton.getWidth() - iTxtRect.getWidth()) / 2;
+        y = (int) (exitButton.getHeight() - iTxtRect.getHeight()) / 2;
+
+        x += exitButton.x;
+        y += exitButton.y + (startButton.height * 0.9);
+
+        if (exitClicked) {
+            Color tmp = g2d.getColor();
+
+            g2d.setColor(CLICKED_BUTTON_COLOR);
+            g2d.draw(exitButton);
+            g2d.setColor(CLICKED_TEXT);
+            g2d.drawString(EXIT_TEXT, x, y);
+            g2d.setColor(tmp);
+        } else {
+            g2d.draw(exitButton);
+            g2d.drawString(EXIT_TEXT, x, y);
+        }
+    }
+
 }

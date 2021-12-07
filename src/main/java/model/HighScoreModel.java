@@ -4,13 +4,13 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class HighScore {
+public class HighScoreModel {
 
     private final String pathToHighScoreFile = "src/main/resources/highScore";
     private ArrayList <Integer> highScores = new ArrayList<>();
     private int highScore;
 
-    public HighScore(){
+    public HighScoreModel(){
         File f = new File(pathToHighScoreFile);
         if(!f.exists()){
             System.err.println("Could not create highScore file.");
@@ -34,7 +34,6 @@ public class HighScore {
             }
         }
         highScores.sort(Collections.reverseOrder());
-        System.out.println(highScores);
         highScore = highScores.get(0);
     }
 
