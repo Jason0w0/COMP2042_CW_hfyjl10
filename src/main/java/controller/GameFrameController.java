@@ -20,7 +20,6 @@ package controller;
 import model.GameFrameModel;
 import model.HomeMenuModel;
 import view.GameFrameView;
-import view.HighScoreView;
 import view.HomeMenuView;
 import view.InfoView;
 

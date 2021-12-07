@@ -6,10 +6,11 @@ import view.HighScoreView;
 import javax.swing.*;
 
 public class HighScoreController {
-    private HighScoreModel highScoreModel;
-    private HighScoreView highScoreView;
+
     public HighScoreController(JFrame owner) {
-        this.highScoreModel = new HighScoreModel();
-        this.highScoreView = new HighScoreView(owner);
+        HighScoreModel highScoreModel = new HighScoreModel();
+        HighScoreView highScoreView = new HighScoreView(owner);
+        highScoreView.setHighScoreList(highScoreModel.getHighScoreList());
+        highScoreView.displayContent();
     }
 }

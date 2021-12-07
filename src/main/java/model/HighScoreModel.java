@@ -7,7 +7,7 @@ import java.util.Collections;
 public class HighScoreModel {
 
     private final String pathToHighScoreFile = "src/main/resources/highScore";
-    private ArrayList <Integer> highScores = new ArrayList<>();
+    private final ArrayList <Integer> highScores = new ArrayList<>();
     private int highScore;
 
     public HighScoreModel(){
@@ -57,4 +57,6 @@ public class HighScoreModel {
             System.out.println("Could not write to file " + pathToHighScoreFile);
         }
     }
+
+    public ArrayList<Integer> getHighScoreList() { return highScores;}
 }
