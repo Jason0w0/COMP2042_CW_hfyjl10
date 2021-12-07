@@ -28,6 +28,7 @@ public class GameTimer {
     private final Timer gameTimer;
     private final GameBoardView gameBoardView;
     private final Stage stage;
+    private HighScore highScore = new HighScore();
 
 
     public GameTimer(GameBoardView gameBoardView, Stage stage) {
@@ -42,7 +43,9 @@ public class GameTimer {
             stage.move();
             stage.findImpacts();
             String message = String.format("Bricks: %d Balls %d", stage.getBrickCount(), stage.getBallCount());
+            String score = String.format("Score %d HighScore %d", stage.getScore(), highScore.getHighScore());
             setMessage(message);
+            setScore(score);
             if (stage.isBallLost()) {
                 if (stage.ballEnd()) {
                     stage.wallReset();
@@ -79,4 +82,6 @@ public class GameTimer {
     private void setMessage(String Message){
         gameBoardView.setMessage(Message);
     }
+
+    private void setScore(String score) { gameBoardView.setScoreBoard(score);}
 }

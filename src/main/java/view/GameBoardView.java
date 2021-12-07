@@ -43,6 +43,7 @@ public class GameBoardView extends JComponent {
 
     private Stage stage;
     private String message;
+    private String scoreBoard;
     private boolean showPauseMenu;
 
 
@@ -67,6 +68,7 @@ public class GameBoardView extends JComponent {
         super();
         strLen = 0;
         message = "";
+        scoreBoard = "";
         menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
         this.initialize();
     }
@@ -101,6 +103,7 @@ public class GameBoardView extends JComponent {
 
         g2d.setColor(Color.BLUE);
         g2d.drawString(message, 250,225);
+        g2d.drawString(scoreBoard,250,250);
 
         drawBall(stage.getBall(),g2d);
 
@@ -122,6 +125,10 @@ public class GameBoardView extends JComponent {
 
     public void setMessage(String message){
         this.message = message;
+    }
+
+    public void setScoreBoard(String score){
+        this.scoreBoard = score;
     }
 
     private void clear(Graphics2D g2d){

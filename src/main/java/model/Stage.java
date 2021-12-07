@@ -41,6 +41,7 @@ public class Stage {
     private boolean ballLost;
     private final int speedX;
     private final int speedY;
+    private int score;
 
     public Stage(Rectangle drawArea, Point ballPos){
 
@@ -49,6 +50,7 @@ public class Stage {
         levels = wall.getLevels();
         level = 0;
         ballCount = 3;
+        score = 0;
         ballLost = false;
 
 //        rnd = new Random();
@@ -105,6 +107,7 @@ public class Stage {
             * because for every brick program checks for horizontal and vertical impacts
             */
             brickCount--;
+            score += 100;
         }
         else if(impactSideBorder()) {
             ball.reverseX();
@@ -216,7 +219,6 @@ public class Stage {
         this.brickCount = bricks.length;
     }
 
-
     public boolean hasLevel(){
         return level < levels.length;
     }
@@ -231,6 +233,10 @@ public class Stage {
 
     public void resetBallCount(){
         ballCount = 3;
+    }
+
+    public int getScore() {
+        return score;
     }
 
 }

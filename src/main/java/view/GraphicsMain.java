@@ -19,6 +19,7 @@ package view;
 
 import controller.GameFrameController;
 import model.GameFrameModel;
+import model.HighScore;
 
 import java.awt.*;
 
@@ -29,6 +30,7 @@ public class GraphicsMain {
         GameFrameView gameFrameView = new GameFrameView();
         GameFrameModel gameFrameModel = new GameFrameModel(gameFrameView);
         GameFrameController gameFrameController = new GameFrameController(gameFrameModel, gameFrameView);
+        new HighScore();
         EventQueue.invokeLater(gameFrameController::initialize);
     }
 
