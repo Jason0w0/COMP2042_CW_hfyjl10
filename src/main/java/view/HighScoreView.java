@@ -22,7 +22,6 @@ import java.util.ArrayList;
 
 
 public class HighScoreView {
-
     private ArrayList<Integer> highScoreList;
 
     public HighScoreView () {

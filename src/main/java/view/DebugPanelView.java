@@ -24,7 +24,6 @@ import java.awt.event.ActionListener;
 
 
 public class DebugPanelView extends JPanel {
-
     private static final Color DEF_BKG = Color.WHITE;
 
     private final JButton skipLevel;
@@ -34,21 +33,15 @@ public class DebugPanelView extends JPanel {
     private final JSlider ballYSpeed;
 
     public DebugPanelView(){
-
         initialize();
-
         skipLevel = new JButton("Skip Level");
         resetBalls = new JButton("Reset Balls");
-
         ballXSpeed = makeSlider();
         ballYSpeed = makeSlider();
-
         this.add(skipLevel);
         this.add(resetBalls);
-
         this.add(ballXSpeed);
         this.add(ballYSpeed);
-
     }
 
     private void initialize(){

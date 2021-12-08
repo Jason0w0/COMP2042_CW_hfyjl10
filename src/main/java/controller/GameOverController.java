@@ -22,7 +22,6 @@ import view.GameOverView;
 
 
 public class GameOverController {
-
     private final GameOverModel gameOverModel;
     private final GameOverView gameOverView;
 

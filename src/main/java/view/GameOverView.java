@@ -24,7 +24,6 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 
 public class GameOverView {
-
     private boolean isNewHighScore;
     private GameFrameView owner;
     private GameBoardView gameBoardView;

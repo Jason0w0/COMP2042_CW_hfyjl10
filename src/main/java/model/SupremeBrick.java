@@ -21,8 +21,8 @@ import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
-public class SupremeBrick extends Brick{
 
+public class SupremeBrick extends Brick{
     private static final Color DEF_INNER = new Color(250, 1, 1);
     private static final Color DEF_BORDER = Color.BLACK;
     private static final int SUPREME_STRENGTH = 4;

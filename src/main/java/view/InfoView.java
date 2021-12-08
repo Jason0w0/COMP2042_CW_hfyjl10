@@ -21,7 +21,6 @@ import javax.swing.*;
 
 
 public class InfoView {
-
     public InfoView(){
         JOptionPane.showMessageDialog(null,getMessage(),"INFO",JOptionPane.PLAIN_MESSAGE);
     }
@@ -29,15 +28,14 @@ public class InfoView {
     private String getMessage(){
         return """
                 WELCOME GAMER,
-                This is a simple and fun brick destroying game.
-                Here are the instruction to play this game.
-                Press and hold A key to move left.
-                Press and hold D key to move right.
-                Press SPACE to start, pause and unpause.
-                Clearing the stage will no ball lost will gain a reward.
-                Clearing the stage will only 1 ball left will result in penalty.
-                All right you are good to go.
-                Have Fun!
+                This is a simple and fun brick destroying game. Here are the instruction to
+                play this game. Press and hold A key to move left. Press and hold D key to
+                move right. Press SPACE to start, pause and unpause. Clearing the stage
+                will no ball lost will gain a reward. Clearing the stage will only 1 ball
+                left will result in penalty. Numbers of ball will reset back to 3 in every
+                level. Press ESC key to open pause menu.
+                All right you are good to go. Have Fun!
+                ---------------------------------------------------------------------------
                 This game is modified by Lee Jason, 20184290, for coursework purpose :)
                 """;
     }

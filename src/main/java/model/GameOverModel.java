@@ -23,7 +23,6 @@ import view.HomeMenuView;
 
 
 public class GameOverModel {
-
     private boolean isNewHighScore;
     private final GameFrameView owner;
     private final GameBoardView gameBoardView;

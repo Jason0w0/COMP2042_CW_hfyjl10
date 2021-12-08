@@ -26,7 +26,6 @@ import java.awt.geom.Rectangle2D;
 
 
 public class HomeMenuView extends JComponent {
-
     private static final String GREETINGS = "Welcome to:";
     private static final String GAME_TITLE = "Brick Destroy";
     private static final String CREDITS = "Version 0.1";

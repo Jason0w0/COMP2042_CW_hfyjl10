@@ -32,7 +32,6 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class GameFrameController {
     private final GameFrameModel gameFrameModel;
     private final GameFrameView gameFrameView;
-
     private final HomeMenuView homeMenuView;
 
     public GameFrameController(GameFrameModel gameFrameModel, GameFrameView gameFrameView){

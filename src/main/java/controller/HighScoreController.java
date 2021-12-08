@@ -22,7 +22,6 @@ import view.HighScoreView;
 
 
 public class HighScoreController {
-
     public HighScoreController() {
         HighScoreModel highScoreModel = new HighScoreModel();
         HighScoreView highScoreView = new HighScoreView();

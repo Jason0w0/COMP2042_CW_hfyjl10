@@ -19,7 +19,6 @@ package model;
 
 
 public class HomeMenuModel {
-
     private boolean startClicked;
     private boolean menuClicked;
     private boolean infoClicked;

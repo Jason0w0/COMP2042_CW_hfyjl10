@@ -29,7 +29,6 @@ import java.awt.font.FontRenderContext;
 
 
 public class GameBoardView extends JComponent {
-
     private static final String CONTINUE = "Continue";
     private static final String RESTART = "Restart";
     private static final String EXIT = "Exit";
@@ -46,6 +45,20 @@ public class GameBoardView extends JComponent {
     private String scoreBoard;
     private boolean showPauseMenu;
 
+    private Rectangle continueButtonRect;
+    private Rectangle exitButtonRect;
+    private Rectangle restartButtonRect;
+    private int strLen;
+
+    public GameBoardView(){
+        super();
+        strLen = 0;
+        setMessage("");
+        setScoreBoard("");
+        menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
+        this.initialize();
+    }
+
     public Rectangle getContinueButtonRect() {
         return continueButtonRect;
     }
@@ -56,20 +69,6 @@ public class GameBoardView extends JComponent {
 
     public Rectangle getRestartButtonRect() {
         return restartButtonRect;
-    }
-
-    private Rectangle continueButtonRect;
-    private Rectangle exitButtonRect;
-    private Rectangle restartButtonRect;
-    private int strLen;
-
-    public GameBoardView(){
-        super();
-        strLen = 0;
-        message = "";
-        scoreBoard = "";
-        menuFont = new Font("Monospaced",Font.PLAIN,TEXT_SIZE);
-        this.initialize();
     }
 
     public void setStage(Stage stage) {
@@ -250,5 +249,4 @@ public class GameBoardView extends JComponent {
         g2d.setFont(tmpFont);
         g2d.setColor(tmpColor);
     }
-
 }

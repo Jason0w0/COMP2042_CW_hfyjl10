@@ -21,9 +21,7 @@ import java.awt.*;
 
 
 public class Wall {
-
     private static final int LEVELS_COUNT = 8;
-
     private static final int CLAY = 1;
     private static final int STEEL = 2;
     private static final int CEMENT = 3;
@@ -154,5 +152,4 @@ public class Wall {
             default -> throw new IllegalArgumentException(String.format("Unknown Type:%d\n", type));
         };
     }
-
 }

@@ -17,7 +17,6 @@
  */
 package controller;
 
-import model.Ball;
 import model.DebugConsoleModel;
 import view.DebugConsoleView;
 
@@ -26,7 +25,6 @@ import java.awt.event.WindowListener;
 
 
 public class DebugConsoleController {
-
     private final DebugConsoleModel debugConsoleModel;
     private final DebugConsoleView debugConsoleView;
 
@@ -37,7 +35,6 @@ public class DebugConsoleController {
         this.debugConsoleView.setDebugPanelView(this.debugConsoleModel.getDebugPanelView());
         this.debugConsoleView.addConsoleWindowListener(new ConsoleWindowListener());
     }
-
 
     class ConsoleWindowListener implements WindowListener{
         @Override
@@ -68,8 +65,6 @@ public class DebugConsoleController {
         @Override
         public void windowActivated(WindowEvent e) {
             debugConsoleView.setLocation();
-//            Ball b = debugConsoleModel.getStage().getBall();
-//            debugConsoleModel.getDebugPanelController().setValues(b.getSpeedX(),b.getSpeedY());
         }
 
         @Override

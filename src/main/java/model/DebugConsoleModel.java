@@ -25,7 +25,6 @@ import javax.swing.*;
 
 
 public class DebugConsoleModel {
-
     private final JFrame owner;
     private final GameBoardView gameBoardView;
     private final DebugPanelView debugPanelView;

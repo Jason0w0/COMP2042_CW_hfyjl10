@@ -17,7 +17,6 @@
  */
 package view;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowListener;
@@ -59,5 +58,4 @@ public class DebugConsoleView extends JDialog {
         int y = ((owner.getHeight() - this.getHeight()) / 2) + owner.getY();
         this.setLocation(x,y);
     }
-
 }

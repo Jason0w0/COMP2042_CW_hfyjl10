@@ -27,12 +27,11 @@ import java.awt.geom.RectangularShape;
  *
  */
 
-abstract public class Ball {
 
+abstract public class Ball {
     private Shape ballFace;
 
     private final Point2D center;
-
     private final Point2D up;
     private final Point2D down;
     private final Point2D left;

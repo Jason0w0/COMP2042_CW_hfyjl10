@@ -23,7 +23,6 @@ import java.awt.event.WindowFocusListener;
 
 
 public class GameFrameView extends JFrame {
-
     public GameFrameView(){
         super();
         this.setLayout(new BorderLayout());

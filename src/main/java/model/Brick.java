@@ -27,12 +27,11 @@ import java.util.Random;
  * Created by filippo on 04/09/16.
  *
  */
-abstract public class Brick  {
 
+
+abstract public class Brick  {
     protected static final int DEF_CRACK_DEPTH = 1;
     protected static final int DEF_STEPS = 35;
-
-
     protected static final int UP_IMPACT = 100;
     protected static final int DOWN_IMPACT = 200;
     protected static final int LEFT_IMPACT = 300;
@@ -47,9 +46,7 @@ abstract public class Brick  {
 
     private final int fullStrength;
     private int strength;
-
     private boolean broken;
-
 
     public Brick(Point pos,Dimension size,Color border,Color inner,int strength){
         rnd = new Random();

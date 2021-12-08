@@ -28,7 +28,6 @@ import java.awt.event.MouseMotionListener;
 
 
 public class HomeMenuController implements MouseListener, MouseMotionListener {
-
     private final HomeMenuModel homeMenuModel;
     private final HomeMenuView homeMenuView;
     private final Rectangle startButton;

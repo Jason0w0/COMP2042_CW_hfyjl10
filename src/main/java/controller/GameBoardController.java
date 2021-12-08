@@ -24,7 +24,6 @@ import java.awt.event.*;
 
 
 public class GameBoardController {
-
     private final GameBoardModel gameBoardModel;
     private final GameBoardView gameBoardView;
 

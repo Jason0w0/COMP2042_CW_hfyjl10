@@ -6,7 +6,6 @@ import java.util.Collections;
 
 
 public class HighScoreModel {
-
     private final String pathToHighScoreFile = "src/main/resources/highScore";
     private final ArrayList <Integer> highScores = new ArrayList<>();
     private int highScore;

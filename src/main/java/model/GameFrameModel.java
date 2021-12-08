@@ -24,7 +24,6 @@ import view.HomeMenuView;
 
 
 public class GameFrameModel {
-
     private static final String DEF_TITLE = "Brick Destroy";
 
     private GameBoardView gameBoardView;
@@ -36,7 +35,7 @@ public class GameFrameModel {
 
     public GameFrameModel(){
         new HighScoreModel();
-        gaming = false;
+        setGaming(false);
     }
 
     public void setOwner(GameFrameView owner) {
