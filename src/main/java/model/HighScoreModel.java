@@ -4,14 +4,22 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 public class HighScoreModel {
 
     private final String pathToHighScoreFile = "src/main/resources/highScore";
     private final ArrayList <Integer> highScores = new ArrayList<>();
     private int highScore;
+    private final File f;
 
     public HighScoreModel(){
-        File f = new File(pathToHighScoreFile);
+        f = new File(pathToHighScoreFile);
+        readHighScoreFile(f);
+        highScores.sort(Collections.reverseOrder());
+        highScore = highScores.get(0);
+    }
+
+    private void readHighScoreFile(File f) {
         if(!f.exists()){
             System.err.println("Could not create highScore file.");
         }
@@ -33,18 +41,15 @@ public class HighScoreModel {
                 System.out.println("Cant close file");
             }
         }
-        highScores.sort(Collections.reverseOrder());
-        highScore = highScores.get(0);
     }
 
     public int getHighScore(){
         return highScore;
     }
 
-    public void newHighScore(int highScore){
+    public void writeNewHighScore(int highScore){
         this.highScore = highScore;
         highScores.add(highScore);
-        File f = new File(pathToHighScoreFile);
         try {
             FileWriter fw = new FileWriter(f.getAbsoluteFile());
             BufferedWriter bw = new BufferedWriter(fw);

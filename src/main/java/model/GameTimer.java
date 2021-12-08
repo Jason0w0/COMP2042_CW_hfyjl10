@@ -17,32 +17,35 @@
  */
 package model;
 
+import controller.GameOverController;
 import view.GameBoardView;
 import view.GameFrameView;
+import view.GameOverView;
 import view.HomeMenuView;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class GameTimer {
 
     private final Timer gameTimer;
     private final GameBoardView gameBoardView;
     private final Stage stage;
-    private GameFrameView owner;
-    private HomeMenuView homeMenuView;
-    private HighScoreModel highScoreModel = new HighScoreModel();
+    private final HighScoreModel highScoreModel;
+    private final GameOverView gameOverView;
+    private final GameOverModel gameOverModel;
+    private final GameOverController gameOverController;
 
 
     public GameTimer(GameFrameView owner, HomeMenuView homeMenuView, GameBoardView gameBoardView, Stage stage) {
-        this.owner = owner;
         this.gameBoardView = gameBoardView;
         this.stage = stage;
-        this.homeMenuView = homeMenuView;
+        highScoreModel = new HighScoreModel();
+        gameOverModel = new GameOverModel(owner,this.gameBoardView, homeMenuView);
+        gameOverView = new GameOverView();
+        gameOverController = new GameOverController(gameOverModel,gameOverView);
         gameTimer = new Timer(10, new addActionListener());
     }
 
@@ -61,10 +64,13 @@ public class GameTimer {
                     message = "Game over";
                     setMessage(message);
                     if (stage.getScore() >= highScoreModel.getHighScore()){
-                        highScoreModel.newHighScore(stage.getScore());
+                        highScoreModel.writeNewHighScore(stage.getScore());
+                        gameOverModel.setNewHighScore(true);
                     }
                     stage.resetScore();
-                    backToHomeMenu();
+                    gameOverController.addHighScoreMessage();
+                    gameOverView.displayPanel();
+                    gameOverModel.setNewHighScore(false);
                 }
                 stage.ballReset();
                 stage.playerReset();
@@ -97,26 +103,7 @@ public class GameTimer {
         gameBoardView.setMessage(Message);
     }
 
-    private void setScore(String score) { gameBoardView.setScoreBoard(score);}
-
-    public void backToHomeMenu() {
-        Object [] options = {"Back", "Exit"};
-        int input = JOptionPane.showOptionDialog(null, "Back to home menu?", "GAME OVER", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
-        if (input == JOptionPane.YES_OPTION) {
-            owner.dispose();
-            owner.remove(gameBoardView);
-            owner.add(homeMenuView, BorderLayout.CENTER);
-            owner.setUndecorated(true);
-            owner.setTitle(owner.getDefTitle());
-            owner.setDefaultCloseOperation(EXIT_ON_CLOSE);
-            owner.pack();
-            owner.autoLocate();
-            owner.setVisible(true);
-            owner.setResizable(false);
-        }
-        else {
-            System.out.println("Goodbye " + System.getProperty("user.name"));
-            System.exit(0);
-        }
+    private void setScore(String score) {
+        gameBoardView.setScoreBoard(score);
     }
 }

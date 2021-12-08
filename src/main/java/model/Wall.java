@@ -19,6 +19,7 @@ package model;
 
 import java.awt.*;
 
+
 public class Wall {
 
     private static final int LEVELS_COUNT = 8;

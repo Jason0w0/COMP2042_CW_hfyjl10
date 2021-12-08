@@ -23,7 +23,6 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 
-
 public class DebugPanelView extends JPanel {
 
     private static final Color DEF_BKG = Color.WHITE;

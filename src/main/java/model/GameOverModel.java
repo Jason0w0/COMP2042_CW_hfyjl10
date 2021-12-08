@@ -17,38 +17,42 @@
  */
 package model;
 
-import controller.DebugPanelController;
 import view.GameBoardView;
-import view.DebugPanelView;
+import view.GameFrameView;
+import view.HomeMenuView;
 
-import javax.swing.*;
 
+public class GameOverModel {
 
-public class DebugConsoleModel {
-
-    private final JFrame owner;
+    private boolean isNewHighScore;
+    private final GameFrameView owner;
     private final GameBoardView gameBoardView;
-    private final DebugPanelView debugPanelView;
+    private final HomeMenuView homeMenuView;
 
-    public DebugConsoleModel(JFrame owner, Stage stage, GameBoardView gameBoardView){
+    public GameOverModel(GameFrameView owner, GameBoardView gameBoardView, HomeMenuView homeMenuView) {
         this.owner = owner;
         this.gameBoardView = gameBoardView;
-
-        debugPanelView = new DebugPanelView();
-        DebugPanelModel debugPanelModel = new DebugPanelModel();
-        new DebugPanelController(debugPanelModel, debugPanelView, stage);
-
+        this.homeMenuView = homeMenuView;
+        setNewHighScore(false);
     }
 
-    public JFrame getOwner() {
+    public boolean isNewHighScore() {
+        return isNewHighScore;
+    }
+
+    public void setNewHighScore(boolean newHighScore) {
+        isNewHighScore = newHighScore;
+    }
+
+    public GameFrameView getOwner() {
         return owner;
     }
 
-    public DebugPanelView getDebugPanelView() {
-        return debugPanelView;
+    public GameBoardView getGameBoardView() {
+        return gameBoardView;
     }
 
-    public GameBoardView getGameBoard() {
-        return gameBoardView;
+    public HomeMenuView getHomeMenuView() {
+        return homeMenuView;
     }
 }

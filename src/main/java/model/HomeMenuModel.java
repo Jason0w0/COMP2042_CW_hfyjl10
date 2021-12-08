@@ -17,6 +17,7 @@
  */
 package model;
 
+
 public class HomeMenuModel {
 
     private boolean startClicked;

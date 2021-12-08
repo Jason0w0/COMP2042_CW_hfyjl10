@@ -22,7 +22,9 @@ import view.GameBoardView;
 import java.awt.*;
 import java.awt.event.*;
 
+
 public class GameBoardController {
+
     private final GameBoardModel gameBoardModel;
     private final GameBoardView gameBoardView;
 
@@ -34,7 +36,7 @@ public class GameBoardController {
         this.gameBoardView.addGameBoardMouseMotionListener(new addMouseMotionListener());
         this.gameBoardModel.createStage();
         this.gameBoardModel.createDebugConsole(gameBoardView);
-        this.gameBoardModel.gameLoop(gameBoardView);
+        this.gameBoardModel.CreateGameLoop(gameBoardView);
         this.gameBoardView.setStage(gameBoardModel.getStage());
         this.gameBoardView.setShowPauseMenu(gameBoardModel.isShowPauseMenu());
     }

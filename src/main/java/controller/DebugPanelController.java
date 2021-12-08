@@ -34,43 +34,38 @@ public class DebugPanelController {
     public DebugPanelController(DebugPanelModel debugPanelModel, DebugPanelView debugPanelView, Stage stage){
         this.debugPanelModel = debugPanelModel;
         this.debugPanelView = debugPanelView;
-        this.debugPanelModel.setWall(stage);
+        this.debugPanelModel.setStage(stage);
         this.debugPanelView.addSkipLevelActionListener(new SkipLevelListener());
         this.debugPanelView.addResetBallActionListener(new ResetLevelListener());
         this.debugPanelView.addBallXSpeedChangeListener(new BallXSpeedChangeListener());
         this.debugPanelView.addBallYSpeedChangeListener(new BallYSpeedChangeListener());
     }
 
-    public void setValues(int x,int y){
-        debugPanelView.getBallXSpeed().setValue(x);
-        debugPanelView.getBallYSpeed().setValue(y);
-    }
-
     class SkipLevelListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            debugPanelModel.getWall().nextLevel();
+            debugPanelModel.getStage().nextLevel();
         }
     }
 
     class ResetLevelListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            debugPanelModel.getWall().resetBallCount();
+            debugPanelModel.getStage().resetBallCount();
         }
     }
 
     class BallXSpeedChangeListener implements ChangeListener{
         @Override
         public void stateChanged(ChangeEvent e) {
-            debugPanelModel.getWall().setBallXSpeed(debugPanelView.getBallXSpeed().getValue());
+            debugPanelModel.getStage().setBallXSpeed(debugPanelView.getBallXSpeed().getValue());
         }
     }
 
     class BallYSpeedChangeListener implements ChangeListener{
         @Override
         public void stateChanged(ChangeEvent e) {
-            debugPanelModel.getWall().setBallYSpeed(debugPanelView.getBallYSpeed().getValue());
+            debugPanelModel.getStage().setBallYSpeed(debugPanelView.getBallYSpeed().getValue());
         }
     }
 }

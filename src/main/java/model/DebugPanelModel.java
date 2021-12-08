@@ -23,11 +23,11 @@ public class DebugPanelModel {
     public DebugPanelModel() {
     }
 
-    public Stage getWall() {
+    public Stage getStage() {
         return stage;
     }
 
-    public void setWall(Stage stage) {
+    public void setStage(Stage stage) {
         this.stage = stage;
     }
 }

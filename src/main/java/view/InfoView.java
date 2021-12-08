@@ -19,9 +19,11 @@ package view;
 
 import javax.swing.*;
 
+
 public class InfoView {
-    public InfoView(JFrame owner){
-        JOptionPane.showMessageDialog(owner,getMessage(),"INFO",JOptionPane.PLAIN_MESSAGE);
+
+    public InfoView(){
+        JOptionPane.showMessageDialog(null,getMessage(),"INFO",JOptionPane.PLAIN_MESSAGE);
     }
 
     private String getMessage(){

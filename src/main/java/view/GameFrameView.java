@@ -17,16 +17,12 @@
  */
 package view;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowFocusListener;
 
 
 public class GameFrameView extends JFrame {
-
-    private static final String DEF_TITLE = "Brick Destroy";
-
 
     public GameFrameView(){
         super();
@@ -43,10 +39,6 @@ public class GameFrameView extends JFrame {
         int x = (size.width - this.getWidth()) / 2;
         int y = (size.height - this.getHeight()) / 2;
         this.setLocation(x,y);
-    }
-
-    public String getDefTitle() {
-        return DEF_TITLE;
     }
 
     public void addGameFrameWindowFocusListener(WindowFocusListener e){

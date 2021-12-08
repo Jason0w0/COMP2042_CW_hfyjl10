@@ -21,13 +21,13 @@ import model.GameFrameModel;
 import model.HomeMenuModel;
 import view.GameFrameView;
 import view.HomeMenuView;
-import view.InfoView;
 
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+
 
 public class GameFrameController {
     private final GameFrameModel gameFrameModel;
@@ -36,15 +36,16 @@ public class GameFrameController {
     private final HomeMenuView homeMenuView;
 
     public GameFrameController(GameFrameModel gameFrameModel, GameFrameView gameFrameView){
-        homeMenuView = new HomeMenuView();
         HomeMenuModel homeMenuModel = new HomeMenuModel();
+        homeMenuView = new HomeMenuView();
         new HomeMenuController(homeMenuModel, homeMenuView, this);
         this.gameFrameModel = gameFrameModel;
-        this.gameFrameModel.setHomeMenuView(homeMenuView);
-        this.gameFrameModel.createGameBoard();
         this.gameFrameView = gameFrameView;
+        this.gameFrameModel.setOwner(this.gameFrameView);
+        this.gameFrameModel.setHomeMenuView(homeMenuView);
         this.gameFrameView.addGameFrameWindowFocusListener(new addWindowFocusListener());
         this.gameFrameView.addHomeMenu(homeMenuView);
+        this.gameFrameModel.createGameBoard();
     }
 
     class addWindowFocusListener implements WindowFocusListener {
@@ -69,7 +70,7 @@ public class GameFrameController {
     }
 
     public void initialize(){
-        gameFrameView.setTitle(gameFrameView.getDefTitle());
+        gameFrameView.setTitle(gameFrameModel.getDefTitle());
         gameFrameView.setDefaultCloseOperation(EXIT_ON_CLOSE);
         gameFrameView.pack();
         gameFrameView.autoLocate();
@@ -84,10 +85,4 @@ public class GameFrameController {
         gameFrameView.setUndecorated(false);
         initialize();
     }
-
-    public void showInfo(){
-        new InfoView(gameFrameView);
-    }
-
-    public void showHighScore() {new HighScoreController(gameFrameView);}
 }

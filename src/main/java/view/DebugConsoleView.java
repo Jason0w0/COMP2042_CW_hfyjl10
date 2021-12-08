@@ -22,6 +22,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowListener;
 
+
 public class DebugConsoleView extends JDialog {
 
     private static final String TITLE = "Debug Console";

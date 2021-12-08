@@ -19,18 +19,16 @@ package view;
 
 import controller.GameFrameController;
 import model.GameFrameModel;
-import model.HighScoreModel;
+
 
 import java.awt.*;
-
 
 public class GraphicsMain {
 
     public static void main(String[] args){
         GameFrameView gameFrameView = new GameFrameView();
-        GameFrameModel gameFrameModel = new GameFrameModel(gameFrameView);
+        GameFrameModel gameFrameModel = new GameFrameModel();
         GameFrameController gameFrameController = new GameFrameController(gameFrameModel, gameFrameView);
-        new HighScoreModel();
         EventQueue.invokeLater(gameFrameController::initialize);
     }
 

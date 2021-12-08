@@ -24,27 +24,35 @@ import view.HomeMenuView;
 
 
 public class GameFrameModel {
+
+    private static final String DEF_TITLE = "Brick Destroy";
+
     private GameBoardView gameBoardView;
     private GameBoardController gameBoardController;
-    private final GameFrameView owner;
+    private  GameFrameView owner;
     private HomeMenuView homeMenuView;
+
     private boolean gaming;
 
-    public GameFrameModel(GameFrameView owner){
-        this.owner = owner;
+    public GameFrameModel(){
+        new HighScoreModel();
         gaming = false;
+    }
+
+    public void setOwner(GameFrameView owner) {
+        this.owner = owner;
     }
 
     public GameBoardView getGameBoardView() {
         return gameBoardView;
     }
 
-//    public HomeMenuView getHomeMenuView() {
-//        return homeMenuView;
-//    }
-
     public void setHomeMenuView(HomeMenuView homeMenuView) {
         this.homeMenuView = homeMenuView;
+    }
+
+    public String getDefTitle() {
+        return DEF_TITLE;
     }
 
     public boolean isGaming() {

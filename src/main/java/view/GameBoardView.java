@@ -46,7 +46,6 @@ public class GameBoardView extends JComponent {
     private String scoreBoard;
     private boolean showPauseMenu;
 
-
     public Rectangle getContinueButtonRect() {
         return continueButtonRect;
     }

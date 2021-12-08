@@ -19,13 +19,9 @@ package model;
 
 import java.awt.*;
 import java.awt.geom.Point2D;
-//import java.util.Random;
 
 
 public class Stage {
-
-//    private Random rnd;
-
     private final Rectangle area;
 
     private Brick[] bricks;
@@ -39,8 +35,8 @@ public class Stage {
     private int brickCount;
     private int ballCount;
     private boolean ballLost;
-    private final int speedX;
-    private final int speedY;
+    private int speedX;
+    private int speedY;
     private int score;
 
     public Stage(Rectangle drawArea, Point ballPos){
@@ -53,20 +49,10 @@ public class Stage {
         score = 0;
         ballLost = false;
 
-//        rnd = new Random();
-
         makeBall(ballPos);
         makePlayer((Point) ballPos.clone(), drawArea);
-//        int speedX,speedY;
 
-//        do{
-//            speedX = rnd.nextInt(5) - 2;
-//        }while(speedX == 0);
-//        do{
-//            speedY = -rnd.nextInt(3);
-//        }while(speedY == 0);
-
-        speedX = 10;
+        speedX = 1;
         speedY = -5;
 
         ball.setSpeed(speedX,speedY);
@@ -177,13 +163,6 @@ public class Stage {
 
     public void ballReset(){
         ball.moveTo(startPoint);
-//        int speedX,speedY;
-//        do{
-//            speedX = rnd.nextInt(5) - 2;
-//        }while(speedX == 0);
-//        do{
-//            speedY = -rnd.nextInt(3);
-//        }while(speedY == 0);
         ball.setSpeed(speedX,speedY);
         ballLost = false;
     }
@@ -224,11 +203,13 @@ public class Stage {
     }
 
     public void setBallXSpeed(int s){
-        ball.setXSpeed(s);
+        speedX = s;
+        ball.setXSpeed(speedX);
     }
 
     public void setBallYSpeed(int s){
-        ball.setYSpeed(s);
+        speedY = s;
+        ball.setYSpeed(speedY);
     }
 
     public void resetBallCount(){
@@ -242,5 +223,4 @@ public class Stage {
     public void resetScore() {
         score = 0;
     }
-
 }

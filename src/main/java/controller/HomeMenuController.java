@@ -19,11 +19,13 @@ package controller;
 
 import model.HomeMenuModel;
 import view.HomeMenuView;
+import view.InfoView;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+
 
 public class HomeMenuController implements MouseListener, MouseMotionListener {
 
@@ -52,17 +54,16 @@ public class HomeMenuController implements MouseListener, MouseMotionListener {
 
         if(homeMenuView.getStartButton().contains(p)){
             homeMenuView.getOwner().enableGameBoard();
-
         }
         else if(homeMenuView.getMenuButton().contains(p)){
             System.out.println("Goodbye " + System.getProperty("user.name"));
             System.exit(0);
         }
         else if(homeMenuView.getInfoButton().contains(p)){
-            homeMenuView.getOwner().showInfo();
+            new InfoView();
         }
         else if(homeMenuView.getHighScoreButton().contains(p)){
-            homeMenuView.getOwner().showHighScore();
+            new HighScoreController();
         }
     }
 

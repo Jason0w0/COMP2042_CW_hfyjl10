@@ -35,7 +35,7 @@ public class HomeMenuView extends JComponent {
     private static final String INFO_TEXT = "Info";
     private static final String HIGHSCORE_TEXT = "HighScore";
 
-    private static final Color TEXT_COLOR = Color.BLACK;//egyptian blue
+    private static final Color TEXT_COLOR = Color.BLACK;
     private static final Color CLICKED_BUTTON_COLOR = Color.LIGHT_GRAY;
     private static final Color CLICKED_TEXT = Color.lightGray;
 
@@ -85,6 +85,10 @@ public class HomeMenuView extends JComponent {
         this.owner = owner;
     }
 
+    public GameFrameController getOwner() {
+        return owner;
+    }
+
     public Rectangle getStartButton() {
         return startButton;
     }
@@ -99,10 +103,6 @@ public class HomeMenuView extends JComponent {
 
     public Rectangle getHighScoreButton() {
         return highScoreButton;
-    }
-
-    public GameFrameController getOwner() {
-        return owner;
     }
 
     public void setStartClicked(boolean startClicked) {
@@ -196,15 +196,14 @@ public class HomeMenuView extends JComponent {
     }
 
     private void drawButton(Graphics2D g2d) {
-        drawStartButton(g2d);
-        drawHighScoreButton(g2d);
-        drawInfoButton(g2d);
-        drawExitButton(g2d);
+        FontRenderContext frc = g2d.getFontRenderContext();
+        drawStartButton(g2d, frc);
+        drawHighScoreButton(g2d, frc);
+        drawInfoButton(g2d, frc);
+        drawExitButton(g2d, frc);
     }
 
-    private void drawStartButton(Graphics2D g2d) {
-        FontRenderContext frc = g2d.getFontRenderContext();
-
+    private void drawStartButton(Graphics2D g2d, FontRenderContext frc) {
         g2d.setColor(new Color(48, 99, 175));
         g2d.fill(startButton);
         g2d.setColor(Color.BLACK);
@@ -237,9 +236,7 @@ public class HomeMenuView extends JComponent {
         }
     }
 
-    private void drawHighScoreButton(Graphics2D g2d) {
-        FontRenderContext frc = g2d.getFontRenderContext();
-
+    private void drawHighScoreButton(Graphics2D g2d, FontRenderContext frc) {
         g2d.setColor(new Color(48, 99, 175));
         g2d.fill(highScoreButton);
         g2d.setColor(Color.BLACK);
@@ -273,9 +270,7 @@ public class HomeMenuView extends JComponent {
         }
     }
 
-    private void drawInfoButton(Graphics2D g2d) {
-        FontRenderContext frc = g2d.getFontRenderContext();
-
+    private void drawInfoButton(Graphics2D g2d, FontRenderContext frc) {
         g2d.setColor(new Color(48, 99, 175));
         g2d.fill(infoButton);
         g2d.setColor(Color.BLACK);
@@ -309,9 +304,7 @@ public class HomeMenuView extends JComponent {
         }
     }
 
-    private void drawExitButton(Graphics2D g2d) {
-        FontRenderContext frc = g2d.getFontRenderContext();
-
+    private void drawExitButton(Graphics2D g2d, FontRenderContext frc) {
         g2d.setColor(new Color(48, 99, 175));
         g2d.fill(exitButton);
         g2d.setColor(Color.BLACK);
@@ -344,5 +337,4 @@ public class HomeMenuView extends JComponent {
             g2d.drawString(EXIT_TEXT, x, y);
         }
     }
-
 }

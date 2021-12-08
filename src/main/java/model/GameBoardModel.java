@@ -26,16 +26,16 @@ import view.HomeMenuView;
 import javax.swing.*;
 import java.awt.*;
 
+
 public class GameBoardModel {
 
     private Stage stage;
     private DebugConsoleView debugConsoleView;
     private GameTimer gameTimer;
     private final GameFrameView owner;
-    private HomeMenuView homeMenuView;
+    private final HomeMenuView homeMenuView;
 
     private boolean showPauseMenu;
-
 
     public GameBoardModel(GameFrameView owner, HomeMenuView homeMenuView) {
         this.owner = owner;
@@ -75,7 +75,7 @@ public class GameBoardModel {
         new DebugConsoleController(debugConsoleModel, debugConsoleView);
     }
 
-    public void gameLoop(GameBoardView gameBoardView){
+    public void CreateGameLoop(GameBoardView gameBoardView){
         gameTimer = new GameTimer(owner, homeMenuView, gameBoardView, stage);
     }
 }
