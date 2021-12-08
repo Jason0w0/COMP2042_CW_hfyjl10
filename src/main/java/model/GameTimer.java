@@ -37,11 +37,12 @@ public class GameTimer {
     private final GameOverView gameOverView;
     private final GameOverModel gameOverModel;
     private final GameOverController gameOverController;
+    private final Player player;
 
-
-    public GameTimer(GameFrameView owner, HomeMenuView homeMenuView, GameBoardView gameBoardView, Stage stage) {
+    public GameTimer(GameFrameView owner, HomeMenuView homeMenuView, GameBoardView gameBoardView, Stage stage, Player player) {
         this.gameBoardView = gameBoardView;
         this.stage = stage;
+        this.player = player;
         highScoreModel = new HighScoreModel();
         gameOverModel = new GameOverModel(owner,this.gameBoardView, homeMenuView);
         gameOverView = new GameOverView();
@@ -71,6 +72,8 @@ public class GameTimer {
                     gameOverController.addHighScoreMessage();
                     gameOverView.displayPanel();
                     gameOverModel.setNewHighScore(false);
+                    player.removeReward();
+                    player.removePenalty();
                 }
                 stage.ballReset();
                 stage.playerReset();
@@ -80,11 +83,12 @@ public class GameTimer {
                     message = "Go to Next Level";
                     setMessage(message);
                     gameTimer.stop();
+                    stage.playerBonus(stage.getBallCount());
                     stage.ballReset();
                     stage.playerReset();
                     stage.wallReset();
                     stage.nextLevel();
-                    stage.playerReward();
+
                 } else {
                     message = "ALL WALLS DESTROYED";
                     setMessage(message);

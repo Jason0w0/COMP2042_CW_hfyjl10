@@ -40,7 +40,6 @@ public class Stage {
     private int score;
 
     public Stage(Rectangle drawArea, Point ballPos){
-
         this.startPoint = new Point(ballPos);
         Wall wall = new Wall(drawArea);
         levels = wall.getLevels();
@@ -48,17 +47,12 @@ public class Stage {
         ballCount = 3;
         score = 0;
         ballLost = false;
-
         makeBall(ballPos);
         makePlayer((Point) ballPos.clone(), drawArea);
-
-        speedX = 1;
+        speedX = 3;
         speedY = -5;
-
         ball.setSpeed(speedX,speedY);
-
         area = drawArea;
-
     }
 
     public Brick[] getBricks() {
@@ -178,8 +172,8 @@ public class Stage {
         ballCount = 3;
     }
 
-    public void playerReward(){
-        switch (ballCount) {
+    public void playerBonus(int ballRemain){
+        switch (ballRemain) {
             case 3 -> player.playerReward();
             case 1 -> player.playerPenalty();
         }

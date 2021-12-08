@@ -21,7 +21,6 @@ import java.awt.*;
 
 
 public class Player {
-
     private final Color BORDER_COLOR = Color.GREEN.darker().darker();
     private final Color INNER_COLOR = Color.GREEN;
 
@@ -33,7 +32,8 @@ public class Player {
     private int moveAmount;
     private final int min;
     private final int max;
-
+    private int rewardSum;
+    private int penaltySum;
 
     public Player(Point ballPoint,Rectangle container) {
         this.ballPoint = ballPoint;
@@ -43,7 +43,6 @@ public class Player {
         playerFace = makeRectangle(width, height);
         min = container.x + (width / 2);
         max = min + container.width - width;
-
     }
 
     public Color getBORDER_COLOR() {
@@ -93,12 +92,24 @@ public class Player {
     }
 
     public void playerReward(){
-        playerFace = makeRectangle(playerFace.width+25, playerFace.height);
-        DEF_MOVE_AMOUNT += 1;
+        playerFace = makeRectangle(playerFace.width+50, playerFace.height);
+        DEF_MOVE_AMOUNT += 2;
+        rewardSum += 1;
     }
 
     public void playerPenalty(){
-        playerFace = makeRectangle(playerFace.width-25, playerFace.height);
+        playerFace = makeRectangle(playerFace.width-30, playerFace.height);
         DEF_MOVE_AMOUNT -= 1;
+        penaltySum += 1;
+    }
+
+    public void removeReward() {
+        playerFace = makeRectangle(playerFace.width-(50*rewardSum), playerFace.height);
+        DEF_MOVE_AMOUNT -= (2*rewardSum);
+    }
+
+    public void removePenalty() {
+        playerFace = makeRectangle(playerFace.width+(50*penaltySum), playerFace.height);
+        DEF_MOVE_AMOUNT += (2*penaltySum);
     }
 }

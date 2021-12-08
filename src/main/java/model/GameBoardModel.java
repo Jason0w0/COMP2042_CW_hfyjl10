@@ -28,7 +28,6 @@ import java.awt.*;
 
 
 public class GameBoardModel {
-
     private Stage stage;
     private DebugConsoleView debugConsoleView;
     private GameTimer gameTimer;
@@ -40,7 +39,7 @@ public class GameBoardModel {
     public GameBoardModel(GameFrameView owner, HomeMenuView homeMenuView) {
         this.owner = owner;
         this.homeMenuView = homeMenuView;
-        showPauseMenu = false;
+        setShowPauseMenu(false);
     }
 
     public Stage getStage() {
@@ -76,6 +75,6 @@ public class GameBoardModel {
     }
 
     public void CreateGameLoop(GameBoardView gameBoardView){
-        gameTimer = new GameTimer(owner, homeMenuView, gameBoardView, stage);
+        gameTimer = new GameTimer(owner, homeMenuView, gameBoardView, stage, getStage().getPlayer());
     }
 }
