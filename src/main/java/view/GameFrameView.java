@@ -17,15 +17,27 @@
  */
 package view;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowFocusListener;
+import java.io.File;
+import java.io.IOException;
 
 
 public class GameFrameView extends JFrame {
     public GameFrameView(){
         super();
         this.setLayout(new BorderLayout());
+        addIconImage();
+    }
+
+    private void addIconImage() {
+        try {
+            this.setIconImage(ImageIO.read(new File("src/main/resources/brick-destroyer-img-resized.png")));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addHomeMenu(HomeMenuView homeMenuView){
