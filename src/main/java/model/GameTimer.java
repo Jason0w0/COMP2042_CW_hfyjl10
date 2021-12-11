@@ -64,11 +64,12 @@ public class GameTimer {
                     stage.wallReset();
                     message = "Game over";
                     setMessage(message);
-                    if (stage.getScore() >= highScoreModel.getHighScore()){
+                    if (highScoreModel.isInHighScoreList(stage.getScore())){
                         highScoreModel.writeNewHighScore(stage.getScore());
                         gameOverModel.setNewHighScore(true);
                     }
                     stage.resetScore();
+                    setScore("");
                     gameOverController.addHighScoreMessage();
                     gameOverView.displayPanel();
                     gameOverModel.setNewHighScore(false);

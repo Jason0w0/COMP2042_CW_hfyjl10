@@ -46,6 +46,10 @@ public class HighScoreModel {
         return highScore;
     }
 
+    public boolean isInHighScoreList(int score) {
+        return score > highScores.get(4);
+    }
+
     public void writeNewHighScore(int highScore){
         this.highScore = highScore;
         highScores.add(highScore);
@@ -63,4 +67,5 @@ public class HighScoreModel {
     }
 
     public ArrayList<Integer> getHighScoreList() { return highScores;}
+
 }
