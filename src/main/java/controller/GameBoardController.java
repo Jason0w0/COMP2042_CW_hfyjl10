@@ -42,7 +42,7 @@ public class GameBoardController {
 
     public void onLostFocus(){
         gameBoardModel.getGameTimer().stop();
-        gameBoardView.setMessage("Focus Lost");
+        gameBoardView.setMessage("Press SPACE to start");
         gameBoardView.repaint();
     }
 
@@ -70,8 +70,11 @@ public class GameBoardController {
                     break;
                 case KeyEvent.VK_SPACE:
                     if(!gameBoardModel.isShowPauseMenu())
-                        if(gameBoardModel.getGameTimer().isRunning())
+                        if(gameBoardModel.getGameTimer().isRunning()) {
+                            gameBoardView.setMessage("Press SPACE to unpause");
+                            gameBoardView.repaint();
                             gameBoardModel.getGameTimer().stop();
+                        }
                         else
                             gameBoardModel.getGameTimer().start();
                     break;
@@ -98,16 +101,20 @@ public class GameBoardController {
                 return;
             if(gameBoardView.getContinueButtonRect().contains(p)){
                 gameBoardModel.setShowPauseMenu(false);
+                gameBoardView.setShowPauseMenu(gameBoardModel.isShowPauseMenu());
+                gameBoardView.setMessage("Press SPACE to unpause");
                 gameBoardView.repaint();
             }
             else if(gameBoardView.getRestartButtonRect().contains(p)){
-                gameBoardView.setMessage("Restarting Game...");
+                gameBoardView.setMessage("Restarting Game... \n Press SPACE to start");
                 gameBoardModel.getStage().ballReset();
                 gameBoardModel.getStage().wallReset();
                 gameBoardModel.setShowPauseMenu(false);
+                gameBoardView.setShowPauseMenu(gameBoardModel.isShowPauseMenu());
                 gameBoardView.repaint();
             }
             else if(gameBoardView.getExitButtonRect().contains(p)){
+                System.out.println("Goodbye " + System.getProperty("user.name"));
                 System.exit(0);
             }
         }

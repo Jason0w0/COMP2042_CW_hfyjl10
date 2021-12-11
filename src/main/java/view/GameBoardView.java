@@ -31,7 +31,7 @@ import java.awt.font.FontRenderContext;
 public class GameBoardView extends JComponent {
     private static final String CONTINUE = "Continue";
     private static final String RESTART = "Restart";
-    private static final String EXIT = "Exit";
+    private static final String EXIT = "Quit";
     private static final String PAUSE = "Pause Menu";
     private static final int TEXT_SIZE = 30;
     private static final Color MENU_COLOR = new Color(0,255,0);
@@ -100,8 +100,8 @@ public class GameBoardView extends JComponent {
         clear(g2d);
 
         g2d.setColor(Color.BLUE);
-        g2d.drawString(message, 250,225);
-        g2d.drawString(scoreBoard,250,250);
+        g2d.drawString(message, 230,225);
+        g2d.drawString(scoreBoard,230,250);
 
         drawBall(stage.getBall(),g2d);
 
