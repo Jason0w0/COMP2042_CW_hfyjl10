@@ -17,7 +17,6 @@
  */
 package Bricks;
 
-import Bricks.Brick;
 
 import java.awt.*;
 

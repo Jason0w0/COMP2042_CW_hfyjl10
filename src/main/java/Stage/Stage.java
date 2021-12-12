@@ -44,7 +44,6 @@ public class Stage {
     private int level;
     private int brickCount;
     private int ballCount;
-    private boolean ballLost;
     private int speedX;
     private int speedY;
     private int score;
@@ -62,7 +61,6 @@ public class Stage {
         level = 0;
         ballCount = 3;
         score = 0;
-        ballLost = false;
         makeBall(ballPos);
         makePlayer((Point) ballPos.clone(), drawArea);
         speedX = 3;
@@ -140,7 +138,6 @@ public class Stage {
         }
         else if(ballLost()){
             ballCount--;
-            ballLost = true;
         }
     }
 
@@ -224,7 +221,6 @@ public class Stage {
     public void ballReset(){
         ball.moveTo(startPoint);
         ball.setSpeed(speedX,speedY);
-        ballLost = false;
     }
 
     /**

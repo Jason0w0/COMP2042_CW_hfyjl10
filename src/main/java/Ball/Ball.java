@@ -41,6 +41,7 @@ abstract public class Ball {
     private int speedX;
     private int speedY;
 
+
     /**
      * This is the constructor of class Ball
      * @param center Center of ball
@@ -137,6 +138,22 @@ abstract public class Ball {
     public void setSpeed(int x,int y){
         setXSpeed(x);
         setYSpeed(y);
+    }
+
+    /**
+     * This method gets the ball's horizontal speed
+     * @return Ball's horizontal speed
+     */
+    public int getSpeedX() {
+        return speedX;
+    }
+
+    /**
+     * This method gets the ball's vertical speed
+     * @return Ball's vertical speed
+     */
+    public int getSpeedY() {
+        return speedY;
     }
 
     /**

@@ -175,10 +175,18 @@ public class GameBoardView extends JComponent {
         this.message = message;
     }
 
+    /**
+     * This method set the score
+     * @param score Score
+     */
     public void setScoreBoard(String score){
         this.scoreBoard = score;
     }
 
+    /**
+     * This method clears the background
+     * @param g2d Graphics2D
+     */
     private void clear(Graphics2D g2d){
         Color tmp = g2d.getColor();
         g2d.setColor(BG_COLOR);
@@ -186,6 +194,11 @@ public class GameBoardView extends JComponent {
         g2d.setColor(tmp);
     }
 
+    /**
+     * This method displayes the brick
+     * @param brick Brick
+     * @param g2d Graphics2D
+     */
     private void drawBrick(Brick brick,Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -199,6 +212,11 @@ public class GameBoardView extends JComponent {
         g2d.setColor(tmp);
     }
 
+    /**
+     * This method displays the ball
+     * @param ball Ball
+     * @param g2d Graphics2D
+     */
     private void drawBall(Ball ball, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -213,6 +231,11 @@ public class GameBoardView extends JComponent {
         g2d.setColor(tmp);
     }
 
+    /**
+     * This method displays the player
+     * @param p Player
+     * @param g2d Graphics
+     */
     private void drawPlayer(Player p, Graphics2D g2d){
         Color tmp = g2d.getColor();
 
@@ -226,11 +249,19 @@ public class GameBoardView extends JComponent {
         g2d.setColor(tmp);
     }
 
+    /**
+     * This method displays the pause menu
+     * @param g2d Graphic2D
+     */
     private void drawMenu(Graphics2D g2d){
         obscureGameBoard(g2d);
         drawPauseMenu(g2d);
     }
 
+    /**
+     * This method generates background to blur the game when pause menu is displayed
+     * @param g2d Graphics2D
+     */
     private void obscureGameBoard(Graphics2D g2d){
 
         Composite tmp = g2d.getComposite();
@@ -246,6 +277,10 @@ public class GameBoardView extends JComponent {
         g2d.setColor(tmpColor);
     }
 
+    /**
+     * This method generates the pause menu
+     * @param g2d Graphics2D
+     */
     private void drawPauseMenu(Graphics2D g2d){
         Font tmpFont = g2d.getFont();
         Color tmpColor = g2d.getColor();

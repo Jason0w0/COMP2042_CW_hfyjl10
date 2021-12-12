@@ -98,7 +98,6 @@ public class GameBoardModel {
      */
     public void createStage(){
         stage = new Stage(new Rectangle(0,0, 600, 450),new Point(300,430));
-        //initialize the first level
         stage.nextLevel();
     }
 

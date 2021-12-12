@@ -110,6 +110,23 @@ abstract public class Brick  {
     }
 
     /**
+     * This method gets the brick's full strength
+     * @return Brick's full strength
+     */
+    public int getFullStrength() {
+        return fullStrength;
+    }
+
+    /**
+     * This method gets the brick's current strength
+     * @return Brick's current strength
+     */
+    public int getStrength() {
+        return strength;
+    }
+
+
+    /**
      * This method finds the type of impact
      * @param b Ball
      * @return Type of impact

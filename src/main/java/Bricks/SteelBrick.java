@@ -18,8 +18,6 @@
 package Bricks;
 
 
-import Bricks.Brick;
-
 import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
