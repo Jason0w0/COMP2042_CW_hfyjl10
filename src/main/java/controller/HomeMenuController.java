@@ -26,7 +26,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-
+/**
+ * This class generates the home menu's controller
+ *
+ * @author Jason
+ */
 public class HomeMenuController implements MouseListener, MouseMotionListener {
     private final HomeMenuModel homeMenuModel;
     private final HomeMenuView homeMenuView;
@@ -35,6 +39,12 @@ public class HomeMenuController implements MouseListener, MouseMotionListener {
     private final Rectangle infoButton;
     private final Rectangle highScoreButton;
 
+    /**
+     * This is the constructor of class HomeMenuController
+     * @param homeMenuModel Home menu's model
+     * @param homeMenuView Home menu's view
+     * @param owner Game Frame's controller
+     */
     public HomeMenuController(HomeMenuModel homeMenuModel, HomeMenuView homeMenuView, GameFrameController owner){
         this.homeMenuModel = homeMenuModel;
         this.homeMenuView = homeMenuView;

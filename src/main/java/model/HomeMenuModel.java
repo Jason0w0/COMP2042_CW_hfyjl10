@@ -17,43 +17,82 @@
  */
 package model;
 
-
+/**
+ * This class generates home menu's model
+ *
+ * @author Jason
+ */
 public class HomeMenuModel {
     private boolean startClicked;
     private boolean menuClicked;
     private boolean infoClicked;
     private boolean highScoreClicked;
 
+    /**
+     * This is the constructor of HomeMenuModel class
+     */
     public HomeMenuModel() {}
 
+    /**
+     * This method gets startClicked variable
+     * @return StartClicked variable
+     */
     public boolean isStartClicked() {
         return startClicked;
     }
 
+    /**
+     * This method sets startClicked variable
+     * @param startClicked Boolean StartClicked
+     */
     public void setStartClicked(boolean startClicked) {
         this.startClicked = startClicked;
     }
 
+    /**
+     * This method gets menuClicked variable
+     * @return MenuClicked variable
+     */
     public boolean isMenuClicked() {
         return menuClicked;
     }
 
+    /**
+     * This method sets menuClicked variable
+     * @param menuClicked MenuClicked variable
+     */
     public void setMenuClicked(boolean menuClicked) {
         this.menuClicked = menuClicked;
     }
 
+    /**
+     * This method gets infoClicked variable
+     * @return InfoClicked variable
+     */
     public boolean isInfoClicked() {
         return infoClicked;
     }
 
+    /**
+     * This method sets infoClicked variable
+     * @param infoClicked Boolean Info Clicked
+     */
     public void setInfoClicked(boolean infoClicked) {
         this.infoClicked = infoClicked;
     }
 
+    /**
+     * This method gets highScoreClicked variable
+     * @return HighScoreClicked variable
+     */
     public boolean isHighScoreClicked() {
         return highScoreClicked;
     }
 
+    /**
+     * This method sets highScoreClicked variable
+     * @param highScoreClicked Boolean HighScoreClicked
+     */
     public void setHighScoreClicked(boolean highScoreClicked) {
         this.highScoreClicked = highScoreClicked;
     }

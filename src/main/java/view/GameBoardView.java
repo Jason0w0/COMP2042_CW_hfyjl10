@@ -27,7 +27,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.font.FontRenderContext;
 
-
+/**
+ * This class is the game board's view
+ *
+ * @author Jason
+ */
 public class GameBoardView extends JComponent {
     private static final String CONTINUE = "Continue";
     private static final String RESTART = "Restart";
@@ -50,6 +54,9 @@ public class GameBoardView extends JComponent {
     private Rectangle restartButtonRect;
     private int strLen;
 
+    /**
+     * This is class GameBoardView's constructor
+     */
     public GameBoardView(){
         super();
         strLen = 0;
@@ -59,40 +66,75 @@ public class GameBoardView extends JComponent {
         this.initialize();
     }
 
+    /**
+     * This method gets the Continue Button
+     * @return Continue button
+     */
     public Rectangle getContinueButtonRect() {
         return continueButtonRect;
     }
 
+    /**
+     * This method gets the Exit Button
+     * @return Exit button
+     */
     public Rectangle getExitButtonRect() {
         return exitButtonRect;
     }
 
+    /**
+     * This method gets the Restart Button
+     * @return Restart button
+     */
     public Rectangle getRestartButtonRect() {
         return restartButtonRect;
     }
 
+    /**
+     * This method sets the game level
+     * @param stage Game level
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }
 
+    /**
+     * This method initializes the screen
+     */
     private void initialize(){
         this.setPreferredSize(new Dimension(DEF_WIDTH,DEF_HEIGHT));
         this.setFocusable(true);
         this.requestFocusInWindow();
     }
 
+    /**
+     * This method adds KeyListener to the screen
+     * @param e KeyListener
+     */
     public void addGameBoardKeyListener( KeyListener e){
         this.addKeyListener(e);
     }
 
+    /**
+     * This method adds MouseListener to the screen
+     * @param e MouseListener
+     */
     public void addGameBoardMouseListener(MouseListener e){
         this.addMouseListener(e);
     }
 
+    /**
+     * This method adds MouseMotionListener to the screen
+     * @param e MouseMotionListener
+     */
     public void addGameBoardMouseMotionListener(MouseMotionListener e){
         this.addMouseMotionListener(e);
     }
 
+    /**
+     * This method overrides the paint method from JComponent
+     * @param g Graphics
+     */
     public void paint(Graphics g){
 
         Graphics2D g2d = (Graphics2D) g;
@@ -117,10 +159,18 @@ public class GameBoardView extends JComponent {
         Toolkit.getDefaultToolkit().sync();
     }
 
+    /**
+     * This method sets the showPauseMenu variable
+     * @param showPauseMenu ShowPauseMenu variable
+     */
     public void setShowPauseMenu(Boolean showPauseMenu){
         this.showPauseMenu = showPauseMenu;
     }
 
+    /**
+     * This method set the message to be displayed
+     * @param message String to be displayed
+     */
     public void setMessage(String message){
         this.message = message;
     }

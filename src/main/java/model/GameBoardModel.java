@@ -26,7 +26,11 @@ import view.HomeMenuView;
 import javax.swing.*;
 import java.awt.*;
 
-
+/**
+ * This class generates the game board's model
+ *
+ * @author Jason
+ */
 public class GameBoardModel {
     private Stage stage;
     private DebugConsoleView debugConsoleView;
@@ -36,44 +40,80 @@ public class GameBoardModel {
 
     private boolean showPauseMenu;
 
+    /**
+     * This is class GameBoardModel's constructor.
+     * @param owner JFrame
+     * @param homeMenuView Home menu View
+     */
     public GameBoardModel(GameFrameView owner, HomeMenuView homeMenuView) {
         this.owner = owner;
         this.homeMenuView = homeMenuView;
         setShowPauseMenu(false);
     }
 
+    /**
+     * This method gets the current level
+     * @return Current level
+     */
     public Stage getStage() {
         return stage;
     }
 
+    /**
+     * This method gets the game loop
+     * @return Game loop
+     */
     public Timer getGameTimer() {
         return gameTimer.getGameTimer();
     }
 
+    /**
+     * This method gets the debug console's view
+     * @return Debug console's view
+     */
     public DebugConsoleView getDebugConsoleView() {
         return debugConsoleView;
     }
 
+    /**
+     * This method gets the showPauseMenu variable
+     * @return showPauseMenu variable
+     */
     public boolean isShowPauseMenu() {
         return showPauseMenu;
     }
 
+    /**
+     * This method sets the showPauseMenu variable
+     * @param showPauseMenu Boolean either Pause menu is displayed
+     */
     public void setShowPauseMenu(boolean showPauseMenu) {
         this.showPauseMenu = showPauseMenu;
     }
 
+    /**
+     * This method creates the game level
+     */
     public void createStage(){
         stage = new Stage(new Rectangle(0,0, 600, 450),new Point(300,430));
         //initialize the first level
         stage.nextLevel();
     }
 
+    /**
+     * This method creates the debug console
+     * @param gameBoardView Game board's view
+     */
     public void createDebugConsole(GameBoardView gameBoardView){
         DebugConsoleModel debugConsoleModel = new DebugConsoleModel(owner, stage, gameBoardView);
         debugConsoleView = new DebugConsoleView();
         new DebugConsoleController(debugConsoleModel, debugConsoleView);
     }
 
+    /**
+     * This method creates the game loop
+     * @param gameBoardView Game Board's view
+     */
     public void CreateGameLoop(GameBoardView gameBoardView){
         gameTimer = new GameTimer(owner, homeMenuView, gameBoardView, stage, getStage().getPlayer());
     }

@@ -4,13 +4,20 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
+/**
+ * This class generates the high score's model
+ *
+ * @author Jason
+ */
 public class HighScoreModel {
     private final String pathToHighScoreFile = "src/main/resources/highScore";
     private final ArrayList <Integer> highScores = new ArrayList<>();
     private int highScore;
     private final File f;
 
+    /**
+     * This is the constructor of HighScoreModel class
+     */
     public HighScoreModel(){
         f = new File(pathToHighScoreFile);
         readHighScoreFile(f);
@@ -18,6 +25,10 @@ public class HighScoreModel {
         highScore = highScores.get(0);
     }
 
+    /**
+     * This method reads high score data stored in txt file
+     * @param f File
+     */
     private void readHighScoreFile(File f) {
         if(!f.exists()){
             System.err.println("Could not create highScore file.");
@@ -42,14 +53,27 @@ public class HighScoreModel {
         }
     }
 
+    /**
+     * This method gets the high score value
+     * @return High score
+     */
     public int getHighScore(){
         return highScore;
     }
 
+    /**
+     * This method determines if the score will be displayed in high score list
+     * @param score Player's score
+     * @return Boolen either the player's score is in top 5
+     */
     public boolean isInHighScoreList(int score) {
         return score > highScores.get(4);
     }
 
+    /**
+     * This method writes new high score into the txt file
+     * @param highScore new high score
+     */
     public void writeNewHighScore(int highScore){
         this.highScore = highScore;
         highScores.add(highScore);
@@ -66,6 +90,10 @@ public class HighScoreModel {
         }
     }
 
+    /**
+     * This method gets the high score list
+     * @return List of high score values
+     */
     public ArrayList<Integer> getHighScoreList() { return highScores;}
 
 }

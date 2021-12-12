@@ -21,7 +21,11 @@ import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
-
+/**
+ * This class generates the supreme brick
+ *
+ * @author Jason
+ */
 public class SupremeBrick extends Brick{
     private static final Color DEF_INNER = new Color(250, 1, 1);
     private static final Color DEF_BORDER = Color.BLACK;
@@ -30,22 +34,43 @@ public class SupremeBrick extends Brick{
     private final Crack crack;
     private Shape brickFace;
 
+    /**
+     * This is the constructor of class SupremeBrick
+     * @param point Upper-left coordinate of supreme brick
+     * @param size Size of supreme brick
+     */
     public SupremeBrick(Point point, Dimension size){
         super(point,size,DEF_BORDER,DEF_INNER,SUPREME_STRENGTH);
         crack = new Crack(DEF_CRACK_DEPTH,DEF_STEPS);
         brickFace = super.brickFace;
     }
 
+    /**
+     * This method generates the supreme brick
+     * @param pos Brick's location
+     * @param size Brick's size
+     * @return Supreme brick
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * This method gets the parent class of supreme brick
+     * @return Shape class
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
 
+    /**
+     * This method determines the impact on supreme brick
+     * @param point Point of impact
+     * @param dir Direction of impact
+     * @return Either impact happens on supreme brick
+     */
     @Override
     public boolean setImpact(Point2D point, int dir) {
         if(super.isBroken())
@@ -59,6 +84,9 @@ public class SupremeBrick extends Brick{
         return true;
     }
 
+    /**
+     * This method updates the condition of supreme brick
+     */
     private void updateBrick(){
         if(!super.isBroken()){
             GeneralPath gp = crack.draw();
@@ -67,6 +95,9 @@ public class SupremeBrick extends Brick{
         }
     }
 
+    /**
+     * This method returns the supreme brick to its original condition
+     */
     public void repair(){
         super.repair();
         crack.reset();

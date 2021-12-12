@@ -22,12 +22,10 @@ import java.awt.geom.Point2D;
 import java.awt.geom.RectangularShape;
 
 /**
- * Created by filippo on 04/09/16.
+ * This is an abstract class the creates the game's ball
  *
- *
+ * @author Jason
  */
-
-
 abstract public class Ball {
     private Shape ballFace;
 
@@ -43,6 +41,14 @@ abstract public class Ball {
     private int speedX;
     private int speedY;
 
+    /**
+     * This is the constructor of class Ball
+     * @param center Center of ball
+     * @param radiusA Ball's height
+     * @param radiusB Ball's width
+     * @param inner Ball's color
+     * @param border Ball's border color
+     */
     public Ball(Point2D center,int radiusA,int radiusB,Color inner,Color border){
         this.center = center;
 
@@ -66,8 +72,18 @@ abstract public class Ball {
         speedY = 0;
     }
 
+    /**
+     * This method generates the ball
+     * @param center Center of ball
+     * @param radiusA Ball's height
+     * @param radiusB Ball's width
+     * @return Ball
+     */
     protected abstract Shape makeBall(Point2D center,int radiusA,int radiusB);
 
+    /**
+     * This method calculates and moves the ball
+     */
     public void move(){
         RectangularShape tmp = (RectangularShape) ballFace;
         center.setLocation((center.getX() + speedX),(center.getY() + speedY));
@@ -81,59 +97,114 @@ abstract public class Ball {
         ballFace = tmp;
     }
 
+    /**
+     * This method gets the upper-most coordinate of the ball
+     * @return Upper-most coordinate
+     */
     public Point2D getUp() {
         return up;
     }
 
+    /**
+     * This method gets the lower-most coordinate of the ball
+     * @return Lower-most coordinate
+     */
     public Point2D getDown() {
         return down;
     }
 
+    /**
+     * This method gets the left-most coordinate of the ball
+     * @return Left-most coordinate
+     */
     public Point2D getLeft() {
         return left;
     }
 
+    /**
+     * This method gets the right-most coordinate of the ball
+     * @return Right-most coordinate
+     */
     public Point2D getRight() {
         return right;
     }
 
+    /**
+     * This method speed the speed that the ball moves
+     * @param x Ball's horizontal speed
+     * @param y Ball's vertical speed
+     */
     public void setSpeed(int x,int y){
         setXSpeed(x);
         setYSpeed(y);
     }
 
+    /**
+     * This method sets the ball's horizontal speed
+     * @param s Ball's horizontal speed
+     */
     public void setXSpeed(int s){
         speedX = s;
     }
 
+    /**
+     * This method sets the ball's vertical speed
+     * @param s Ball's vertical speed
+     */
     public void setYSpeed(int s){
         speedY = s;
     }
 
+    /**
+     * This method reverse the ball's horizontal direction
+     */
     public void reverseX(){
         speedX *= -1;
     }
 
+    /**
+     * This method reverse the ball's vertical direction
+     */
     public void reverseY(){
         speedY *= -1;
     }
 
+    /**
+     * This method gets the ball's border color
+     * @return Ball's border color
+     */
     public Color getBorderColor(){
         return border;
     }
 
+    /**
+     * This method gets the ball's color
+     * @return Ball's color
+     */
     public Color getInnerColor(){
         return inner;
     }
 
+    /**
+     * This method gets the ball's location
+     * @return Ball's location
+     */
     public Point2D getPosition(){
         return center;
     }
 
+    /**
+     * This method gets the parent class of ball
+     * @return Shape class
+     */
     public Shape getBallFace(){
         return ballFace;
     }
 
+    /**
+     * This method moves ball's to desired location
+     * @param p Desired coordinate
+     */
     public void moveTo(Point p){
         center.setLocation(p);
 
@@ -145,6 +216,11 @@ abstract public class Ball {
         ballFace = tmp;
     }
 
+    /**
+     * This method sets upper-most, lower-most, left-most and right-most location of the ball
+     * @param width Ball's width
+     * @param height Ball's height
+     */
     private void setPoints(double width,double height){
         up.setLocation(center.getX(),center.getY()-(height / 2));
         down.setLocation(center.getX(),center.getY()+(height / 2));

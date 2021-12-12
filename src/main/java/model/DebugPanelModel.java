@@ -17,16 +17,32 @@
  */
 package model;
 
+/**
+ * This class generates the debug panel's model
+ *
+ * @author Jason
+ */
 public class DebugPanelModel {
     private Stage stage;
 
+    /**
+     * This is the constructor of DebugPanelModel class
+     */
     public DebugPanelModel() {
     }
 
+    /**
+     * This method gets the stage variable
+     * @return Stage class
+     */
     public Stage getStage() {
         return stage;
     }
 
+    /**
+     * This method sets the Stage variable
+     * @param stage Stage class
+     */
     public void setStage(Stage stage) {
         this.stage = stage;
     }

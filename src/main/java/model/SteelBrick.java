@@ -22,7 +22,11 @@ import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
-
+/**
+ * This class generates the steel brick
+ *
+ * @author Jason
+ */
 public class SteelBrick extends Brick {
     private static final Color DEF_INNER = new Color(203, 203, 201);
     private static final Color DEF_BORDER = Color.BLACK;
@@ -31,22 +35,43 @@ public class SteelBrick extends Brick {
     private final Crack crack;
     private Shape brickFace;
 
+    /**
+     * This is the constructor of class SteelBrick
+     * @param point Upper-left coordinate of steel brick
+     * @param size Size of steel brick
+     */
     public SteelBrick(Point point, Dimension size){
         super(point,size,DEF_BORDER,DEF_INNER,STEEL_STRENGTH);
         crack = new Crack(DEF_CRACK_DEPTH,DEF_STEPS);
         brickFace = super.brickFace;
     }
 
+    /**
+     * This method generates the steel brick
+     * @param pos Brick's location
+     * @param size Brick's size
+     * @return Steel brick
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * This method gets the parent class of steel brick
+     * @return Shape class
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
 
+    /**
+     * This method determines the impact on steel brick
+     * @param point Point of impact
+     * @param dir Direction of impact
+     * @return Either impact detected on steel brick
+     */
     @Override
     public boolean setImpact(Point2D point, int dir) {
         if(super.isBroken())
@@ -60,6 +85,9 @@ public class SteelBrick extends Brick {
         return true;
     }
 
+    /**
+     * This method updates the condition of steel brick
+     */
     private void updateBrick(){
         if(!super.isBroken()){
             GeneralPath gp = crack.draw();
@@ -68,6 +96,9 @@ public class SteelBrick extends Brick {
         }
     }
 
+    /**
+     * This method returns steel brick to their original condition
+     */
     public void repair(){
         super.repair();
         crack.reset();

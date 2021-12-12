@@ -22,11 +22,20 @@ import view.GameBoardView;
 import java.awt.*;
 import java.awt.event.*;
 
-
+/**
+ * This class generates the game board's controller
+ *
+ * @author Jason
+ */
 public class GameBoardController {
     private final GameBoardModel gameBoardModel;
     private final GameBoardView gameBoardView;
 
+    /**
+     * This is the constructor of GameBoardController's class
+     * @param gameBoardModel Game board's model
+     * @param gameBoardView Game board's view
+     */
     public GameBoardController(GameBoardModel gameBoardModel, GameBoardView gameBoardView){
         this.gameBoardModel = gameBoardModel;
         this.gameBoardView = gameBoardView;
@@ -40,12 +49,18 @@ public class GameBoardController {
         this.gameBoardView.setShowPauseMenu(gameBoardModel.isShowPauseMenu());
     }
 
+    /**
+     * This method determines if the game is paused
+     */
     public void onLostFocus(){
         gameBoardModel.getGameTimer().stop();
         gameBoardView.setMessage("Press SPACE to start");
         gameBoardView.repaint();
     }
 
+    /**
+     * This class generates the KeyListener
+     */
     class addKeyListener implements KeyListener{
 
         @Override
@@ -92,6 +107,9 @@ public class GameBoardController {
         }
     }
 
+    /**
+     * This class generates the MouseListener
+     */
     class addMouseListener implements MouseListener{
 
         @Override
@@ -140,6 +158,9 @@ public class GameBoardController {
         }
     }
 
+    /**
+     * This class generates the MouseMotionListener
+     */
     class addMouseMotionListener implements MouseMotionListener{
 
         @Override

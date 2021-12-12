@@ -20,18 +20,30 @@ package view;
 import javax.swing.*;
 import java.util.ArrayList;
 
-
+/**
+ * This class generates the high score
+ */
 public class HighScoreView {
     private ArrayList<Integer> highScoreList;
 
+    /**
+     * This is the constructor of class HighScoreView
+     */
     public HighScoreView () {
 
     }
 
+    /**
+     * This method creates the high score panel
+     */
     public void displayContent () {
         JOptionPane.showMessageDialog(null,getMessage(),"HIGHSCORE",JOptionPane.PLAIN_MESSAGE);
     }
 
+    /**
+     * This method generates the high score list
+     * @return high score list
+     */
     private String getMessage() {
         StringBuilder message = new StringBuilder();
         for (int i=0;i<highScoreList.size();i++){
@@ -42,5 +54,9 @@ public class HighScoreView {
         return message.toString();
     }
 
+    /**
+     * This method sets the high score list values
+     * @param highScoreList High score list values
+     */
     public void setHighScoreList(ArrayList<Integer> highScoreList) {this.highScoreList = highScoreList;}
 }

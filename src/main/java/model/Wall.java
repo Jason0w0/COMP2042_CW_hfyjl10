@@ -20,6 +20,11 @@ package model;
 import java.awt.*;
 
 
+/**
+ * This class is for generating bricks for each levels
+ *
+ * @author Jason
+ */
 public class Wall {
     private static final int LEVELS_COUNT = 8;
     private static final int CLAY = 1;
@@ -29,6 +34,12 @@ public class Wall {
 
     private final Brick[][] levels;
 
+    /**
+     * This is class Wall's constructor
+     * This constructor initializes the brickCount, lineCount and brickDimensionRatio value
+     * This constructor calls makeLevels method to generate all bricks needed for all level
+     * @param drawArea Draw area of bricks
+     */
     public Wall(Rectangle drawArea) {
         int brickCount = 30;
         int lineCount = 3;
@@ -36,10 +47,23 @@ public class Wall {
         levels = makeLevels(drawArea, brickCount, lineCount, brickDimensionRatio);
     }
 
+    /**
+     * This method is to get all bricks for all level
+     * @return Bricks for all level
+     */
     public Brick[][] getLevels() {
         return levels;
     }
 
+    /**
+     * This method is used to generate a single brick type level
+     * @param drawArea Draw area of bricks
+     * @param brickCnt Total number of bricks needed
+     * @param lineCnt Total number of lines of brick needed
+     * @param brickSizeRatio Brick's width to height ratio
+     * @param type Brick's type
+     * @return Single brick type level
+     */
     private Brick[] makeSingleTypeLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int type){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -85,6 +109,16 @@ public class Wall {
 
     }
 
+    /**
+     * This method is used to generate a chessboard brick type level where each brick is different from its adjacent brick
+     * @param drawArea Draw area of bricks
+     * @param brickCnt Total number of bricks needed
+     * @param lineCnt Total number of lines of brick needed
+     * @param brickSizeRatio Brick's width to height ratio
+     * @param typeA Brick's type
+     * @param typeB Brick's type
+     * @return Chessboard brick type level
+     */
     private Brick[] makeChessboardLevel(Rectangle drawArea, int brickCnt, int lineCnt, double brickSizeRatio, int typeA, int typeB){
         /*
           if brickCount is not divisible by line count,brickCount is adjusted to the biggest
@@ -130,6 +164,14 @@ public class Wall {
         return tmp;
     }
 
+    /**
+     * This method is used to generate levels of this game
+     * @param drawArea Draw area of bricks
+     * @param brickCount Total number of bricks needed
+     * @param lineCount Total number of lines of brick needed
+     * @param brickDimensionRatio Brick's width to height ratio
+     * @return Bricks of all level
+     */
     private Brick[][] makeLevels(Rectangle drawArea,int brickCount,int lineCount,double brickDimensionRatio){
         Brick[][] tmp = new Brick[LEVELS_COUNT][];
         tmp[0] = makeSingleTypeLevel(drawArea,brickCount,lineCount,brickDimensionRatio,CLAY);
@@ -143,6 +185,13 @@ public class Wall {
         return tmp;
     }
 
+    /**
+     * This method is used to create brick
+     * @param point Top left location of brick
+     * @param size Size of brick
+     * @param type Type of brick
+     * @return Brick
+     */
     private Brick makeBrick(Point point, Dimension size, int type){
         return switch (type) {
             case CLAY -> new ClayBrick(point, size);

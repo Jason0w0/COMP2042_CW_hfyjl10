@@ -23,12 +23,22 @@ import view.DebugPanelView;
 
 import javax.swing.*;
 
-
+/**
+ * This class generates the debug console's model
+ *
+ * @author Jason
+ */
 public class DebugConsoleModel {
     private final JFrame owner;
     private final GameBoardView gameBoardView;
     private final DebugPanelView debugPanelView;
 
+    /**
+     * This is the constructor of class DebugConsoleModel
+     * @param owner JFrame
+     * @param stage Stag class
+     * @param gameBoardView Game board's view
+     */
     public DebugConsoleModel(JFrame owner, Stage stage, GameBoardView gameBoardView){
         this.owner = owner;
         this.gameBoardView = gameBoardView;
@@ -39,14 +49,26 @@ public class DebugConsoleModel {
 
     }
 
+    /**
+     * This method gets the owner variable
+     * @return Owner variable
+     */
     public JFrame getOwner() {
         return owner;
     }
 
+    /**
+     * This method gets the debug Panel's view
+     * @return Debug Panel's view
+     */
     public DebugPanelView getDebugPanelView() {
         return debugPanelView;
     }
 
+    /**
+     * This method gets the game board's view
+     * @return Game board's view
+     */
     public GameBoardView getGameBoard() {
         return gameBoardView;
     }

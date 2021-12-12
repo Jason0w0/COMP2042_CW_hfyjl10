@@ -21,13 +21,23 @@ import view.GameBoardView;
 import view.GameFrameView;
 import view.HomeMenuView;
 
-
+/**
+ * This class will generate the game over's model
+ *
+ * @author Jason
+ */
 public class GameOverModel {
     private boolean isNewHighScore;
     private final GameFrameView owner;
     private final GameBoardView gameBoardView;
     private final HomeMenuView homeMenuView;
 
+    /**
+     * This is the constructor of GameOverModel
+     * @param owner JFrame
+     * @param gameBoardView Game board's view
+     * @param homeMenuView Home menu's view
+     */
     public GameOverModel(GameFrameView owner, GameBoardView gameBoardView, HomeMenuView homeMenuView) {
         this.owner = owner;
         this.gameBoardView = gameBoardView;
@@ -35,22 +45,42 @@ public class GameOverModel {
         setNewHighScore(false);
     }
 
+    /**
+     * This method gets isNewHighScore variable
+     * @return isNewHighScore variable
+     */
     public boolean isNewHighScore() {
         return isNewHighScore;
     }
 
+    /**
+     * This method sets isNewHighScore variable
+     * @param newHighScore Boolean newHighScore
+     */
     public void setNewHighScore(boolean newHighScore) {
         isNewHighScore = newHighScore;
     }
 
+    /**
+     * This method gets the owner variable
+     * @return Owner variable
+     */
     public GameFrameView getOwner() {
         return owner;
     }
 
+    /**
+     * This method gets the game board's view
+     * @return GameBoardView variable
+     */
     public GameBoardView getGameBoardView() {
         return gameBoardView;
     }
 
+    /**
+     * This method gets the home menu's view
+     * @return HomeMenuView variable
+     */
     public HomeMenuView getHomeMenuView() {
         return homeMenuView;
     }

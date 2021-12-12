@@ -22,31 +22,58 @@ import java.awt.*;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
-
+/**
+ * This class generates game over's view
+ *
+ * @author Jason
+ */
 public class GameOverView {
     private boolean isNewHighScore;
     private GameFrameView owner;
     private GameBoardView gameBoardView;
     private HomeMenuView homeMenuView;
 
+    /**
+     * This is the constructor of class GameOverView
+     */
     public GameOverView(){}
 
+    /**
+     * This method sets hewHighScore variable
+     * @param newHighScore Boolean newHighScore
+     */
     public void setNewHighScore(boolean newHighScore) {
         isNewHighScore = newHighScore;
     }
 
+    /**
+     * This method sets the Owner variable
+     * @param owner Game frame's view
+     */
     public void setOwner(GameFrameView owner) {
         this.owner = owner;
     }
 
+    /**
+     * This method sets the game board's view
+     * @param gameBoardView Game board's view
+     */
     public void setGameBoardView(GameBoardView gameBoardView) {
         this.gameBoardView = gameBoardView;
     }
 
+    /**
+     * This method sets home menu's view
+     * @param homeMenuView  Home menu's view
+     */
     public void setHomeMenuView(HomeMenuView homeMenuView) {
         this.homeMenuView = homeMenuView;
     }
 
+    /**
+     * This method sets the message that will be displayed
+     * @return String message that will be displayed
+     */
     private String message() {
         String message = "Back to home menu?";
         if (isNewHighScore){
@@ -55,6 +82,9 @@ public class GameOverView {
         return message;
     }
 
+    /**
+     * This method will display the game over panel
+     */
     public void displayPanel() {
         Object [] options = {"Back", "Exit"};
         int input = JOptionPane.showOptionDialog(null, message(), "GAME OVER", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);

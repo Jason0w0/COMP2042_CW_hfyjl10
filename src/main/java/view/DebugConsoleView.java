@@ -21,17 +21,27 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowListener;
 
-
+/**
+ * This class generates the debug console's view
+ *
+ * @author Jason
+ */
 public class DebugConsoleView extends JDialog {
 
     private static final String TITLE = "Debug Console";
 
     private JFrame owner;
 
+    /**
+     * This is the constructor of debug console's view
+     */
     public DebugConsoleView(){
         initialize();
     }
 
+    /**
+     * This method initializes the debug console 'sview
+     */
     private void initialize(){
         this.setModal(true);
         this.setTitle(TITLE);
@@ -40,19 +50,34 @@ public class DebugConsoleView extends JDialog {
         this.setFocusable(true);
     }
 
+    /**
+     * This method adds WindowListener function to the screen
+     * @param e Window listener
+     */
     public void addConsoleWindowListener(WindowListener e){
         this.addWindowListener(e);
     }
 
+    /**
+     * This method sets the owner variable
+     * @param owner JFrame
+     */
     public void setOwner(JFrame owner) {
         this.owner = owner;
     }
 
+    /**
+     * This method sets the debug panel's view
+     * @param debugPanelView Debug panel's view
+     */
     public void setDebugPanelView(DebugPanelView debugPanelView) {
         this.add(debugPanelView,BorderLayout.CENTER);
         this.pack();
     }
 
+    /**
+     * This method set the location of debug console
+     */
     public void setLocation(){
         int x = ((owner.getWidth() - this.getWidth()) / 2) + owner.getX();
         int y = ((owner.getHeight() - this.getHeight()) / 2) + owner.getY();

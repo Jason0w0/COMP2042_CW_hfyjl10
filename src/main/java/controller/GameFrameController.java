@@ -28,12 +28,22 @@ import java.awt.event.WindowFocusListener;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
-
+/**
+ * This class generates the controller of game frame
+ *
+ * @author Jason
+ */
 public class GameFrameController {
     private final GameFrameModel gameFrameModel;
     private final GameFrameView gameFrameView;
     private final HomeMenuView homeMenuView;
 
+    /**
+     * This is class GameFrameController's constructor
+     * This constructor initializes the game frame modal and view
+     * @param gameFrameModel Game frame model
+     * @param gameFrameView Game frame view
+     */
     public GameFrameController(GameFrameModel gameFrameModel, GameFrameView gameFrameView){
         HomeMenuModel homeMenuModel = new HomeMenuModel();
         homeMenuView = new HomeMenuView();
@@ -47,6 +57,9 @@ public class GameFrameController {
         this.gameFrameModel.createGameBoard();
     }
 
+    /**
+     * This class is generates the WindowFocusListener function
+     */
     class addWindowFocusListener implements WindowFocusListener {
         @Override
         public void windowGainedFocus(WindowEvent e) {
@@ -68,6 +81,9 @@ public class GameFrameController {
         }
     }
 
+    /**
+     * This method initializes the game frame view
+     */
     public void initialize(){
         gameFrameView.setTitle(gameFrameModel.getDefTitle());
         gameFrameView.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -77,6 +93,9 @@ public class GameFrameController {
         gameFrameView.setResizable(false);
     }
 
+    /**
+     * This method displays the game board
+     */
     public void enableGameBoard(){
         gameFrameView.dispose();
         gameFrameView.remove(homeMenuView);

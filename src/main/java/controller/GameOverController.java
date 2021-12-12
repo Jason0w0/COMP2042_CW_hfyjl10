@@ -20,11 +20,20 @@ package controller;
 import model.GameOverModel;
 import view.GameOverView;
 
-
+/**
+ * This class generates the game over's controller
+ *
+ * @author Jason
+ */
 public class GameOverController {
     private final GameOverModel gameOverModel;
     private final GameOverView gameOverView;
 
+    /**
+     * Ths is the constructor of GameOverController class
+     * @param gameOverModel Game over's model
+     * @param gameOverView Game over's view
+     */
     public GameOverController(GameOverModel gameOverModel, GameOverView gameOverView) {
         this.gameOverModel = gameOverModel;
         this.gameOverView = gameOverView;
@@ -34,6 +43,9 @@ public class GameOverController {
         this.gameOverView.setNewHighScore(this.gameOverModel.isNewHighScore());
     }
 
+    /**
+     * This method will determine if new high score message will be display
+     */
     public void addHighScoreMessage() {
         gameOverView.setNewHighScore(gameOverModel.isNewHighScore());
     }

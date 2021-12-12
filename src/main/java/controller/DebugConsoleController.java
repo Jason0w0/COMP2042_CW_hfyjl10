@@ -23,11 +23,20 @@ import view.DebugConsoleView;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
-
+/**
+ * This class generates the controller for debug console
+ *
+ * @author Jason
+ */
 public class DebugConsoleController {
     private final DebugConsoleModel debugConsoleModel;
     private final DebugConsoleView debugConsoleView;
 
+    /**
+     * This is the constructor of class DebugConsoleController
+     * @param debugConsoleModel Debug console model
+     * @param debugConsoleView Debug console view
+     */
     public DebugConsoleController(DebugConsoleModel debugConsoleModel, DebugConsoleView debugConsoleView){
         this.debugConsoleModel = debugConsoleModel;
         this.debugConsoleView = debugConsoleView;
@@ -36,6 +45,9 @@ public class DebugConsoleController {
         this.debugConsoleView.addConsoleWindowListener(new ConsoleWindowListener());
     }
 
+    /**
+     * This class generates WindowListener fucntion
+     */
     class ConsoleWindowListener implements WindowListener{
         @Override
         public void windowOpened(WindowEvent e) {

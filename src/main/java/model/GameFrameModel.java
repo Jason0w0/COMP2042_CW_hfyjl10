@@ -23,6 +23,12 @@ import view.GameBoardView;
 import view.HomeMenuView;
 
 
+/**
+ * This class generates the game frame's model
+ * This class stores the game frame's data
+ *
+ * @author Jason
+ */
 public class GameFrameModel {
     private static final String DEF_TITLE = "Brick Destroy";
 
@@ -33,41 +39,75 @@ public class GameFrameModel {
 
     private boolean gaming;
 
+    /**
+     * This is class GameFrameModel's constructor
+     */
     public GameFrameModel(){
         new HighScoreModel();
         setGaming(false);
     }
 
+    /**
+     * This method initializes owner variable
+     * @param owner JFrame
+     */
     public void setOwner(GameFrameView owner) {
         this.owner = owner;
     }
 
+    /**
+     * This method gets the game board view
+     * @return Game board view
+     */
     public GameBoardView getGameBoardView() {
         return gameBoardView;
     }
 
+    /**
+     * This method initializes the homeMenuView variable
+     * @param homeMenuView Home menu view
+     */
     public void setHomeMenuView(HomeMenuView homeMenuView) {
         this.homeMenuView = homeMenuView;
     }
 
+    /**
+     * This method gets the Defined title
+     * @return Defined title
+     */
     public String getDefTitle() {
         return DEF_TITLE;
     }
 
+    /**
+     * This method returns the gaming variable
+     * @return Boolean gaming variable
+     */
     public boolean isGaming() {
         return gaming;
     }
 
+    /**
+     * This method sets the gaming variable
+     * @param gaming Boolean gaming variable
+     */
     public void setGaming(boolean gaming) {
         this.gaming = gaming;
     }
 
+    /**
+     * This method creates the game board
+     */
     public void createGameBoard(){
         GameBoardModel gameBoardModel = new GameBoardModel(owner, homeMenuView);
         gameBoardView = new GameBoardView();
         gameBoardController = new GameBoardController(gameBoardModel,gameBoardView);
     }
 
+    /**
+     * This method gets the game board's controller
+     * @return Game board's controller
+     */
     public GameBoardController getGameBoardController() {
         return gameBoardController;
     }

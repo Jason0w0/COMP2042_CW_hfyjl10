@@ -20,7 +20,11 @@ package model;
 import java.awt.*;
 import java.awt.geom.Point2D;
 
-
+/**
+ *  This class is for generating a level
+ *
+ * @author Jason
+ */
 public class Stage {
     private final Rectangle area;
 
@@ -39,6 +43,12 @@ public class Stage {
     private int speedY;
     private int score;
 
+    /**
+     * This is class Stage's constructor
+     * This constructor initializes all necessary values needed to generate a level
+     * @param drawArea Draw area of bricks
+     * @param ballPos Starting coordinate of ball and player
+     */
     public Stage(Rectangle drawArea, Point ballPos){
         this.startPoint = new Point(ballPos);
         Wall wall = new Wall(drawArea);
@@ -55,29 +65,56 @@ public class Stage {
         area = drawArea;
     }
 
+    /**
+     * This method is used to get all bricks in current level
+     * @return Bricks in current level
+     */
     public Brick[] getBricks() {
         return bricks;
     }
 
+    /**
+     * This method is used to get the player
+     * @return Player class
+     */
     public Player getPlayer() {
         return player;
     }
 
+    /**
+     * This method is used to generate ball
+     * @param ballPos Starting coordinate of ball
+     */
     private void makeBall(Point2D ballPos){
         ball = new RubberBall(ballPos);
     }
 
+    /**
+     * This method is used to generate player
+     * @param playerPos Starting coordinate of player
+     * @param drawArea Draw area of player
+     */
     private void makePlayer(Point playerPos, Rectangle drawArea){ player = new Player(playerPos, drawArea);}
 
+    /**
+     * This method is used to move the player and ball
+     */
     public void move(){
         player.move();
         ball.move();
     }
 
+    /**
+     * This method is used to get the ball
+     * @return Ball class
+     */
     public Ball getBall() {
         return ball;
     }
 
+    /**
+     * This method is used to detect impacts of ball and project its trajectory
+     */
     public void findImpacts(){
         if(player.impact(ball)){
             ball.reverseY();
@@ -101,6 +138,10 @@ public class Stage {
         }
     }
 
+    /**
+     * This method is used to calculate impacts between ball and the bricks and project is trajectory
+     * @return Boolean of either brick is broken
+     */
     private boolean impactWall(){
         for(Brick b : bricks){
             switch (b.findImpact(ball)) {
@@ -128,43 +169,68 @@ public class Stage {
         return false;
     }
 
+    /**
+     * This method is used to determine impacts between ball and the side border
+     * @return Boolean of either ball impacts the side border
+     */
     private boolean impactSideBorder(){
         Point2D p = ball.getPosition();
         return ((p.getX() < area.getX()) ||(p.getX() > (area.getX() + area.getWidth())));
     }
 
+    /**
+     * This method is used to determine impacts between ball and the top border
+     * @return Boolean of either ball impacts the top border
+     */
     private boolean impactTopBorder(){
         Point2D p = ball.getPosition();
         return (p.getY() < area.getY());
     }
 
-    private boolean ballLost(){
+    /**
+     * This method is used to determine the presence of ball in screen
+     * @return Boolean of either ball is lost
+     */
+    public boolean ballLost(){
         Point2D p = ball.getPosition();
         return (p.getY() > area.getY() + area.getHeight());
     }
 
+    /**
+     * This method is used to get the number of bricks presence in the level
+     * @return Total number of bricks
+     */
     public int getBrickCount(){
         return brickCount;
     }
 
+    /**
+     * This method is used to get the number of ball left available for the player
+     * @return Number of ball available
+     */
     public int getBallCount(){
         return ballCount;
     }
 
-    public boolean isBallLost(){
-        return ballLost;
-    }
-
+    /**
+     * This method resets the ball to its start point and intended speed
+     */
     public void ballReset(){
         ball.moveTo(startPoint);
         ball.setSpeed(speedX,speedY);
         ballLost = false;
     }
 
+    /**
+     * This method resets the player to its original position
+     */
     public void playerReset() {
         player.moveTo(startPoint);
     }
 
+    /**
+     * This method reset the bricks to its original condition
+     */
     public void wallReset(){
         for(Brick b : bricks)
             b.repair();
@@ -172,6 +238,10 @@ public class Stage {
         ballCount = 3;
     }
 
+    /**
+     * This method determines the bonus player will receive
+     * @param ballRemain Number of ball left
+     */
     public void playerBonus(int ballRemain){
         switch (ballRemain) {
             case 3 -> player.playerReward();
@@ -179,41 +249,74 @@ public class Stage {
         }
     }
 
+    /**
+     * This method determines either if there is no ball left
+     * @return Boolean either if there is ball left
+     */
     public boolean ballEnd(){
         return ballCount == 0;
     }
 
+    /**
+     * This method detects either if there are bricks left
+     * @return Boolean either if there are brick left
+     */
     public boolean isDone(){
         return brickCount == 0;
     }
 
+    /**
+     * This method generate the next level
+     */
     public void nextLevel(){
         bricks = levels[level++];
         this.brickCount = bricks.length;
     }
 
+    /**
+     * This method determines if there is level left
+     * @return Boolean either if there is level left
+     */
     public boolean hasLevel(){
         return level < levels.length;
     }
 
+    /**
+     * This method sets the horizontal movement speed of the ball
+     * @param s Horizontal speed of ball
+     */
     public void setBallXSpeed(int s){
         speedX = s;
         ball.setXSpeed(speedX);
     }
 
+    /**
+     * This method sets the horizontal vertical speed of the ball
+     * @param s Vertical speed of the ball
+     */
     public void setBallYSpeed(int s){
         speedY = s;
         ball.setYSpeed(speedY);
     }
 
+    /**
+     * This method resets the number of ball
+     */
     public void resetBallCount(){
         ballCount = 3;
     }
 
+    /**
+     * This method gets the player's score
+     * @return Player's score
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     * This method resets the player's score
+     */
     public void resetScore() {
         score = 0;
     }

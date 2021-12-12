@@ -20,8 +20,15 @@ package controller;
 import model.HighScoreModel;
 import view.HighScoreView;
 
-
+/**
+ * This class generates the high score's controller
+ *
+ * @author Jason
+ */
 public class HighScoreController {
+    /**
+     * This is the constructor of HighScoreController class
+     */
     public HighScoreController() {
         HighScoreModel highScoreModel = new HighScoreModel();
         HighScoreView highScoreView = new HighScoreView();

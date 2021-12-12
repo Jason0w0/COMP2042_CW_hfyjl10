@@ -19,7 +19,11 @@ package model;
 
 import java.awt.*;
 
-
+/**
+ * This class is used to generate the player
+ *
+ * @author Jason
+ */
 public class Player {
     private final Color BORDER_COLOR = Color.GREEN.darker().darker();
     private final Color INNER_COLOR = Color.GREEN;
@@ -35,6 +39,12 @@ public class Player {
     private int rewardSum;
     private int penaltySum;
 
+    /**
+     * This is class Player's constructor
+     * This constructor initializes the value
+     * @param ballPoint This initial coordinate of player
+     * @param container The draw area of player
+     */
     public Player(Point ballPoint,Rectangle container) {
         this.ballPoint = ballPoint;
         moveAmount = 0;
@@ -45,23 +55,45 @@ public class Player {
         max = min + container.width - width;
     }
 
+    /**
+     * This method gets the player's border color
+     * @return Border's color
+     */
     public Color getBORDER_COLOR() {
         return BORDER_COLOR;
     }
 
+    /**
+     * This method gets the player's color
+     * @return Player's color
+     */
     public Color getINNER_COLOR() {
         return INNER_COLOR;
     }
 
+    /**
+     * This method creates the player
+     * @param width Player's width
+     * @param height Player's height
+     * @return Player
+     */
     private Rectangle makeRectangle(int width,int height){
         Point p = new Point((int)(ballPoint.getX() - (width / 2)),(int)ballPoint.getY());
         return  new Rectangle(p,new Dimension(width,height));
     }
 
+    /**
+     * This method determines if the ball impacts the player
+     * @param b Ball
+     * @return Boolean either the ball impacts the player
+     */
     public boolean impact(Ball b){
         return playerFace.contains(b.getPosition()) && playerFace.contains(b.getDown()) ;
     }
 
+    /**
+     * This method moves the player
+     */
     public void move(){
         double x = ballPoint.getX() + moveAmount;
         if(x < min || x > max)
@@ -70,44 +102,73 @@ public class Player {
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
 
+    /**
+     * This method determines the player move to the left
+     */
     public void moveLeft(){
         moveAmount = -DEF_MOVE_AMOUNT;
     }
 
+    /**
+     * This method determines the player move to the right
+     */
     public void movRight(){
         moveAmount = DEF_MOVE_AMOUNT;
     }
 
+    /**
+     * This method determines the player stop moving
+     */
     public void stop(){
         moveAmount = 0;
     }
 
+    /**
+     * This method returns the parent class of player
+     * @return Shape class
+     */
     public Shape getPlayerFace(){
         return  playerFace;
     }
 
+    /**
+     * This method moves the player
+     * @param p Coordinate where the player will move to
+     */
     public void moveTo(Point p){
         ballPoint.setLocation(p);
         playerFace.setLocation(ballPoint.x - (int)playerFace.getWidth()/2,ballPoint.y);
     }
 
+    /**
+     * This method generates the player's reward
+     */
     public void playerReward(){
         playerFace = makeRectangle(playerFace.width+50, playerFace.height);
         DEF_MOVE_AMOUNT += 2;
         rewardSum += 1;
     }
 
+    /**
+     * This method generates the player's penalty
+     */
     public void playerPenalty(){
         playerFace = makeRectangle(playerFace.width-30, playerFace.height);
         DEF_MOVE_AMOUNT -= 1;
         penaltySum += 1;
     }
 
+    /**
+     * This method removes the player's reward
+     */
     public void removeReward() {
         playerFace = makeRectangle(playerFace.width-(50*rewardSum), playerFace.height);
         DEF_MOVE_AMOUNT -= (2*rewardSum);
     }
 
+    /**
+     * This method removes the player's penalty
+     */
     public void removePenalty() {
         playerFace = makeRectangle(playerFace.width+(50*penaltySum), playerFace.height);
         DEF_MOVE_AMOUNT += (2*penaltySum);

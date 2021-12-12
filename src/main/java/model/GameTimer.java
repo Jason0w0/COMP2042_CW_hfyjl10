@@ -27,7 +27,11 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ * This class is used to generate the game loop
+ *
+ * @author Jason
+ */
 public class GameTimer {
 
     private final Timer gameTimer;
@@ -39,6 +43,15 @@ public class GameTimer {
     private final GameOverController gameOverController;
     private final Player player;
 
+    /**
+     * This is class GameTimer's constructor
+     * This constructor generates the game loop
+     * @param owner GameFrameView class
+     * @param homeMenuView HomeMenu class
+     * @param gameBoardView GameBoardView class
+     * @param stage Stage class
+     * @param player Player class
+     */
     public GameTimer(GameFrameView owner, HomeMenuView homeMenuView, GameBoardView gameBoardView, Stage stage, Player player) {
         this.gameBoardView = gameBoardView;
         this.stage = stage;
@@ -50,6 +63,9 @@ public class GameTimer {
         gameTimer = new Timer(10, new addActionListener());
     }
 
+    /**
+     * This class is the game loop
+     */
     class addActionListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -59,7 +75,7 @@ public class GameTimer {
             String score = String.format("Score %d HighScore %d", stage.getScore(), highScoreModel.getHighScore());
             setMessage(message);
             setScore(score);
-            if (stage.isBallLost()) {
+            if (stage.ballLost()) {
                 if (stage.ballEnd()) {
                     stage.wallReset();
                     message = "Game over";
@@ -100,14 +116,26 @@ public class GameTimer {
         }
     }
 
+    /**
+     * This class gets the game loop
+     * @return Game loop
+     */
     public Timer getGameTimer() {
         return gameTimer;
     }
 
+    /**
+     * This class sets the string message that will be displayed
+     * @param Message String that will be displayed
+     */
     private void setMessage(String Message){
         gameBoardView.setMessage(Message);
     }
 
+    /**
+     * This class sets the string score that will be displayed
+     * @param score String that will be displayed
+     */
     private void setScore(String score) {
         gameBoardView.setScoreBoard(score);
     }

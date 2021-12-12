@@ -24,7 +24,11 @@ import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.Rectangle2D;
 
-
+/**
+ * This class generates home menu's view
+ *
+ * @author Jason
+ */
 public class HomeMenuView extends JComponent {
     private static final String GREETINGS = "Welcome to:";
     private static final String GAME_TITLE = "Brick Destroy";
@@ -56,6 +60,9 @@ public class HomeMenuView extends JComponent {
     private boolean infoClicked;
     private boolean highScoreClicked;
 
+    /**
+     * This is the constructor of HomeMenuView class
+     */
     public HomeMenuView() {
         Dimension area = new Dimension(450, 300);
         Dimension btnDim = new Dimension(area.width / 3, area.height / 12);
@@ -64,14 +71,21 @@ public class HomeMenuView extends JComponent {
         setFont();
     }
 
-    //set up function of HomeMenu
+    /**
+     * This method initializes the home menu screen
+     * @param area Size of screen
+     */
     private void initialize(Dimension area) {
         this.setFocusable(true);
         this.requestFocusInWindow();
         this.setPreferredSize(area);
     }
 
-    //create interface component
+    /**
+     * This method creates the interface component of home menu screen
+     * @param btnDim Button size
+     * @param area Size of home menu
+     */
     private void setInterface(Dimension btnDim, Dimension area) {
         menuFace = new Rectangle(new Point(0, 0), area);
         startButton = new Rectangle(btnDim);
@@ -80,47 +94,89 @@ public class HomeMenuView extends JComponent {
         highScoreButton = new Rectangle(btnDim);
     }
 
+    /**
+     * This method sets the owner variable
+     * @param owner Game frame's controller
+     */
     public void setOwner(GameFrameController owner) {
         this.owner = owner;
     }
 
+    /**
+     * This method gets the owner variable
+     * @return Game frame's controller
+     */
     public GameFrameController getOwner() {
         return owner;
     }
 
+    /**
+     * This method gets the start button
+     * @return Start button
+     */
     public Rectangle getStartButton() {
         return startButton;
     }
 
+    /**
+     * This method gets the exit button
+     * @return Exit button
+     */
     public Rectangle getMenuButton() {
         return exitButton;
     }
 
+    /**
+     * This method gets the info button
+     * @return Info button
+     */
     public Rectangle getInfoButton() {
         return infoButton;
     }
 
+    /**
+     * This method gets the high score button
+     * @return High score button
+     */
     public Rectangle getHighScoreButton() {
         return highScoreButton;
     }
 
+    /**
+     * This method sets the startClicked variable
+     * @param startClicked Boolean startClicked variable
+     */
     public void setStartClicked(boolean startClicked) {
         this.startClicked = startClicked;
     }
 
+    /**
+     * This method sets the exitClicked variable
+     * @param exitClicked Boolean exitClicked variable
+     */
     public void setExitClicked(boolean exitClicked) {
         this.exitClicked = exitClicked;
     }
 
+    /**
+     * This method sets the infoClicked variable
+     * @param infoClicked Boolean infoClicked variable
+     */
     public void setInfoClicked(boolean infoClicked) {
         this.infoClicked = infoClicked;
     }
 
+    /**
+     * This method sets the highScoreClicked variable
+     * @param highScoreClicked Boolean highScoreClicked variable
+     */
     public void setHighScoreClicked(boolean highScoreClicked) {
         this.highScoreClicked = highScoreClicked;
     }
 
-    //define Font
+    /**
+     * This method defines the font used in home menu
+     */
     private void setFont() {
         greetingsFont = new Font("Noto Mono", Font.BOLD, 30);
         gameTitleFont = new Font("Noto Mono", Font.BOLD, 40);
@@ -128,11 +184,18 @@ public class HomeMenuView extends JComponent {
         buttonFont = new Font("Monospaced", Font.BOLD, startButton.height - 2);
     }
 
+    /**
+     * This method generates the home menu interface
+     * @param g Graphics
+     */
     public void paint(Graphics g) {
         drawMenu((Graphics2D) g);
     }
 
-    //change from public to private
+    /**
+     * This method creates and display the home menu interface component
+     * @param g2d Graphics2D
+     */
     private void drawMenu(Graphics2D g2d) {
         //add background image
         Image img = Toolkit.getDefaultToolkit().getImage("src/main/resources/brick-destroyer-img-resized.png");
@@ -158,6 +221,10 @@ public class HomeMenuView extends JComponent {
         g2d.setColor(prevColor);
     }
 
+    /**
+     * This method creates texts in home menu
+     * @param g2d Graphics2D
+     */
     private void drawText(Graphics2D g2d) {
 
         g2d.setColor(new Color(251, 251, 252, 81));
@@ -194,6 +261,10 @@ public class HomeMenuView extends JComponent {
         g2d.drawString(CREDITS, sX, sY);
     }
 
+    /**
+     * This method creates the buttons in home menu
+     * @param g2d Graphics2D
+     */
     private void drawButton(Graphics2D g2d) {
         FontRenderContext frc = g2d.getFontRenderContext();
         drawStartButton(g2d, frc);
@@ -201,7 +272,11 @@ public class HomeMenuView extends JComponent {
         drawInfoButton(g2d, frc);
         drawExitButton(g2d, frc);
     }
-
+    /**
+     * This method creates the start button
+     * @param g2d Graphics2D
+     * @param frc Font render context
+     */
     private void drawStartButton(Graphics2D g2d, FontRenderContext frc) {
         g2d.setColor(new Color(48, 99, 175));
         g2d.fill(startButton);
@@ -234,7 +309,11 @@ public class HomeMenuView extends JComponent {
             g2d.drawString(START_TEXT, x, y);
         }
     }
-
+    /**
+     * This method creates the high score button
+     * @param g2d Graphics2D
+     * @param frc Font render context
+     */
     private void drawHighScoreButton(Graphics2D g2d, FontRenderContext frc) {
         g2d.setColor(new Color(48, 99, 175));
         g2d.fill(highScoreButton);
@@ -269,6 +348,11 @@ public class HomeMenuView extends JComponent {
         }
     }
 
+    /**
+     * This method creates the info button
+     * @param g2d Graphics2D
+     * @param frc Font render context
+     */
     private void drawInfoButton(Graphics2D g2d, FontRenderContext frc) {
         g2d.setColor(new Color(48, 99, 175));
         g2d.fill(infoButton);
@@ -303,6 +387,11 @@ public class HomeMenuView extends JComponent {
         }
     }
 
+    /**
+     * This method creates the exit button
+     * @param g2d Graphics2D
+     * @param frc Font render context
+     */
     private void drawExitButton(Graphics2D g2d, FontRenderContext frc) {
         g2d.setColor(new Color(48, 99, 175));
         g2d.fill(exitButton);

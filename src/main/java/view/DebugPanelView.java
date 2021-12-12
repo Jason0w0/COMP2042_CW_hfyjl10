@@ -22,7 +22,11 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-
+/**
+ * This class generates the debug pane's view
+ *
+ * @author Jason
+ */
 public class DebugPanelView extends JPanel {
     private static final Color DEF_BKG = Color.WHITE;
 
@@ -32,6 +36,10 @@ public class DebugPanelView extends JPanel {
     private final JSlider ballXSpeed;
     private final JSlider ballYSpeed;
 
+    /**
+     * This is the constructor of DebugPanelView class
+     * This constructor generates the component of debug panel
+     */
     public DebugPanelView(){
         initialize();
         skipLevel = new JButton("Skip Level");
@@ -44,11 +52,18 @@ public class DebugPanelView extends JPanel {
         this.add(ballYSpeed);
     }
 
+    /**
+     * This method initializes the debug panel frame
+     */
     private void initialize(){
         this.setBackground(DEF_BKG);
         this.setLayout(new GridLayout(2,2));
     }
 
+    /**
+     * This method generates slider to change the ball's speed
+     * @return Slider
+     */
     private JSlider makeSlider(){
         JSlider out = new JSlider(-10, 10);
         out.setMajorTickSpacing(1);
@@ -57,26 +72,50 @@ public class DebugPanelView extends JPanel {
         return out;
     }
 
+    /**
+     * This method gets the ball's horizontal speed
+     * @return Ball's horizontal speed
+     */
     public JSlider getBallXSpeed() {
         return ballXSpeed;
     }
 
+    /**
+     * This method gets the ball's vertical speed
+     * @return Ball's vertical speed
+     */
     public JSlider getBallYSpeed() {
         return ballYSpeed;
     }
 
+    /**
+     * This method adds skip level function to skip level button
+     * @param e Action listener
+     */
     public void addSkipLevelActionListener(ActionListener e){
         skipLevel.addActionListener(e);
     }
 
+    /**
+     * This method adds reset ball count function to the reset ball button
+     * @param e Action listener
+     */
     public void addResetBallActionListener(ActionListener e){
         resetBalls.addActionListener(e);
     }
 
+    /**
+     * This method adds change ball's horizontal speed function to the slider
+     * @param e Change listener
+     */
     public void addBallXSpeedChangeListener(ChangeListener e){
         ballXSpeed.addChangeListener(e);
     }
 
+    /**
+     * This method adds change ball's vertical speed function to the slider
+     * @param e Change listener
+     */
     public void addBallYSpeedChangeListener(ChangeListener e){
         ballYSpeed.addChangeListener(e);
     }

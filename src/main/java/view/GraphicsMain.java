@@ -22,8 +22,16 @@ import model.GameFrameModel;
 
 import java.awt.*;
 
-
+/**
+ * This is the main class where the program starts
+ *
+ * @author Jason
+ */
 public class GraphicsMain {
+    /**
+     * This is the main method
+     * This method initializes the game frame and view.
+     */
     public static void main(String[] args){
         GameFrameView gameFrameView = new GameFrameView();
         GameFrameModel gameFrameModel = new GameFrameModel();

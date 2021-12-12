@@ -24,14 +24,24 @@ import java.awt.event.WindowFocusListener;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * This class generates the game frame's view
+ *
+ * @author Jason
+ */
 public class GameFrameView extends JFrame {
+    /**
+     * This is the constructor of GameFrameViewClass
+     */
     public GameFrameView(){
         super();
         this.setLayout(new BorderLayout());
         addIconImage();
     }
 
+    /**
+     * This method adds an icon image
+     */
     private void addIconImage() {
         try {
             this.setIconImage(ImageIO.read(new File("src/main/resources/brick-destroyer-img-resized.png")));
@@ -40,11 +50,18 @@ public class GameFrameView extends JFrame {
         }
     }
 
+    /**
+     * This method adds a home menu to the screen
+     * @param homeMenuView home menu
+     */
     public void addHomeMenu(HomeMenuView homeMenuView){
         this.add(homeMenuView,BorderLayout.CENTER);
         this.setUndecorated(true);
     }
 
+    /**
+     * This method sets the location of the screen
+     */
     public void autoLocate(){
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (size.width - this.getWidth()) / 2;
@@ -52,6 +69,10 @@ public class GameFrameView extends JFrame {
         this.setLocation(x,y);
     }
 
+    /**
+     * This method adds WindowFocusListener to current screen
+     * @param e WindowFocusListener
+     */
     public void addGameFrameWindowFocusListener(WindowFocusListener e){
         this.addWindowFocusListener(e);
     }

@@ -20,11 +20,20 @@ package view;
 import javax.swing.*;
 
 
+/**
+ * This class generates the Info panel
+ *
+ * @author Jason
+ */
 public class InfoView {
     public InfoView(){
         JOptionPane.showMessageDialog(null,getMessage(),"INFO",JOptionPane.PLAIN_MESSAGE);
     }
 
+    /**
+     * This method generates the message displayed
+     * @return String message
+     */
     private String getMessage(){
         return """
                 WELCOME GAMER,

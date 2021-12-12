@@ -21,7 +21,11 @@ import java.awt.*;
 import java.awt.geom.GeneralPath;
 import java.awt.geom.Point2D;
 
-
+/**
+ * This class generates the cement-type brick
+ *
+ * @author Jason
+ */
 public class CementBrick extends Brick {
     private static final Color DEF_INNER = new Color(147, 147, 147);
     private static final Color DEF_BORDER = new Color(217, 199, 175);
@@ -30,17 +34,34 @@ public class CementBrick extends Brick {
     private final Crack crack;
     private Shape brickFace;
 
+    /**
+     * This is the constructor of class CementBrick
+     * @param point Upper-left coordinate of brick
+     * @param size Size of brick
+     */
     public CementBrick(Point point, Dimension size){
         super(point,size,DEF_BORDER,DEF_INNER,CEMENT_STRENGTH);
         crack = new Crack(DEF_CRACK_DEPTH,DEF_STEPS);
         brickFace = super.brickFace;
     }
 
+    /**
+     * This method generates the cement-type brick
+     * @param pos Brick's location
+     * @param size Brick's size
+     * @return Cement-type brick
+     */
     @Override
     protected Shape makeBrickFace(Point pos, Dimension size) {
         return new Rectangle(pos,size);
     }
 
+    /**
+     * This method determines the impact on cement-type brick
+     * @param point Point of impact
+     * @param dir Direction of impact
+     * @return Either impact happens on cement brick
+     */
     @Override
     public boolean setImpact(Point2D point, int dir) {
         if(super.isBroken())
@@ -54,11 +75,18 @@ public class CementBrick extends Brick {
         return true;
     }
 
+    /**
+     * This method gets the cement brick
+     * @return Cement brick
+     */
     @Override
     public Shape getBrick() {
         return brickFace;
     }
 
+    /**
+     * This method updates the condition of cement brick
+     */
     private void updateBrick(){
         if(!super.isBroken()){
             GeneralPath gp = crack.draw();
@@ -67,6 +95,9 @@ public class CementBrick extends Brick {
         }
     }
 
+    /**
+     * This method returns cement brick to its original condition
+     */
     public void repair(){
         super.repair();
         crack.reset();

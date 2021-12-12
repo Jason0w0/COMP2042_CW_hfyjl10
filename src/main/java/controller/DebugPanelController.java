@@ -26,11 +26,21 @@ import javax.swing.event.ChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+/**
+ * This class generates the debug panel's controller
+ *
+ * @author Jason
+ */
 public class DebugPanelController {
     private final DebugPanelModel debugPanelModel;
     private final DebugPanelView debugPanelView;
 
+    /**
+     * This is the constructor of class DebugPanelController
+     * @param debugPanelModel Debug panel's model
+     * @param debugPanelView Debug panel's view
+     * @param stage Stage class
+     */
     public DebugPanelController(DebugPanelModel debugPanelModel, DebugPanelView debugPanelView, Stage stage){
         this.debugPanelModel = debugPanelModel;
         this.debugPanelView = debugPanelView;
@@ -41,6 +51,9 @@ public class DebugPanelController {
         this.debugPanelView.addBallYSpeedChangeListener(new BallYSpeedChangeListener());
     }
 
+    /**
+     * This class generates the action listener to skip class
+     */
     class SkipLevelListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -48,6 +61,9 @@ public class DebugPanelController {
         }
     }
 
+    /**
+     * This class generates the action listener to reset ball count
+     */
     class ResetLevelListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -55,6 +71,9 @@ public class DebugPanelController {
         }
     }
 
+    /**
+     * This class generates the action listener to change ball's horizontal speed
+     */
     class BallXSpeedChangeListener implements ChangeListener{
         @Override
         public void stateChanged(ChangeEvent e) {
@@ -62,6 +81,9 @@ public class DebugPanelController {
         }
     }
 
+    /**
+     * This class generates the action listener to change ball's vertical speed
+     */
     class BallYSpeedChangeListener implements ChangeListener{
         @Override
         public void stateChanged(ChangeEvent e) {
