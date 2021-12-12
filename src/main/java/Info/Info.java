@@ -25,8 +25,8 @@ import javax.swing.*;
  *
  * @author Jason
  */
-public class InfoView {
-    public InfoView(){
+public class Info {
+    public Info(){
         JOptionPane.showMessageDialog(null,getMessage(),"INFO",JOptionPane.PLAIN_MESSAGE);
     }
 

@@ -19,7 +19,7 @@ package HomeMenu;
 
 import GameFrame.GameFrameController;
 import HighScore.HighScoreController;
-import Info.InfoView;
+import Info.Info;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -69,7 +69,7 @@ public class HomeMenuController implements MouseListener, MouseMotionListener {
             System.exit(0);
         }
         else if(homeMenuView.getInfoButton().contains(p)){
-            new InfoView();
+            new Info();
         }
         else if(homeMenuView.getHighScoreButton().contains(p)){
             new HighScoreController();
