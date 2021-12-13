@@ -1,6 +1,6 @@
-#Brick_Destroy Lee Jason 20184290
-##Key Changes
-###Maintenance
+# Brick_Destroy Lee Jason 20184290
+## Key Changes
+### Maintenance
 - Apply Model View Controller (MVC) design pattern
   - Breakdown existing classes such as GameFrame into GameFrameModel, GameFrameView and GameFrameController.
   - MVC design pattern was chose because it helps separates the display(view) from the data and allow modification in each data without affecting others
@@ -24,7 +24,7 @@
   - Wall class is responsible for grouping all the bricks created to be display in the game
   - Stage class is responsible for getting all components needs in the game such as player, ball and wall
   - Breaking down Stage class supports the idea of single responsibility
-###Extension
+### Extension
 - Creating info page
   - An info page is created to give the player a better understanding on how to play the game
   - This info page can be accessed by clicking the info button in the main menu
